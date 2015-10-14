@@ -39,8 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\ExceptionHelper.cs" />
+    <Compile Include="Random\IRandomDouble.cs" />
     <Compile Include="Random\IRandomizer.cs" />
     <Compile Include="Random\IRandomString.cs" />
+    <Compile Include="Random\RandomDouble.cs" />
     <Compile Include="Random\Randomizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Random\RandomString.cs" />

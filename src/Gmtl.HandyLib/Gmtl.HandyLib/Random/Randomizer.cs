@@ -20,12 +20,14 @@ namespace Gmtl.HandyLib.Random
         {
             Randomizer randomizer = new Randomizer
             {
-                RandomString = new RandomString()
+                RandomString = new RandomString(),
+                RandomDouble = new RandomDouble()
             };
 
             return randomizer;
         }
 
         public IRandomString RandomString { get; set; }
+        public IRandomDouble RandomDouble { get; set; }
     }
 }
