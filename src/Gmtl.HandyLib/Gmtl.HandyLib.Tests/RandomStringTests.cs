@@ -16,7 +16,7 @@ namespace Gmtl.HandyLib.Tests
             //Act
             for (int i = 0; i < 100; i++)
             {
-                uniqueStringList.Add(Randomizer.Instance.RandomString.Next(10, 100));
+                uniqueStringList.Add(Randomizer.RandomString.Next(10, 100));
             }
 
             //Assert
@@ -34,7 +34,7 @@ namespace Gmtl.HandyLib.Tests
             //Act
             for (int i = 0; i < itemsCount; i++)
             {
-                uniqueStringList.Add(Randomizer.Instance.RandomString.Next(stringLength, stringLength));
+                uniqueStringList.Add(Randomizer.RandomString.Next(stringLength, stringLength));
             }
 
             //Assert

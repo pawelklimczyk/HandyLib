@@ -8,7 +8,7 @@ using System;
 
 namespace Gmtl.HandyLib.Random
 {
-    public class RandomDouble : IRandomDouble
+    internal class RandomDouble : IRandomDouble
     {
         private static readonly System.Random random = new System.Random();
         private const int defaultPrecision = 5;

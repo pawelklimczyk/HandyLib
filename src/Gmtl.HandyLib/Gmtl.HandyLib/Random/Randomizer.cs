@@ -6,28 +6,15 @@
 
 namespace Gmtl.HandyLib.Random
 {
-    public class Randomizer : IRandomizer
+    public class Randomizer
     {
-        private static Randomizer instance;
-
-        public static Randomizer Instance
+        static Randomizer()
         {
-            get { return instance ?? (instance = InitDefault()); }
-            set { instance = value; }
+            RandomString = new RandomString();
+            RandomDouble = new RandomDouble();
         }
 
-        private static Randomizer InitDefault()
-        {
-            Randomizer randomizer = new Randomizer
-            {
-                RandomString = new RandomString(),
-                RandomDouble = new RandomDouble()
-            };
-
-            return randomizer;
-        }
-
-        public IRandomString RandomString { get; set; }
-        public IRandomDouble RandomDouble { get; set; }
+        public static IRandomString RandomString { get; set; }
+        public static IRandomDouble RandomDouble { get; set; }
     }
 }
