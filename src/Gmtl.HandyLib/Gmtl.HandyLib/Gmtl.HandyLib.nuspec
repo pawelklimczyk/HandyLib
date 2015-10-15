@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Gmtl.HandyLib</id>
+    <version>$version$</version>
+    <authors>Pawel Klimczyk</authors>
+    <owners>Pawel</owners>
+    <licenseUrl>https://github.com/pawelklimczyk/HandyLib</licenseUrl>
+    <projectUrl>https://github.com/pawelklimczyk/HandyLib</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>HandyLib makes developers live bit easier</description>
+    <releaseNotes>Initial version of HandyLib</releaseNotes>
+    <copyright>Copyright Gemotial 2015</copyright>
+    <tags></tags>
+  </metadata>
+</package>
