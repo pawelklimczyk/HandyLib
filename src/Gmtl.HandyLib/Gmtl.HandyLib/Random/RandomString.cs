@@ -5,10 +5,10 @@ namespace Gmtl.HandyLib.Random
 {
     internal class RandomString : IRandomString
     {
-        private static readonly System.Random random = new System.Random();
-        private static string lowerCaseLetters = "abcdefghijklmnopqrstuvxyz";
+        private static readonly System.Random random = new System.Random((int)DateTime.Now.Ticks);
+        private static string lowerCaseLetters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
         private static readonly int lettersCount;
-        
+
         static RandomString()
         {
             lettersCount = lowerCaseLetters.Length;
@@ -22,6 +22,11 @@ namespace Gmtl.HandyLib.Random
         public string Next(int max)
         {
             return Next(1, max);
+        }
+
+        public string NextExact(int exactStringLength)
+        {
+            return Next(exactStringLength, exactStringLength);
         }
 
         public string Next(int min, int max)
@@ -40,9 +45,9 @@ namespace Gmtl.HandyLib.Random
 
         private void CheckContractInput(int min, int max)
         {
-            if (min < 0)
+            if (min < 1)
             {
-                throw new ArgumentException("'min' must be greater or equal to 0", "min");
+                throw new ArgumentException("'min' must be greater then 0", "min");
             }
 
             if (max < min)

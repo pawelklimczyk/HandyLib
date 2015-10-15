@@ -23,18 +23,19 @@ namespace Gmtl.HandyLib.Tests
             Assert.That(uniqueStringList, Is.Unique);
         }
 
-        [Test]
-        public void RandomString_shouldReturnRandomStringOfSize16()
+        [TestCase(4)]
+        [TestCase(16)]
+        [TestCase(32)]
+        public void RandomString_shouldReturnRandomStringOfSizeX(int stringLength)
         {
             //Arrange
             int itemsCount = 100;
-            int stringLength = 16;
             List<string> uniqueStringList = new List<string>();
 
             //Act
             for (int i = 0; i < itemsCount; i++)
             {
-                uniqueStringList.Add(Randomizer.RandomString.Next(stringLength, stringLength));
+                uniqueStringList.Add(Randomizer.RandomString.NextExact(stringLength));
             }
 
             //Assert

@@ -10,6 +10,7 @@ namespace Gmtl.HandyLib.Random
     {
         string Next();
         string Next(int max);
+        string NextExact(int exactStringLength);
         string Next(int min, int max);
     }
 }
