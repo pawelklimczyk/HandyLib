@@ -1,7 +1,13 @@
-﻿using System;
+﻿// -------------------------------------------------------------------------------------------------------------------
+// <copyright company="Gemotial" file="RandomString.cs" project="Gmtl.HandyLib" date="2015-09-25 18:26:10">
+// 
+// </copyright>
+// -------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Text;
 
-namespace Gmtl.HandyLib.Random
+namespace Gmtl.HandyLib.HLRandomizer
 {
     internal class RandomString : IRandomString
     {

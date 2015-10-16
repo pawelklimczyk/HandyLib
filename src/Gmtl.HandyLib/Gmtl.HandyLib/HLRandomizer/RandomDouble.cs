@@ -6,7 +6,7 @@
 
 using System;
 
-namespace Gmtl.HandyLib.Random
+namespace Gmtl.HandyLib.HLRandomizer
 {
     internal class RandomDouble : IRandomDouble
     {
@@ -31,6 +31,7 @@ namespace Gmtl.HandyLib.Random
         public double Next(double min, double max, int precision)
         {
             //TODO min=-8.99 max -4.11 -> issue
+            //Next(49, 51, 5),->exception
             double minMin = min - Math.Truncate(min);
             double maxMax = max - Math.Truncate(max);
             if (minMin >= maxMax) throw new ArgumentException("min must be lesser then max");

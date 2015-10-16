@@ -1,14 +1,14 @@
 ﻿// -------------------------------------------------------------------------------------------------------------------
-// <copyright file="Randomizer.cs" project="Gmtl.HandyLib" date="2015-09-20 15:49:43">
+// <copyright company="Gemotial" file="HLRandomizer.cs" project="Gmtl.HandyLib" date="2015-09-20 15:57:15">
 // 
 // </copyright>
 // -------------------------------------------------------------------------------------------------------------------
 
-namespace Gmtl.HandyLib.Random
+namespace Gmtl.HandyLib.HLRandomizer
 {
-    public class Randomizer
+    public class HLRandomizer
     {
-        static Randomizer()
+        static HLRandomizer()
         {
             RandomString = new RandomString();
             RandomDouble = new RandomDouble();

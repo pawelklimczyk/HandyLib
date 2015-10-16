@@ -1,10 +1,10 @@
 ﻿// -------------------------------------------------------------------------------------------------------------------
-// <copyright file="IRandomText.cs" project="Gmtl.HandyLib" date="2015-09-20 15:57:37">
+// <copyright company="Gemotial" file="IRandomString.cs" project="Gmtl.HandyLib" date="2015-09-20 15:57:37">
 // 
 // </copyright>
 // -------------------------------------------------------------------------------------------------------------------
 
-namespace Gmtl.HandyLib.Random
+namespace Gmtl.HandyLib.HLRandomizer
 {
     public interface IRandomString
     {
@@ -13,4 +13,4 @@ namespace Gmtl.HandyLib.Random
         string NextExact(int exactStringLength);
         string Next(int min, int max);
     }
-}
+}   

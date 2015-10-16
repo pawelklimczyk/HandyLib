@@ -1,6 +1,11 @@
-﻿using System.Collections.Generic;
+﻿// -------------------------------------------------------------------------------------------------------------------
+// <copyright company="Gemotial" file="RandomStringTests.cs" project="Gmtl.HandyLib.Tests" date="2015-09-20 15:59:22">
+// 
+// </copyright>
+// -------------------------------------------------------------------------------------------------------------------
+
+using System.Collections.Generic;
 using NUnit.Framework;
-using Randomizer = Gmtl.HandyLib.Random.Randomizer;
 
 namespace Gmtl.HandyLib.Tests
 {
@@ -16,7 +21,7 @@ namespace Gmtl.HandyLib.Tests
             //Act
             for (int i = 0; i < 100; i++)
             {
-                uniqueStringList.Add(Randomizer.RandomString.Next(10, 100));
+                uniqueStringList.Add(HLRandomizer.HLRandomizer.RandomString.Next(10, 100));
             }
 
             //Assert
@@ -35,7 +40,7 @@ namespace Gmtl.HandyLib.Tests
             //Act
             for (int i = 0; i < itemsCount; i++)
             {
-                uniqueStringList.Add(Randomizer.RandomString.NextExact(stringLength));
+                uniqueStringList.Add(HLRandomizer.HLRandomizer.RandomString.NextExact(stringLength));
             }
 
             //Assert
