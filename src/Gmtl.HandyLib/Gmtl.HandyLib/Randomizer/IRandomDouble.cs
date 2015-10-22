@@ -4,7 +4,7 @@
 // </copyright>
 // -------------------------------------------------------------------------------------------------------------------
 
-namespace Gmtl.HandyLib.HLRandomizer
+namespace Gmtl.HandyLib.Randomizer
 {
     public interface IRandomDouble
     {

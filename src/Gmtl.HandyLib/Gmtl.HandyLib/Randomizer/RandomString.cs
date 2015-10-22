@@ -7,7 +7,7 @@
 using System;
 using System.Text;
 
-namespace Gmtl.HandyLib.HLRandomizer
+namespace Gmtl.HandyLib.Randomizer
 {
     internal class RandomString : IRandomString
     {

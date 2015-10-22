@@ -4,7 +4,9 @@
 // </copyright>
 // -------------------------------------------------------------------------------------------------------------------
 
-namespace Gmtl.HandyLib.HLRandomizer
+using Gmtl.HandyLib.Randomizer;
+
+namespace Gmtl.HandyLib
 {
     public class HLRandomizer
     {

@@ -6,7 +6,7 @@
 
 using System;
 
-namespace Gmtl.HandyLib.HLRandomizer
+namespace Gmtl.HandyLib.Randomizer
 {
     internal class RandomDouble : IRandomDouble
     {

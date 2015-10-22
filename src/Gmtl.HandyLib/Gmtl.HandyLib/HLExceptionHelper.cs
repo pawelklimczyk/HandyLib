@@ -3,9 +3,9 @@
 // 
 // </copyright>
 // -------------------------------------------------------------------------------------------------------------------
-namespace Gmtl.HandyLib.HLHelpers
+namespace Gmtl.HandyLib
 {
-    public class HLExceptionHelper
+    public static class HLExceptionHelper
     {
         //TODO to string 
     }

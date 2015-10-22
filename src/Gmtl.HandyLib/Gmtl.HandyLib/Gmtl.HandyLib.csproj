@@ -39,14 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HLDateTime\HLDateTime.cs" />
-    <Compile Include="HLHelpers\HLExceptionHelper.cs" />
-    <Compile Include="HLRandomizer\IRandomDouble.cs" />
-    <Compile Include="HLRandomizer\IRandomString.cs" />
-    <Compile Include="HLRandomizer\RandomDouble.cs" />
-    <Compile Include="HLRandomizer\HLRandomizer.cs" />
+    <Compile Include="HLDateTime.cs" />
+    <Compile Include="HLExceptionHelper.cs" />
+    <Compile Include="Randomizer\IRandomDouble.cs" />
+    <Compile Include="Randomizer\IRandomString.cs" />
+    <Compile Include="Randomizer\RandomDouble.cs" />
+    <Compile Include="HLRandomizer.cs" />
+    <Compile Include="HLString.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="HLRandomizer\RandomString.cs" />
+    <Compile Include="Randomizer\RandomString.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Gmtl.HandyLib.nuspec" />

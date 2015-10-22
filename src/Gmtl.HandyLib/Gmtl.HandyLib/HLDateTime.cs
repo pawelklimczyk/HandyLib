@@ -6,7 +6,7 @@
 
 using System;
 
-namespace Gmtl.HandyLib.HLDateTime
+namespace Gmtl.HandyLib
 {
     public static class HLDateTime
     {
