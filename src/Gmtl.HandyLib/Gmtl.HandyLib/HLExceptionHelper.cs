@@ -11,6 +11,9 @@ namespace Gmtl.HandyLib
 {
     public static class HLExceptionHelper
     {
+        /// <summary>
+        /// Return XML serialized string of Exception provided in parameter
+        /// </summary>
         public static string ToXmlString(this Exception exception, bool includeStackTrace)
         {
             XElement rootElement = AddException(exception, includeStackTrace);
