@@ -26,7 +26,8 @@ namespace Gmtl.HandyLib.Tests
             //Assert
             Assert.That(result, Is.EqualTo(inputString));
         }
-
+        
+        [Test]
         public void HLString_providedEmptyString_shouldReturnDefaultValue()
         {
             //Act
@@ -47,6 +48,8 @@ namespace Gmtl.HandyLib.Tests
             //Assert
             Assert.That(result, Is.EqualTo(defaultValue));
         }
+        
+        [Test]
         public void HLString_providedNUll_shouldReturnDefaultValue()
         {
             //Act
@@ -54,6 +57,39 @@ namespace Gmtl.HandyLib.Tests
 
             //Assert
             Assert.That(result, Is.EqualTo(defaultValue));
+        }
+
+        [Test]
+        public void HLString_providedNullValue_shouldReturnEmpty()
+        {
+            //Act
+            string result = HLString.ValueOrEmpty(null);
+
+            //Assert
+            Assert.That(result, Is.EqualTo(String.Empty));
+        }
+        
+        [Test]
+        public void HLString_providedEmptyValue_shouldReturnEmpty()
+        {
+            //Act
+            string result = HLString.ValueOrEmpty(String.Empty);
+
+            //Assert
+            Assert.That(result, Is.EqualTo(String.Empty));
+        }
+
+        [TestCase("0987654")]
+        [TestCase("!~@#@*%^")]
+        [TestCase("test string")]
+        [TestCase("TEST STRING")]
+        public void HLString_providedValue_shouldReturnIn(string input)
+        {
+            //Act
+            string result = HLString.ValueOrEmpty(input);
+
+            //Assert
+            Assert.That(result, Is.EqualTo(input));
         }
     }
 }
