@@ -8,9 +8,9 @@
     <licenseUrl>https://github.com/pawelklimczyk/HandyLib</licenseUrl>
     <projectUrl>https://github.com/pawelklimczyk/HandyLib</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>HandyLib makes developers life bit easier. Provides string and double values randomizer.</description>
+    <description>HandyLib makes developers life bit easier. Provides string and double values randomizer (test-data), exceptionHelper (serializing) and DateTime helper (Unix DateTime)</description>
     <releaseNotes>Initial version of HandyLib</releaseNotes>
     <copyright>Copyright Gemotial 2015</copyright>
-    <tags></tags>
+    <tags>test-data random exception string datetime unix</tags>
   </metadata>
 </package>
