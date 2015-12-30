@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HLDllEmbeddedResource.cs" />
     <Compile Include="HLDateTime.cs" />
     <Compile Include="HLExceptionHelper.cs" />
     <Compile Include="Randomizer\IRandomDouble.cs" />

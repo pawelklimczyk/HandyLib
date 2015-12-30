@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HLDllEmbeddedResourceTests.cs" />
     <Compile Include="HLExceptionHelperTests.cs" />
     <Compile Include="HLStringTests.cs" />
     <Compile Include="RandomStringTests.cs" />
@@ -56,6 +57,9 @@
       <Project>{dd6e1bb3-ea42-4f79-bae2-6a282c5ad9f2}</Project>
       <Name>Gmtl.HandyLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\EmbeddedResourceTextFile.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
