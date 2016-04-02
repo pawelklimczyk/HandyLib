@@ -17,17 +17,37 @@ namespace Gmtl.HandyLib
         /// Operation status
         /// </summary>
         public OperationalStatus Status { get; set; }
-        
+
         /// <summary>
         /// Extra info send with operation result (optional)
         /// </summary>
         public string Message { get; set; }
+
+        public static OperationResult<T> Error(T value = default(T), string message = "")
+        {
+            return new OperationResult<T>
+            {
+                Result = value,
+                Message = message,
+                Status = OperationalStatus.Error
+            };
+        }
+
+        public static OperationResult<T> Success(T value = default(T), string message = "")
+        {
+            return new OperationResult<T>
+            {
+                Result = value,
+                Message = message,
+                Status = OperationalStatus.Success
+            };
+        }
     }
 
     public enum OperationalStatus
     {
         Success,
-        Warning, 
+        Warning,
         Error
     }
 }
