@@ -42,6 +42,7 @@
     <Compile Include="HLDllEmbeddedResource.cs" />
     <Compile Include="HLDateTime.cs" />
     <Compile Include="HLExceptionHelper.cs" />
+    <Compile Include="OperationResult.cs" />
     <Compile Include="Randomizer\IRandomDouble.cs" />
     <Compile Include="Randomizer\IRandomString.cs" />
     <Compile Include="Randomizer\RandomDouble.cs" />
