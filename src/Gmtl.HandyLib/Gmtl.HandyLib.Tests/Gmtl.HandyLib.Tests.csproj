@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HLBase64Tests.cs" />
     <Compile Include="HLDllEmbeddedResourceTests.cs" />
     <Compile Include="HLExceptionHelperTests.cs" />
     <Compile Include="HLStringTests.cs" />

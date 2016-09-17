@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HLBase64.cs" />
     <Compile Include="HLDllEmbeddedResource.cs" />
     <Compile Include="HLDateTime.cs" />
     <Compile Include="HLExceptionHelper.cs" />
