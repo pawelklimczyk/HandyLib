@@ -47,6 +47,7 @@
     <Compile Include="HLDllEmbeddedResourceTests.cs" />
     <Compile Include="HLExceptionHelperTests.cs" />
     <Compile Include="HLStringTests.cs" />
+    <Compile Include="RandomDoubleTests.cs" />
     <Compile Include="RandomStringTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

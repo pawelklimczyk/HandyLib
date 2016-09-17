@@ -11,6 +11,8 @@ namespace Gmtl.HandyLib.Randomizer
         double Next();
         double Next(int precision);
         double Next(double max, int precision);
+        double Next(double min, double max);
+        double Next(int min, int max);
         double Next(double min, double max, int precision);
     }
 }

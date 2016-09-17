@@ -28,15 +28,21 @@ namespace Gmtl.HandyLib.Randomizer
             return Next(0, max, precision);
         }
 
+        public double Next(int min, int max)
+        {
+            return Next(min, max, 0);
+        }
+
+        public double Next(double min, double max)
+        {
+            return Next(min, max, 0);
+        }
+
         public double Next(double min, double max, int precision)
         {
-            //TODO min=-8.99 max -4.11 -> issue
-            //Next(49, 51, 5),->exception
-            double minMin = min - Math.Truncate(min);
-            double maxMax = max - Math.Truncate(max);
-            if (minMin >= maxMax) throw new ArgumentException("min must be lesser then max");
-
-            return Math.Round(random.NextDouble(), precision) + random.Next((int)min, (int)max);
+            if (min >= max) throw new ArgumentException("min must be lesser then max");
+            
+            return Math.Round(random.NextDouble(), precision) * (max - min) + min;
         }
     }
 }
