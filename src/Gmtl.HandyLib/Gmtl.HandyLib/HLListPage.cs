@@ -8,6 +8,10 @@ using System;
 using System.Collections.Generic;
 namespace Gmtl.HandyLib
 {
+    /// <summary>
+    /// Provides base class for 'pagination'
+    /// </summary>
+    /// <typeparam name="T">List item type</typeparam>
     public class HLListPage<T>
     {
         private readonly List<T> itemsOnPage;

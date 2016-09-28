@@ -9,6 +9,9 @@ using System.Xml.Linq;
 
 namespace Gmtl.HandyLib
 {
+    /// <summary>
+    /// Handy methods related to System.Exception
+    /// </summary>
     public static class HLExceptionHelper
     {
         /// <summary>

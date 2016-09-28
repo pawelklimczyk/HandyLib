@@ -8,11 +8,21 @@ using System;
 
 namespace Gmtl.HandyLib
 {
+    /// <summary>
+    /// Handy methods related to System.String
+    /// </summary>
     public static class HLString
     {
         /// <summary>
         /// Returns input if it's not null or whitespace, defaultValue otherwise
         /// </summary>
+        /// <remarks>
+        /// <code>
+        /// HLString.ValueOrDefault("test", "replaced"); //'test' returned
+        /// HLString.ValueOrDefault("", "replaced"); //'replaced' returned
+        /// HLString.ValueOrDefault(null, "replaced"); //'replaced' returned
+        /// </code>
+        /// </remarks>
         public static string ValueOrDefault(string input, string defaultValue)
         {
             return string.IsNullOrWhiteSpace(input) ? defaultValue : input;
@@ -21,6 +31,12 @@ namespace Gmtl.HandyLib
         /// <summary>
         /// Returns input if it's not null or whitespace, String.Empty otherwise
         /// </summary>
+        /// <remarks>
+        /// <code>
+        /// HLString.ValueOrEmpty("test"); //'test' returned
+        /// HLString.ValueOrEmpty(null); //'String.Empty' returned
+        /// </code>
+        /// </remarks>
         public static string ValueOrEmpty(string input)
         {
             return ValueOrDefault(input, String.Empty);

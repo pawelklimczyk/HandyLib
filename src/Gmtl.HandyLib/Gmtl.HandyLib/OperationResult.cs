@@ -6,6 +6,10 @@
 
 namespace Gmtl.HandyLib
 {
+    /// <summary>
+    /// Generic class working as a wrapper
+    /// </summary>
+    /// <typeparam name="T">type</typeparam>
     public class OperationResult<T>
     {
         /// <summary>
@@ -43,7 +47,9 @@ namespace Gmtl.HandyLib
             };
         }
     }
-
+    /// <summary>
+    /// Status of executed operation
+    /// </summary>
     public enum OperationalStatus
     {
         Success,
