@@ -3,6 +3,8 @@
 
 - [HLDateTime](#T-Gmtl-HandyLib-HLDateTime 'Gmtl.HandyLib.HLDateTime')
   - [NowUnixTimestamp](#P-Gmtl-HandyLib-HLDateTime-NowUnixTimestamp 'Gmtl.HandyLib.HLDateTime.NowUnixTimestamp')
+  - [FromUnixTimestamp(timestamp)](#M-Gmtl-HandyLib-HLDateTime-FromUnixTimestamp-System-Int64- 'Gmtl.HandyLib.HLDateTime.FromUnixTimestamp(System.Int64)')
+  - [ToUnixTimestamp(dateTime)](#M-Gmtl-HandyLib-HLDateTime-ToUnixTimestamp-System-DateTime- 'Gmtl.HandyLib.HLDateTime.ToUnixTimestamp(System.DateTime)')
 - [HLDllEmbeddedResource](#T-Gmtl-HandyLib-HLDllEmbeddedResource 'Gmtl.HandyLib.HLDllEmbeddedResource')
   - [GetTextResource(resourceName,assembly)](#M-Gmtl-HandyLib-HLDllEmbeddedResource-GetTextResource-System-String,System-Reflection-Assembly- 'Gmtl.HandyLib.HLDllEmbeddedResource.GetTextResource(System.String,System.Reflection.Assembly)')
   - [GetTextResource(resourceName)](#M-Gmtl-HandyLib-HLDllEmbeddedResource-GetTextResource-System-String- 'Gmtl.HandyLib.HLDllEmbeddedResource.GetTextResource(System.String)')
@@ -45,8 +47,42 @@ Return Linux timestamp for provided date
 ##### Remarks
 
 ```
-int linuxTimestamp = HLDateTime.NowUnixTimestamp;
+int unixTimestamp = HLDateTime.NowUnixTimestamp;
 ```
+
+<a name='M-Gmtl-HandyLib-HLDateTime-FromUnixTimestamp-System-Int64-'></a>
+### FromUnixTimestamp(timestamp) `method` [#](#M-Gmtl-HandyLib-HLDateTime-FromUnixTimestamp-System-Int64- 'Go To Here') [=](#contents 'Back To Contents')
+
+##### Summary
+
+Convert unix timestamp to System.DateTime
+
+##### Returns
+
+DateTime representation of unix timestamp
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| timestamp | [System.Int64](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int64 'System.Int64') | Unix timestamp to be converted |
+
+<a name='M-Gmtl-HandyLib-HLDateTime-ToUnixTimestamp-System-DateTime-'></a>
+### ToUnixTimestamp(dateTime) `method` [#](#M-Gmtl-HandyLib-HLDateTime-ToUnixTimestamp-System-DateTime- 'Go To Here') [=](#contents 'Back To Contents')
+
+##### Summary
+
+Convert System.DateTime to unix timestamp
+
+##### Returns
+
+unix timestamp representation for DateTime
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| dateTime | [System.DateTime](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.DateTime 'System.DateTime') | DateTime struct to be converted |
 
 <a name='T-Gmtl-HandyLib-HLDllEmbeddedResource'></a>
 ## HLDllEmbeddedResource [#](#T-Gmtl-HandyLib-HLDllEmbeddedResource 'Go To Here') [=](#contents 'Back To Contents')

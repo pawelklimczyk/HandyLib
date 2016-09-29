@@ -23,7 +23,7 @@ namespace Gmtl.HandyLib
         /// int unixTimestamp = HLDateTime.NowUnixTimestamp;
         /// </code>
         /// </remarks>
-        public static int NowUnixTimestamp
+        public static long NowUnixTimestamp
         {
             get
             {
@@ -36,7 +36,7 @@ namespace Gmtl.HandyLib
         /// </summary>
         /// <param name="timestamp">Unix timestamp to be converted</param>
         /// <returns>DateTime representation of unix timestamp</returns>
-        public static DateTime FromUnixTimestamp(int timestamp)
+        public static DateTime FromUnixTimestamp(long timestamp)
         {
             return unixStart.AddSeconds(timestamp);
         }
@@ -46,9 +46,9 @@ namespace Gmtl.HandyLib
         /// </summary>
         /// <param name="dateTime">DateTime struct to be converted</param>
         /// <returns>unix timestamp representation for DateTime</returns>
-        public static int ToUnixTimestamp(DateTime dateTime)
+        public static long ToUnixTimestamp(DateTime dateTime)
         {
-            return (int)(dateTime - unixStart).TotalSeconds;
+            return (long)(dateTime - unixStart).TotalSeconds;
         }
     }
 }
