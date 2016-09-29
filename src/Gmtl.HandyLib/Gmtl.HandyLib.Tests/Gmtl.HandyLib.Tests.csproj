@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HLBase64Tests.cs" />
+    <Compile Include="HLDateTimeTests.cs" />
     <Compile Include="HLDllEmbeddedResourceTests.cs" />
     <Compile Include="HLExceptionHelperTests.cs" />
     <Compile Include="HLStringTests.cs" />
