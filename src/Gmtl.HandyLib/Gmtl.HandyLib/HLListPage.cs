@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+
 namespace Gmtl.HandyLib
 {
     /// <summary>
@@ -50,6 +51,11 @@ namespace Gmtl.HandyLib
         public IEnumerator<T> GetEnumerator()
         {
             return this.itemsOnPage.GetEnumerator();
+        }
+
+        public bool IsEmpty
+        {
+            get { return itemsOnPage.Count == 0; }
         }
     }
 }
