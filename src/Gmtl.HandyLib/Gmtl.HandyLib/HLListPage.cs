@@ -5,6 +5,7 @@
 // -------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Gmtl.HandyLib
@@ -13,7 +14,7 @@ namespace Gmtl.HandyLib
     /// Provides base class for 'pagination'
     /// </summary>
     /// <typeparam name="T">List item type</typeparam>
-    public class HLListPage<T>
+    public class HLListPage<T> : IEnumerable<T>
     {
         private readonly List<T> itemsOnPage;
 
@@ -56,6 +57,11 @@ namespace Gmtl.HandyLib
         public bool IsEmpty
         {
             get { return itemsOnPage.Count == 0; }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }
