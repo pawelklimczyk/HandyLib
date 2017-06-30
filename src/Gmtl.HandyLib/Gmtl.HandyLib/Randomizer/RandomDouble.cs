@@ -27,12 +27,7 @@ namespace Gmtl.HandyLib.Randomizer
         {
             return Next(0, max, precision);
         }
-
-        public double Next(int min, int max)
-        {
-            return Next(min, max, 0);
-        }
-
+        
         public double Next(double min, double max)
         {
             return Next(min, max, 0);
@@ -40,9 +35,25 @@ namespace Gmtl.HandyLib.Randomizer
 
         public double Next(double min, double max, int precision)
         {
+            return NextDouble(min, max, precision);
+        }
+
+        public int Next(int min, int max)
+        {
+            return NextInt(min, max);
+        }
+
+        private double NextDouble(double min, double max, int precision)
+        {
             if (min >= max) throw new ArgumentException("min must be lesser then max");
-            
+
             return Math.Round(random.NextDouble(), precision) * (max - min) + min;
+        }
+
+        private int NextInt(int min, int max)
+        {
+            if (min >= max) throw new ArgumentException("min must be lesser then max");
+            return random.Next(min, max);
         }
     }
 }
