@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HLBase64.cs" />
+    <Compile Include="HLCrypter.cs" />
     <Compile Include="HLDllEmbeddedResource.cs" />
     <Compile Include="HLDateTime.cs" />
     <Compile Include="HLExceptionHelper.cs" />
