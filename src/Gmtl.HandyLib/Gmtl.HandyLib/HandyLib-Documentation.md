@@ -1,6 +1,10 @@
 <a name='contents'></a>
 # Contents [#](#contents 'Go To Here')
 
+- [HLCrypter](#T-Gmtl-HandyLib-HLCrypter 'Gmtl.HandyLib.HLCrypter')
+  - [DecryptString(encryptedText)](#M-Gmtl-HandyLib-HLCrypter-DecryptString-System-String- 'Gmtl.HandyLib.HLCrypter.DecryptString(System.String)')
+  - [EncryptString(plainText)](#M-Gmtl-HandyLib-HLCrypter-EncryptString-System-String- 'Gmtl.HandyLib.HLCrypter.EncryptString(System.String)')
+  - [SetEntropy(seed)](#M-Gmtl-HandyLib-HLCrypter-SetEntropy-System-String- 'Gmtl.HandyLib.HLCrypter.SetEntropy(System.String)')
 - [HLDateTime](#T-Gmtl-HandyLib-HLDateTime 'Gmtl.HandyLib.HLDateTime')
   - [NowUnixTimestamp](#P-Gmtl-HandyLib-HLDateTime-NowUnixTimestamp 'Gmtl.HandyLib.HLDateTime.NowUnixTimestamp')
   - [FromUnixTimestamp(timestamp)](#M-Gmtl-HandyLib-HLDateTime-FromUnixTimestamp-System-Int64- 'Gmtl.HandyLib.HLDateTime.FromUnixTimestamp(System.Int64)')
@@ -11,6 +15,8 @@
 - [HLExceptionHelper](#T-Gmtl-HandyLib-HLExceptionHelper 'Gmtl.HandyLib.HLExceptionHelper')
   - [ToXmlString()](#M-Gmtl-HandyLib-HLExceptionHelper-ToXmlString-System-Exception,System-Boolean- 'Gmtl.HandyLib.HLExceptionHelper.ToXmlString(System.Exception,System.Boolean)')
 - [HLListPage\`1](#T-Gmtl-HandyLib-HLListPage`1 'Gmtl.HandyLib.HLListPage`1')
+- [HLObjectExtensions](#T-Gmtl-HandyLib-Extensions-HLObjectExtensions 'Gmtl.HandyLib.Extensions.HLObjectExtensions')
+  - [PropertyList(obj)](#M-Gmtl-HandyLib-Extensions-HLObjectExtensions-PropertyList-System-Object- 'Gmtl.HandyLib.Extensions.HLObjectExtensions.PropertyList(System.Object)')
 - [HLRandomizer](#T-Gmtl-HandyLib-HLRandomizer 'Gmtl.HandyLib.HLRandomizer')
   - [RandomDouble](#P-Gmtl-HandyLib-HLRandomizer-RandomDouble 'Gmtl.HandyLib.HLRandomizer.RandomDouble')
   - [RandomString](#P-Gmtl-HandyLib-HLRandomizer-RandomString 'Gmtl.HandyLib.HLRandomizer.RandomString')
@@ -25,6 +31,64 @@
 
 <a name='assembly'></a>
 # Gmtl.HandyLib [#](#assembly 'Go To Here') [=](#contents 'Back To Contents')
+
+<a name='T-Gmtl-HandyLib-HLCrypter'></a>
+## HLCrypter [#](#T-Gmtl-HandyLib-HLCrypter 'Go To Here') [=](#contents 'Back To Contents')
+
+##### Namespace
+
+Gmtl.HandyLib
+
+##### Summary
+
+HLCrypter encrypt and decrypt strings
+
+<a name='M-Gmtl-HandyLib-HLCrypter-DecryptString-System-String-'></a>
+### DecryptString(encryptedText) `method` [#](#M-Gmtl-HandyLib-HLCrypter-DecryptString-System-String- 'Go To Here') [=](#contents 'Back To Contents')
+
+##### Summary
+
+Decrypt string
+
+##### Returns
+
+decrypted text using entropy seed
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| encryptedText | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | text to decrypt |
+
+<a name='M-Gmtl-HandyLib-HLCrypter-EncryptString-System-String-'></a>
+### EncryptString(plainText) `method` [#](#M-Gmtl-HandyLib-HLCrypter-EncryptString-System-String- 'Go To Here') [=](#contents 'Back To Contents')
+
+##### Summary
+
+Encrypt string
+
+##### Returns
+
+encrypted text using entropy seed
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| plainText | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | text to encrypt |
+
+<a name='M-Gmtl-HandyLib-HLCrypter-SetEntropy-System-String-'></a>
+### SetEntropy(seed) `method` [#](#M-Gmtl-HandyLib-HLCrypter-SetEntropy-System-String- 'Go To Here') [=](#contents 'Back To Contents')
+
+##### Summary
+
+Set seed for encryption and decryption
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| seed | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | new seed |
 
 <a name='T-Gmtl-HandyLib-HLDateTime'></a>
 ## HLDateTime [#](#T-Gmtl-HandyLib-HLDateTime 'Go To Here') [=](#contents 'Back To Contents')
@@ -164,6 +228,34 @@ Provides base class for 'pagination'
 | Name | Description |
 | ---- | ----------- |
 | T | List item type |
+
+<a name='T-Gmtl-HandyLib-Extensions-HLObjectExtensions'></a>
+## HLObjectExtensions [#](#T-Gmtl-HandyLib-Extensions-HLObjectExtensions 'Go To Here') [=](#contents 'Back To Contents')
+
+##### Namespace
+
+Gmtl.HandyLib.Extensions
+
+##### Summary
+
+Usefull extensions for System.Object
+
+<a name='M-Gmtl-HandyLib-Extensions-HLObjectExtensions-PropertyList-System-Object-'></a>
+### PropertyList(obj) `method` [#](#M-Gmtl-HandyLib-Extensions-HLObjectExtensions-PropertyList-System-Object- 'Go To Here') [=](#contents 'Back To Contents')
+
+##### Summary
+
+List all properties and their values
+
+##### Returns
+
+List of all properies and their values
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| obj | [System.Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') |  |
 
 <a name='T-Gmtl-HandyLib-HLRandomizer'></a>
 ## HLRandomizer [#](#T-Gmtl-HandyLib-HLRandomizer 'Go To Here') [=](#contents 'Back To Contents')
