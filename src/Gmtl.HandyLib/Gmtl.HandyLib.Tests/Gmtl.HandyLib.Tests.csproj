@@ -49,6 +49,7 @@
     <Compile Include="HLExceptionHelperTests.cs" />
     <Compile Include="HLListPageTests.cs" />
     <Compile Include="HLObjectExtensionsTests.cs" />
+    <Compile Include="HLSerializerTests\HLSerializerTests.cs" />
     <Compile Include="HLStringTests.cs" />
     <Compile Include="RandomDoubleTests.cs" />
     <Compile Include="RandomStringTests.cs" />
