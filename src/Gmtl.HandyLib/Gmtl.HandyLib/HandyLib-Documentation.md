@@ -20,6 +20,8 @@
 - [HLRandomizer](#T-Gmtl-HandyLib-HLRandomizer 'Gmtl.HandyLib.HLRandomizer')
   - [RandomDouble](#P-Gmtl-HandyLib-HLRandomizer-RandomDouble 'Gmtl.HandyLib.HLRandomizer.RandomDouble')
   - [RandomString](#P-Gmtl-HandyLib-HLRandomizer-RandomString 'Gmtl.HandyLib.HLRandomizer.RandomString')
+- [HLSingleton\`1](#T-Gmtl-HandyLib-HLSingleton`1 'Gmtl.HandyLib.HLSingleton`1')
+  - [Instance](#P-Gmtl-HandyLib-HLSingleton`1-Instance 'Gmtl.HandyLib.HLSingleton`1.Instance')
 - [HLString](#T-Gmtl-HandyLib-HLString 'Gmtl.HandyLib.HLString')
   - [ValueOrDefault()](#M-Gmtl-HandyLib-HLString-ValueOrDefault-System-String,System-String- 'Gmtl.HandyLib.HLString.ValueOrDefault(System.String,System.String)')
   - [ValueOrEmpty()](#M-Gmtl-HandyLib-HLString-ValueOrEmpty-System-String- 'Gmtl.HandyLib.HLString.ValueOrEmpty(System.String)')
@@ -296,6 +298,20 @@ string randomString1 = HLRandomizer.RandomString.Next();
             string randomString3 = HLRandomizer.RandomString.NextExact(10);
             string randomString4 = HLRandomizer.RandomString.Next(10, 100);//min 100 and max 100
 ```
+
+<a name='T-Gmtl-HandyLib-HLSingleton`1'></a>
+## HLSingleton\`1 [#](#T-Gmtl-HandyLib-HLSingleton`1 'Go To Here') [=](#contents 'Back To Contents')
+
+##### Namespace
+
+Gmtl.HandyLib
+
+<a name='P-Gmtl-HandyLib-HLSingleton`1-Instance'></a>
+### Instance `property` [#](#P-Gmtl-HandyLib-HLSingleton`1-Instance 'Go To Here') [=](#contents 'Back To Contents')
+
+##### Summary
+
+Class instance
 
 <a name='T-Gmtl-HandyLib-HLString'></a>
 ## HLString [#](#T-Gmtl-HandyLib-HLString 'Go To Here') [=](#contents 'Back To Contents')

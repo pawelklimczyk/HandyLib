@@ -50,6 +50,7 @@
     <Compile Include="HLExceptionHelper.cs" />
     <Compile Include="HLListPage.cs" />
     <Compile Include="HLSerializer.cs" />
+    <Compile Include="HLSingleton.cs" />
     <Compile Include="OperationResult.cs" />
     <Compile Include="Randomizer\IRandomDouble.cs" />
     <Compile Include="Randomizer\IRandomString.cs" />
