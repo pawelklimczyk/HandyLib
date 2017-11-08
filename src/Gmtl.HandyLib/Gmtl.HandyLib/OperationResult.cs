@@ -20,7 +20,7 @@ namespace Gmtl.HandyLib
         /// <summary>
         /// Operation status
         /// </summary>
-        public OperationalStatus Status { get; set; }
+        public OperationStatus Status { get; set; }
 
         /// <summary>
         /// Extra info send with operation result (optional)
@@ -33,7 +33,7 @@ namespace Gmtl.HandyLib
             {
                 Result = value,
                 Message = message,
-                Status = OperationalStatus.Error
+                Status = OperationStatus.Error
             };
         }
 
@@ -43,14 +43,21 @@ namespace Gmtl.HandyLib
             {
                 Result = value,
                 Message = message,
-                Status = OperationalStatus.Success
+                Status = OperationStatus.Success
             };
         }
+
+        public static explicit operator bool(OperationResult<T> operationResult)
+        {
+            return operationResult.Status == OperationStatus.Success;
+        }
+
     }
+
     /// <summary>
     /// Status of executed operation
     /// </summary>
-    public enum OperationalStatus
+    public enum OperationStatus
     {
         Success,
         Warning,

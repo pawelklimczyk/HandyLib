@@ -25,11 +25,11 @@
 - [HLString](#T-Gmtl-HandyLib-HLString 'Gmtl.HandyLib.HLString')
   - [ValueOrDefault()](#M-Gmtl-HandyLib-HLString-ValueOrDefault-System-String,System-String- 'Gmtl.HandyLib.HLString.ValueOrDefault(System.String,System.String)')
   - [ValueOrEmpty()](#M-Gmtl-HandyLib-HLString-ValueOrEmpty-System-String- 'Gmtl.HandyLib.HLString.ValueOrEmpty(System.String)')
-- [OperationalStatus](#T-Gmtl-HandyLib-OperationalStatus 'Gmtl.HandyLib.OperationalStatus')
 - [OperationResult\`1](#T-Gmtl-HandyLib-OperationResult`1 'Gmtl.HandyLib.OperationResult`1')
   - [Message](#P-Gmtl-HandyLib-OperationResult`1-Message 'Gmtl.HandyLib.OperationResult`1.Message')
   - [Result](#P-Gmtl-HandyLib-OperationResult`1-Result 'Gmtl.HandyLib.OperationResult`1.Result')
   - [Status](#P-Gmtl-HandyLib-OperationResult`1-Status 'Gmtl.HandyLib.OperationResult`1.Status')
+- [OperationStatus](#T-Gmtl-HandyLib-OperationStatus 'Gmtl.HandyLib.OperationStatus')
 
 <a name='assembly'></a>
 # Gmtl.HandyLib [#](#assembly 'Go To Here') [=](#contents 'Back To Contents')
@@ -361,17 +361,6 @@ HLString.ValueOrEmpty("test"); //'test' returned
             HLString.ValueOrEmpty(null); //'String.Empty' returned
 ```
 
-<a name='T-Gmtl-HandyLib-OperationalStatus'></a>
-## OperationalStatus [#](#T-Gmtl-HandyLib-OperationalStatus 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Namespace
-
-Gmtl.HandyLib
-
-##### Summary
-
-Status of executed operation
-
 <a name='T-Gmtl-HandyLib-OperationResult`1'></a>
 ## OperationResult\`1 [#](#T-Gmtl-HandyLib-OperationResult`1 'Go To Here') [=](#contents 'Back To Contents')
 
@@ -409,3 +398,14 @@ Result value
 ##### Summary
 
 Operation status
+
+<a name='T-Gmtl-HandyLib-OperationStatus'></a>
+## OperationStatus [#](#T-Gmtl-HandyLib-OperationStatus 'Go To Here') [=](#contents 'Back To Contents')
+
+##### Namespace
+
+Gmtl.HandyLib
+
+##### Summary
+
+Status of executed operation
