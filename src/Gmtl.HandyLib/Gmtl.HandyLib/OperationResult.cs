@@ -4,6 +4,8 @@
 // </copyright>
 // -------------------------------------------------------------------------------------------------------------------
 
+using System;
+
 namespace Gmtl.HandyLib
 {
     /// <summary>
@@ -26,6 +28,11 @@ namespace Gmtl.HandyLib
         /// Extra info send with operation result (optional)
         /// </summary>
         public string Message { get; set; }
+
+        public string AsJson
+        {
+            get { return String.Format("{{\"status\":\"{0}\",\"message\":\"{1}\",\"data\":\"{2}\"}}", Status == OperationStatus.Success ? "true" : "false", Message, Result != null ? Result.ToString() : ""); }
+        }
 
         public static OperationResult<T> Error(T value = default(T), string message = "")
         {
@@ -51,7 +58,6 @@ namespace Gmtl.HandyLib
         {
             return operationResult.Status == OperationStatus.Success;
         }
-
     }
 
     /// <summary>
