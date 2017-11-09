@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -49,6 +50,7 @@
     <Compile Include="HLDateTime.cs" />
     <Compile Include="HLExceptionHelper.cs" />
     <Compile Include="HLListPage.cs" />
+    <Compile Include="HLMailNotifier.cs" />
     <Compile Include="HLSerializer.cs" />
     <Compile Include="HLSingleton.cs" />
     <Compile Include="OperationResult.cs" />
