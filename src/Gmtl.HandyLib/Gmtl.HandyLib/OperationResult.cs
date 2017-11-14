@@ -54,7 +54,7 @@ namespace Gmtl.HandyLib
             };
         }
 
-        public static explicit operator bool(OperationResult<T> operationResult)
+        public static implicit operator bool(OperationResult<T> operationResult)
         {
             return operationResult.Status == OperationStatus.Success;
         }

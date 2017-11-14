@@ -51,6 +51,7 @@
     <Compile Include="HLObjectExtensionsTests.cs" />
     <Compile Include="HLSerializerTests\HLSerializerTests.cs" />
     <Compile Include="HLStringTests.cs" />
+    <Compile Include="OperationResultTests.cs" />
     <Compile Include="RandomDoubleTests.cs" />
     <Compile Include="RandomStringTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
