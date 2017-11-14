@@ -25,6 +25,8 @@
 - [HLString](#T-Gmtl-HandyLib-HLString 'Gmtl.HandyLib.HLString')
   - [ValueOrDefault()](#M-Gmtl-HandyLib-HLString-ValueOrDefault-System-String,System-String- 'Gmtl.HandyLib.HLString.ValueOrDefault(System.String,System.String)')
   - [ValueOrEmpty()](#M-Gmtl-HandyLib-HLString-ValueOrEmpty-System-String- 'Gmtl.HandyLib.HLString.ValueOrEmpty(System.String)')
+- [IHLMailNotifier](#T-Gmtl-HandyLib-IHLMailNotifier 'Gmtl.HandyLib.IHLMailNotifier')
+  - [TestConfiguration()](#M-Gmtl-HandyLib-IHLMailNotifier-TestConfiguration 'Gmtl.HandyLib.IHLMailNotifier.TestConfiguration')
 - [OperationResult\`1](#T-Gmtl-HandyLib-OperationResult`1 'Gmtl.HandyLib.OperationResult`1')
   - [Message](#P-Gmtl-HandyLib-OperationResult`1-Message 'Gmtl.HandyLib.OperationResult`1.Message')
   - [Result](#P-Gmtl-HandyLib-OperationResult`1-Result 'Gmtl.HandyLib.OperationResult`1.Result')
@@ -360,6 +362,28 @@ This method has no parameters.
 HLString.ValueOrEmpty("test"); //'test' returned
             HLString.ValueOrEmpty(null); //'String.Empty' returned
 ```
+
+<a name='T-Gmtl-HandyLib-IHLMailNotifier'></a>
+## IHLMailNotifier [#](#T-Gmtl-HandyLib-IHLMailNotifier 'Go To Here') [=](#contents 'Back To Contents')
+
+##### Namespace
+
+Gmtl.HandyLib
+
+<a name='M-Gmtl-HandyLib-IHLMailNotifier-TestConfiguration'></a>
+### TestConfiguration() `method` [#](#M-Gmtl-HandyLib-IHLMailNotifier-TestConfiguration 'Go To Here') [=](#contents 'Back To Contents')
+
+##### Summary
+
+Will try to send message to itself
+
+##### Returns
+
+
+
+##### Parameters
+
+This method has no parameters.
 
 <a name='T-Gmtl-HandyLib-OperationResult`1'></a>
 ## OperationResult\`1 [#](#T-Gmtl-HandyLib-OperationResult`1 'Go To Here') [=](#contents 'Back To Contents')
