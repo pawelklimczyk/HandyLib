@@ -56,10 +56,11 @@ namespace Gmtl.HandyLib
             {
                 File.WriteAllText(filename, SerializeToXml<T>(xmlObject, useNamespaces));
             }
-            catch
+            catch (Exception exception)
             {
-                throw new Exception();
+                throw new Exception("Serialization error occured", exception);
             }
+
         }
 
         public static T DeserializeFromXml<T>(string xml) where T : new()
@@ -73,11 +74,12 @@ namespace Gmtl.HandyLib
                 return xmlObject;
             }
         }
+
         public static T DeserializeFromXmlFile<T>(string filename) where T : new()
         {
             if (!File.Exists(filename))
             {
-                throw new FileNotFoundException();
+                throw new FileNotFoundException("File not found", filename);
             }
 
             return DeserializeFromXml<T>(File.ReadAllText(filename));
