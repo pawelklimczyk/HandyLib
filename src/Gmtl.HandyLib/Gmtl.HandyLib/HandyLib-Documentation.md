@@ -20,6 +20,11 @@
 - [HLRandomizer](#T-Gmtl-HandyLib-HLRandomizer 'Gmtl.HandyLib.HLRandomizer')
   - [RandomDouble](#P-Gmtl-HandyLib-HLRandomizer-RandomDouble 'Gmtl.HandyLib.HLRandomizer.RandomDouble')
   - [RandomString](#P-Gmtl-HandyLib-HLRandomizer-RandomString 'Gmtl.HandyLib.HLRandomizer.RandomString')
+- [HLSerializer](#T-Gmtl-HandyLib-HLSerializer 'Gmtl.HandyLib.HLSerializer')
+  - [DeserializeFromXml\`\`1(xml)](#M-Gmtl-HandyLib-HLSerializer-DeserializeFromXml``1-System-String- 'Gmtl.HandyLib.HLSerializer.DeserializeFromXml``1(System.String)')
+  - [DeserializeFromXmlFile\`\`1(filename)](#M-Gmtl-HandyLib-HLSerializer-DeserializeFromXmlFile``1-System-String- 'Gmtl.HandyLib.HLSerializer.DeserializeFromXmlFile``1(System.String)')
+  - [SerializeToXml\`\`1(objectToSerialize,useNamespaces)](#M-Gmtl-HandyLib-HLSerializer-SerializeToXml``1-``0,System-Boolean- 'Gmtl.HandyLib.HLSerializer.SerializeToXml``1(``0,System.Boolean)')
+  - [SerializeToXmlFile\`\`1(objectToSerialize,useNamespaces,filename)](#M-Gmtl-HandyLib-HLSerializer-SerializeToXmlFile``1-``0,System-String,System-Boolean- 'Gmtl.HandyLib.HLSerializer.SerializeToXmlFile``1(``0,System.String,System.Boolean)')
 - [HLSingleton\`1](#T-Gmtl-HandyLib-HLSingleton`1 'Gmtl.HandyLib.HLSingleton`1')
   - [Instance](#P-Gmtl-HandyLib-HLSingleton`1-Instance 'Gmtl.HandyLib.HLSingleton`1.Instance')
 - [HLString](#T-Gmtl-HandyLib-HLString 'Gmtl.HandyLib.HLString')
@@ -300,6 +305,108 @@ string randomString1 = HLRandomizer.RandomString.Next();
             string randomString3 = HLRandomizer.RandomString.NextExact(10);
             string randomString4 = HLRandomizer.RandomString.Next(10, 100);//min 100 and max 100
 ```
+
+<a name='T-Gmtl-HandyLib-HLSerializer'></a>
+## HLSerializer [#](#T-Gmtl-HandyLib-HLSerializer 'Go To Here') [=](#contents 'Back To Contents')
+
+##### Namespace
+
+Gmtl.HandyLib
+
+##### Summary
+
+Serializaton and deserialization helper class
+
+<a name='M-Gmtl-HandyLib-HLSerializer-DeserializeFromXml``1-System-String-'></a>
+### DeserializeFromXml\`\`1(xml) `method` [#](#M-Gmtl-HandyLib-HLSerializer-DeserializeFromXml``1-System-String- 'Go To Here') [=](#contents 'Back To Contents')
+
+##### Summary
+
+Deserializes string to specified object type
+
+##### Returns
+
+Deserialized object
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| xml | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | serialized object |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| T | Expected object type |
+
+<a name='M-Gmtl-HandyLib-HLSerializer-DeserializeFromXmlFile``1-System-String-'></a>
+### DeserializeFromXmlFile\`\`1(filename) `method` [#](#M-Gmtl-HandyLib-HLSerializer-DeserializeFromXmlFile``1-System-String- 'Go To Here') [=](#contents 'Back To Contents')
+
+##### Summary
+
+Deserializes object from specified filename
+
+##### Returns
+
+Deserialized object
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| filename | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | File storing serialized object |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| T | Expected object type |
+
+<a name='M-Gmtl-HandyLib-HLSerializer-SerializeToXml``1-``0,System-Boolean-'></a>
+### SerializeToXml\`\`1(objectToSerialize,useNamespaces) `method` [#](#M-Gmtl-HandyLib-HLSerializer-SerializeToXml``1-``0,System-Boolean- 'Go To Here') [=](#contents 'Back To Contents')
+
+##### Summary
+
+Serializes object to XML
+
+##### Returns
+
+Serialized object
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| objectToSerialize | [\`\`0](#T-``0 '``0') | Object to serialize |
+| useNamespaces | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If true, adds namespaces to output string |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| T | Object type |
+
+<a name='M-Gmtl-HandyLib-HLSerializer-SerializeToXmlFile``1-``0,System-String,System-Boolean-'></a>
+### SerializeToXmlFile\`\`1(objectToSerialize,useNamespaces,filename) `method` [#](#M-Gmtl-HandyLib-HLSerializer-SerializeToXmlFile``1-``0,System-String,System-Boolean- 'Go To Here') [=](#contents 'Back To Contents')
+
+##### Summary
+
+Serializes object and saves it into a file
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| objectToSerialize | [\`\`0](#T-``0 '``0') | Object to serialize |
+| useNamespaces | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | If true, adds namespaces to output string |
+| filename | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Filename where save the serialized object |
+
+##### Generic Types
+
+| Name | Description |
+| ---- | ----------- |
+| T | Object type |
 
 <a name='T-Gmtl-HandyLib-HLSingleton`1'></a>
 ## HLSingleton\`1 [#](#T-Gmtl-HandyLib-HLSingleton`1 'Go To Here') [=](#contents 'Back To Contents')

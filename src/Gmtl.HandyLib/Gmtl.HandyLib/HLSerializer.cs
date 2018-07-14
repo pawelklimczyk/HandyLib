@@ -6,13 +6,21 @@ using System.Xml.Serialization;
 
 namespace Gmtl.HandyLib
 {
-    //TODO add XML documentation 
-
+    /// <summary>
+    /// Serializaton and deserialization helper class
+    /// </summary>
     public class HLSerializer
     {
-        public static string SerializeToXml<T>(T xmlObject, bool useNamespaces = true)
+        /// <summary>
+        /// Serializes object to XML
+        /// </summary>
+        /// <typeparam name="T">Object type</typeparam>
+        /// <param name="objectToSerialize">Object to serialize</param>
+        /// <param name="useNamespaces">If true, adds namespaces to output string</param>
+        /// <returns>Serialized object</returns>
+        public static string SerializeToXml<T>(T objectToSerialize, bool useNamespaces = true)
         {
-            if (xmlObject == null)
+            if (objectToSerialize == null)
             {
                 return string.Empty;
             }
@@ -27,10 +35,10 @@ namespace Gmtl.HandyLib
                         {
                             XmlSerializerNamespaces xmlSerializerNamespaces = new XmlSerializerNamespaces();
                             xmlSerializerNamespaces.Add("", "");
-                            xmlSerializer.Serialize(xmlTextWriter, xmlObject, xmlSerializerNamespaces);
+                            xmlSerializer.Serialize(xmlTextWriter, objectToSerialize, xmlSerializerNamespaces);
                         }
                         else
-                            xmlSerializer.Serialize(xmlTextWriter, xmlObject);
+                            xmlSerializer.Serialize(xmlTextWriter, objectToSerialize);
 
                         string output = Encoding.UTF8.GetString(memoryStream.ToArray());
                         string orderMark = Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble());
@@ -50,19 +58,31 @@ namespace Gmtl.HandyLib
             }
         }
 
-        public static void SerializeToXmlFile<T>(T xmlObject, string filename, bool useNamespaces = true)
+        /// <summary>
+        /// Serializes object and saves it into a file
+        /// </summary>
+        /// <typeparam name="T">Object type</typeparam>
+        /// <param name="objectToSerialize">Object to serialize</param>
+        /// <param name="useNamespaces">If true, adds namespaces to output string</param>
+        /// <param name="filename">Filename where save the serialized object</param>
+        public static void SerializeToXmlFile<T>(T objectToSerialize, string filename, bool useNamespaces = true)
         {
             try
             {
-                File.WriteAllText(filename, SerializeToXml<T>(xmlObject, useNamespaces));
+                File.WriteAllText(filename, SerializeToXml<T>(objectToSerialize, useNamespaces));
             }
             catch (Exception exception)
             {
                 throw new Exception("Serialization error occured", exception);
             }
-
         }
 
+        /// <summary>
+        /// Deserializes string to specified object type
+        /// </summary>
+        /// <typeparam name="T">Expected object type</typeparam>
+        /// <param name="xml">serialized object</param>
+        /// <returns>Deserialized object</returns>
         public static T DeserializeFromXml<T>(string xml) where T : new()
         {
             T xmlObject = new T();
@@ -75,6 +95,12 @@ namespace Gmtl.HandyLib
             }
         }
 
+        /// <summary>
+        /// Deserializes object from specified filename
+        /// </summary>
+        /// <typeparam name="T">Expected object type</typeparam>
+        /// <param name="filename">File storing serialized object</param>
+        /// <returns>Deserialized object</returns>
         public static T DeserializeFromXmlFile<T>(string filename) where T : new()
         {
             if (!File.Exists(filename))
