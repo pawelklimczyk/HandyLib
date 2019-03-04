@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Extensions\HLObjectExtensions.cs" />
     <Compile Include="HLBase64.cs" />
+    <Compile Include="HLCloner.cs" />
     <Compile Include="HLCrypter.cs" />
     <Compile Include="HLDllEmbeddedResource.cs" />
     <Compile Include="HLDateTime.cs" />
