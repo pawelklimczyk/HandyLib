@@ -3,3 +3,4 @@
 *.cache
 *.suo
 *.user
+.vs
