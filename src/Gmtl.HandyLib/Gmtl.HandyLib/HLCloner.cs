@@ -18,7 +18,7 @@ namespace Gmtl.HandyLib
         {
             if (!typeof(T).IsSerializable)
             {
-                throw new ArgumentException($"The type{typeof(T)} must be serializable.", "obj");
+                throw new ArgumentException(String.Format("The type {0} must be serializable.", typeof(T)), "obj");
             }
 
             if (Object.ReferenceEquals(obj, null))
