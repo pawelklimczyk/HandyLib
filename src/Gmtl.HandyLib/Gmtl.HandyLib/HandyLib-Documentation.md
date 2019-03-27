@@ -1,542 +1,303 @@
-<a name='contents'></a>
-# Contents [#](#contents 'Go To Here')
 
-- [HLCrypter](#T-Gmtl-HandyLib-HLCrypter 'Gmtl.HandyLib.HLCrypter')
-  - [DecryptString(encryptedText)](#M-Gmtl-HandyLib-HLCrypter-DecryptString-System-String- 'Gmtl.HandyLib.HLCrypter.DecryptString(System.String)')
-  - [EncryptString(plainText)](#M-Gmtl-HandyLib-HLCrypter-EncryptString-System-String- 'Gmtl.HandyLib.HLCrypter.EncryptString(System.String)')
-  - [SetEntropy(seed)](#M-Gmtl-HandyLib-HLCrypter-SetEntropy-System-String- 'Gmtl.HandyLib.HLCrypter.SetEntropy(System.String)')
-- [HLDateTime](#T-Gmtl-HandyLib-HLDateTime 'Gmtl.HandyLib.HLDateTime')
-  - [NowUnixTimestamp](#P-Gmtl-HandyLib-HLDateTime-NowUnixTimestamp 'Gmtl.HandyLib.HLDateTime.NowUnixTimestamp')
-  - [FromUnixTimestamp(timestamp)](#M-Gmtl-HandyLib-HLDateTime-FromUnixTimestamp-System-Int64- 'Gmtl.HandyLib.HLDateTime.FromUnixTimestamp(System.Int64)')
-  - [ToUnixTimestamp(dateTime)](#M-Gmtl-HandyLib-HLDateTime-ToUnixTimestamp-System-DateTime- 'Gmtl.HandyLib.HLDateTime.ToUnixTimestamp(System.DateTime)')
-- [HLDllEmbeddedResource](#T-Gmtl-HandyLib-HLDllEmbeddedResource 'Gmtl.HandyLib.HLDllEmbeddedResource')
-  - [GetTextResource(resourceName,assembly)](#M-Gmtl-HandyLib-HLDllEmbeddedResource-GetTextResource-System-String,System-Reflection-Assembly- 'Gmtl.HandyLib.HLDllEmbeddedResource.GetTextResource(System.String,System.Reflection.Assembly)')
-  - [GetTextResource(resourceName)](#M-Gmtl-HandyLib-HLDllEmbeddedResource-GetTextResource-System-String- 'Gmtl.HandyLib.HLDllEmbeddedResource.GetTextResource(System.String)')
-- [HLExceptionHelper](#T-Gmtl-HandyLib-HLExceptionHelper 'Gmtl.HandyLib.HLExceptionHelper')
-  - [ToXmlString()](#M-Gmtl-HandyLib-HLExceptionHelper-ToXmlString-System-Exception,System-Boolean- 'Gmtl.HandyLib.HLExceptionHelper.ToXmlString(System.Exception,System.Boolean)')
-- [HLListPage\`1](#T-Gmtl-HandyLib-HLListPage`1 'Gmtl.HandyLib.HLListPage`1')
-- [HLObjectExtensions](#T-Gmtl-HandyLib-Extensions-HLObjectExtensions 'Gmtl.HandyLib.Extensions.HLObjectExtensions')
-  - [PropertyList(obj)](#M-Gmtl-HandyLib-Extensions-HLObjectExtensions-PropertyList-System-Object- 'Gmtl.HandyLib.Extensions.HLObjectExtensions.PropertyList(System.Object)')
-- [HLRandomizer](#T-Gmtl-HandyLib-HLRandomizer 'Gmtl.HandyLib.HLRandomizer')
-  - [RandomDouble](#P-Gmtl-HandyLib-HLRandomizer-RandomDouble 'Gmtl.HandyLib.HLRandomizer.RandomDouble')
-  - [RandomString](#P-Gmtl-HandyLib-HLRandomizer-RandomString 'Gmtl.HandyLib.HLRandomizer.RandomString')
-- [HLSerializer](#T-Gmtl-HandyLib-HLSerializer 'Gmtl.HandyLib.HLSerializer')
-  - [DeserializeFromXml\`\`1(xml)](#M-Gmtl-HandyLib-HLSerializer-DeserializeFromXml``1-System-String- 'Gmtl.HandyLib.HLSerializer.DeserializeFromXml``1(System.String)')
-  - [DeserializeFromXmlFile\`\`1(filename)](#M-Gmtl-HandyLib-HLSerializer-DeserializeFromXmlFile``1-System-String- 'Gmtl.HandyLib.HLSerializer.DeserializeFromXmlFile``1(System.String)')
-  - [SerializeToXml\`\`1(objectToSerialize,useNamespaces)](#M-Gmtl-HandyLib-HLSerializer-SerializeToXml``1-``0,System-Boolean- 'Gmtl.HandyLib.HLSerializer.SerializeToXml``1(``0,System.Boolean)')
-  - [SerializeToXmlFile\`\`1(objectToSerialize,useNamespaces,filename)](#M-Gmtl-HandyLib-HLSerializer-SerializeToXmlFile``1-``0,System-String,System-Boolean- 'Gmtl.HandyLib.HLSerializer.SerializeToXmlFile``1(``0,System.String,System.Boolean)')
-- [HLSingleton\`1](#T-Gmtl-HandyLib-HLSingleton`1 'Gmtl.HandyLib.HLSingleton`1')
-  - [Instance](#P-Gmtl-HandyLib-HLSingleton`1-Instance 'Gmtl.HandyLib.HLSingleton`1.Instance')
-- [HLString](#T-Gmtl-HandyLib-HLString 'Gmtl.HandyLib.HLString')
-  - [ValueOrDefault()](#M-Gmtl-HandyLib-HLString-ValueOrDefault-System-String,System-String- 'Gmtl.HandyLib.HLString.ValueOrDefault(System.String,System.String)')
-  - [ValueOrEmpty()](#M-Gmtl-HandyLib-HLString-ValueOrEmpty-System-String- 'Gmtl.HandyLib.HLString.ValueOrEmpty(System.String)')
-- [IHLMailNotifier](#T-Gmtl-HandyLib-IHLMailNotifier 'Gmtl.HandyLib.IHLMailNotifier')
-  - [TestConfiguration()](#M-Gmtl-HandyLib-IHLMailNotifier-TestConfiguration 'Gmtl.HandyLib.IHLMailNotifier.TestConfiguration')
-- [OperationResult\`1](#T-Gmtl-HandyLib-OperationResult`1 'Gmtl.HandyLib.OperationResult`1')
-  - [Message](#P-Gmtl-HandyLib-OperationResult`1-Message 'Gmtl.HandyLib.OperationResult`1.Message')
-  - [Result](#P-Gmtl-HandyLib-OperationResult`1-Result 'Gmtl.HandyLib.OperationResult`1.Result')
-  - [Status](#P-Gmtl-HandyLib-OperationResult`1-Status 'Gmtl.HandyLib.OperationResult`1.Status')
-- [OperationStatus](#T-Gmtl-HandyLib-OperationStatus 'Gmtl.HandyLib.OperationStatus')
+# Gmtl.HandyLib
 
-<a name='assembly'></a>
-# Gmtl.HandyLib [#](#assembly 'Go To Here') [=](#contents 'Back To Contents')
 
-<a name='T-Gmtl-HandyLib-HLCrypter'></a>
-## HLCrypter [#](#T-Gmtl-HandyLib-HLCrypter 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Namespace
-
-Gmtl.HandyLib
-
-##### Summary
-
-HLCrypter encrypt and decrypt strings
-
-<a name='M-Gmtl-HandyLib-HLCrypter-DecryptString-System-String-'></a>
-### DecryptString(encryptedText) `method` [#](#M-Gmtl-HandyLib-HLCrypter-DecryptString-System-String- 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Summary
-
-Decrypt string
-
-##### Returns
-
-decrypted text using entropy seed
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| encryptedText | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | text to decrypt |
-
-<a name='M-Gmtl-HandyLib-HLCrypter-EncryptString-System-String-'></a>
-### EncryptString(plainText) `method` [#](#M-Gmtl-HandyLib-HLCrypter-EncryptString-System-String- 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Summary
-
-Encrypt string
-
-##### Returns
-
-encrypted text using entropy seed
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| plainText | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | text to encrypt |
-
-<a name='M-Gmtl-HandyLib-HLCrypter-SetEntropy-System-String-'></a>
-### SetEntropy(seed) `method` [#](#M-Gmtl-HandyLib-HLCrypter-SetEntropy-System-String- 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Summary
-
-Set seed for encryption and decryption
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| seed | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | new seed |
-
-<a name='T-Gmtl-HandyLib-HLDateTime'></a>
-## HLDateTime [#](#T-Gmtl-HandyLib-HLDateTime 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Namespace
-
-Gmtl.HandyLib
-
-##### Summary
-
-Handy methods related to System.DateTime
-
-<a name='P-Gmtl-HandyLib-HLDateTime-NowUnixTimestamp'></a>
-### NowUnixTimestamp `property` [#](#P-Gmtl-HandyLib-HLDateTime-NowUnixTimestamp 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Summary
-
-Return Linux timestamp for provided date
-
-##### Remarks
-
-```
-int unixTimestamp = HLDateTime.NowUnixTimestamp;
-```
-
-<a name='M-Gmtl-HandyLib-HLDateTime-FromUnixTimestamp-System-Int64-'></a>
-### FromUnixTimestamp(timestamp) `method` [#](#M-Gmtl-HandyLib-HLDateTime-FromUnixTimestamp-System-Int64- 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Summary
-
-Convert unix timestamp to System.DateTime
-
-##### Returns
-
-DateTime representation of unix timestamp
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| timestamp | [System.Int64](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int64 'System.Int64') | Unix timestamp to be converted |
-
-<a name='M-Gmtl-HandyLib-HLDateTime-ToUnixTimestamp-System-DateTime-'></a>
-### ToUnixTimestamp(dateTime) `method` [#](#M-Gmtl-HandyLib-HLDateTime-ToUnixTimestamp-System-DateTime- 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Summary
-
-Convert System.DateTime to unix timestamp
-
-##### Returns
-
-unix timestamp representation for DateTime
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| dateTime | [System.DateTime](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.DateTime 'System.DateTime') | DateTime struct to be converted |
-
-<a name='T-Gmtl-HandyLib-HLDllEmbeddedResource'></a>
-## HLDllEmbeddedResource [#](#T-Gmtl-HandyLib-HLDllEmbeddedResource 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Namespace
-
-Gmtl.HandyLib
-
-<a name='M-Gmtl-HandyLib-HLDllEmbeddedResource-GetTextResource-System-String,System-Reflection-Assembly-'></a>
-### GetTextResource(resourceName,assembly) `method` [#](#M-Gmtl-HandyLib-HLDllEmbeddedResource-GetTextResource-System-String,System-Reflection-Assembly- 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Summary
-
-Return content of the file
-
-##### Returns
-
-content of the file
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| resourceName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | path to the file included as embedded resource. IMPORTANT: replace '\\' with '.' eg. Scripts\\run.bat => Scripts.run.bat |
-| assembly | [System.Reflection.Assembly](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Reflection.Assembly 'System.Reflection.Assembly') | Assembly with resource |
-
-<a name='M-Gmtl-HandyLib-HLDllEmbeddedResource-GetTextResource-System-String-'></a>
-### GetTextResource(resourceName) `method` [#](#M-Gmtl-HandyLib-HLDllEmbeddedResource-GetTextResource-System-String- 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Summary
-
-Return content of the file in calling assembly
-
-##### Returns
-
-content of the file
-
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| resourceName | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | path to the file included as embedded resource. IMPORTANT: replace '\\' with '.' eg. Scripts\\run.bat => Scripts.run.bat |
-
-<a name='T-Gmtl-HandyLib-HLExceptionHelper'></a>
-## HLExceptionHelper [#](#T-Gmtl-HandyLib-HLExceptionHelper 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Namespace
-
-Gmtl.HandyLib
-
-##### Summary
-
-Handy methods related to System.Exception
-
-<a name='M-Gmtl-HandyLib-HLExceptionHelper-ToXmlString-System-Exception,System-Boolean-'></a>
-### ToXmlString() `method` [#](#M-Gmtl-HandyLib-HLExceptionHelper-ToXmlString-System-Exception,System-Boolean- 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Summary
-
-Return XML serialized string of Exception provided in parameter
-
-##### Parameters
-
-This method has no parameters.
-
-<a name='T-Gmtl-HandyLib-HLListPage`1'></a>
-## HLListPage\`1 [#](#T-Gmtl-HandyLib-HLListPage`1 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Namespace
-
-Gmtl.HandyLib
-
-##### Summary
-
-Provides base class for 'pagination'
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| T | List item type |
-
-<a name='T-Gmtl-HandyLib-Extensions-HLObjectExtensions'></a>
-## HLObjectExtensions [#](#T-Gmtl-HandyLib-Extensions-HLObjectExtensions 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Namespace
-
-Gmtl.HandyLib.Extensions
-
-##### Summary
+## Extensions.HLObjectExtensions
 
 Usefull extensions for System.Object
 
-<a name='M-Gmtl-HandyLib-Extensions-HLObjectExtensions-PropertyList-System-Object-'></a>
-### PropertyList(obj) `method` [#](#M-Gmtl-HandyLib-Extensions-HLObjectExtensions-PropertyList-System-Object- 'Go To Here') [=](#contents 'Back To Contents')
 
-##### Summary
+### M:Gmtl.HandyLib.PropertyList(obj)
 
 List all properties and their values
 
-##### Returns
+| Name | Description |
+| ---- | ----------- |
+| obj | *System.Object*<br> |
+
+
+#### Returns
 
 List of all properies and their values
 
-##### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| obj | [System.Object](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Object 'System.Object') |  |
+## HLCloner
 
-<a name='T-Gmtl-HandyLib-HLRandomizer'></a>
-## HLRandomizer [#](#T-Gmtl-HandyLib-HLRandomizer 'Go To Here') [=](#contents 'Back To Contents')
+Clones an object
 
-##### Namespace
 
-Gmtl.HandyLib
+## HLCrypter
 
-##### Summary
+HLCrypter encrypt and decrypt strings
+
+
+### M:Gmtl.HandyLib.DecryptString(encryptedText)
+
+Decrypt string
+
+| Name | Description |
+| ---- | ----------- |
+| encryptedText | *System.String*<br>text to decrypt |
+
+
+#### Returns
+
+decrypted text using entropy seed
+
+
+### M:Gmtl.HandyLib.EncryptString(plainText)
+
+Encrypt string
+
+| Name | Description |
+| ---- | ----------- |
+| plainText | *System.String*<br>text to encrypt |
+
+
+#### Returns
+
+encrypted text using entropy seed
+
+
+### M:Gmtl.HandyLib.SetEntropy(seed)
+
+Set seed for encryption and decryption
+
+| Name | Description |
+| ---- | ----------- |
+| seed | *System.String*<br>new seed |
+
+## HLDateTime
+
+Handy methods related to System.DateTime
+
+
+### M:Gmtl.HandyLib.FromUnixTimestamp(timestamp)
+
+Convert unix timestamp to System.DateTime
+
+| Name | Description |
+| ---- | ----------- |
+| timestamp | *System.Int64*<br>Unix timestamp to be converted |
+
+
+#### Returns
+
+DateTime representation of unix timestamp
+
+
+### .NowUnixTimestamp
+
+Return Linux timestamp for provided date
+
+
+#### Remarks
+
+ int unixTimestamp = HLDateTime.NowUnixTimestamp; 
+
+
+### M:Gmtl.HandyLib.ToUnixTimestamp(dateTime)
+
+Convert System.DateTime to unix timestamp
+
+| Name | Description |
+| ---- | ----------- |
+| dateTime | *System.DateTime*<br>DateTime struct to be converted |
+
+
+#### Returns
+
+unix timestamp representation for DateTime
+
+
+### M:Gmtl.HandyLib.HLDllEmbeddedResource.GetTextResource(resourceName)
+
+Return content of the file in calling assembly
+
+| Name | Description |
+| ---- | ----------- |
+| resourceName | *System.String*<br> path to the file included as embedded resource. IMPORTANT: replace '\\' with '.' eg. Scripts\\run.bat => Scripts.run.bat |
+
+
+#### Returns
+
+content of the file
+
+
+### M:Gmtl.HandyLib.HLDllEmbeddedResource.GetTextResource(resourceName, assembly)
+
+Return content of the file
+
+| Name | Description |
+| ---- | ----------- |
+| resourceName | *System.String*<br> path to the file included as embedded resource. IMPORTANT: replace '\\' with '.' eg. Scripts\\run.bat => Scripts.run.bat |
+| assembly | *System.Reflection.Assembly*<br>Assembly with resource |
+
+
+#### Returns
+
+content of the file
+
+
+## T:Gmtl.HandyLib.HLExceptionHelper
+
+Handy methods related to System.Exception
+
+
+### M:Gmtl.HandyLib.HLExceptionHelper.ToXmlString(System.Exception,System.Boolean)
+
+Return XML serialized string of Exception provided in parameter
+
+
+## T:Gmtl.HandyLib.HLListPage`1
+
+Provides base class for 'pagination'
+
+
+## T:Gmtl.HandyLib.HLRandomizer
 
 Handy random data provider
 
-<a name='P-Gmtl-HandyLib-HLRandomizer-RandomDouble'></a>
-### RandomDouble `property` [#](#P-Gmtl-HandyLib-HLRandomizer-RandomDouble 'Go To Here') [=](#contents 'Back To Contents')
 
-##### Summary
+### P:Gmtl.HandyLib.HLRandomizer.RandomDouble
 
 Random double provider
 
-##### Remarks
 
-```
-double randomDouble = HLRandomizer.RandomDouble.Next(1.0, 100.0);
-```
+#### Remarks
 
-<a name='P-Gmtl-HandyLib-HLRandomizer-RandomString'></a>
-### RandomString `property` [#](#P-Gmtl-HandyLib-HLRandomizer-RandomString 'Go To Here') [=](#contents 'Back To Contents')
+ double randomDouble = HLRandomizer.RandomDouble.Next(1.0, 100.0); 
 
-##### Summary
+
+### P:Gmtl.HandyLib.HLRandomizer.RandomString
 
 Random string provider
 
-##### Remarks
 
-```
-string randomString1 = HLRandomizer.RandomString.Next();
-            string randomString2 = HLRandomizer.RandomString.Next(100);//max length
-            string randomString3 = HLRandomizer.RandomString.NextExact(10);
-            string randomString4 = HLRandomizer.RandomString.Next(10, 100);//min 100 and max 100
-```
+#### Remarks
 
-<a name='T-Gmtl-HandyLib-HLSerializer'></a>
-## HLSerializer [#](#T-Gmtl-HandyLib-HLSerializer 'Go To Here') [=](#contents 'Back To Contents')
+ string randomString1 = HLRandomizer.RandomString.Next(); string randomString2 = HLRandomizer.RandomString.Next(100);//max length string randomString3 = HLRandomizer.RandomString.NextExact(10); string randomString4 = HLRandomizer.RandomString.Next(10, 100);//min 100 and max 100 
 
-##### Namespace
 
-Gmtl.HandyLib
-
-##### Summary
+## T:Gmtl.HandyLib.HLSerializer
 
 Serializaton and deserialization helper class
 
-<a name='M-Gmtl-HandyLib-HLSerializer-DeserializeFromXml``1-System-String-'></a>
-### DeserializeFromXml\`\`1(xml) `method` [#](#M-Gmtl-HandyLib-HLSerializer-DeserializeFromXml``1-System-String- 'Go To Here') [=](#contents 'Back To Contents')
 
-##### Summary
+### M:Gmtl.HandyLib.HLSerializer.DeserializeFromXml``1(xml)
 
 Deserializes string to specified object type
 
-##### Returns
+| Name | Description |
+| ---- | ----------- |
+| xml | *System.String*<br>serialized object |
+
+
+#### Returns
 
 Deserialized object
 
-##### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| xml | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | serialized object |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| T | Expected object type |
-
-<a name='M-Gmtl-HandyLib-HLSerializer-DeserializeFromXmlFile``1-System-String-'></a>
-### DeserializeFromXmlFile\`\`1(filename) `method` [#](#M-Gmtl-HandyLib-HLSerializer-DeserializeFromXmlFile``1-System-String- 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Summary
+### M:Gmtl.HandyLib.HLSerializer.DeserializeFromXmlFile``1(filename)
 
 Deserializes object from specified filename
 
-##### Returns
+| Name | Description |
+| ---- | ----------- |
+| filename | *System.String*<br>File storing serialized object |
+
+
+#### Returns
 
 Deserialized object
 
-##### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| filename | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | File storing serialized object |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| T | Expected object type |
-
-<a name='M-Gmtl-HandyLib-HLSerializer-SerializeToXml``1-``0,System-Boolean-'></a>
-### SerializeToXml\`\`1(objectToSerialize,useNamespaces) `method` [#](#M-Gmtl-HandyLib-HLSerializer-SerializeToXml``1-``0,System-Boolean- 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Summary
+### M:Gmtl.HandyLib.HLSerializer.SerializeToXml``1(objectToSerialize, useNamespaces)
 
 Serializes object to XML
 
-##### Returns
+| Name | Description |
+| ---- | ----------- |
+| objectToSerialize | *``0*<br>Object to serialize |
+| useNamespaces | *System.Boolean*<br>If true, adds namespaces to output string |
+
+
+#### Returns
 
 Serialized object
 
-##### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| objectToSerialize | [\`\`0](#T-``0 '``0') | Object to serialize |
-| useNamespaces | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | If true, adds namespaces to output string |
-
-##### Generic Types
-
-| Name | Description |
-| ---- | ----------- |
-| T | Object type |
-
-<a name='M-Gmtl-HandyLib-HLSerializer-SerializeToXmlFile``1-``0,System-String,System-Boolean-'></a>
-### SerializeToXmlFile\`\`1(objectToSerialize,useNamespaces,filename) `method` [#](#M-Gmtl-HandyLib-HLSerializer-SerializeToXmlFile``1-``0,System-String,System-Boolean- 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Summary
+### M:Gmtl.HandyLib.HLSerializer.SerializeToXmlFile``1(objectToSerialize, useNamespaces, filename)
 
 Serializes object and saves it into a file
 
-##### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| objectToSerialize | [\`\`0](#T-``0 '``0') | Object to serialize |
-| useNamespaces | [System.String](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.String 'System.String') | If true, adds namespaces to output string |
-| filename | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | Filename where save the serialized object |
-
-##### Generic Types
-
 | Name | Description |
 | ---- | ----------- |
-| T | Object type |
+| objectToSerialize | *``0*<br>Object to serialize |
+| useNamespaces | *System.String*<br>If true, adds namespaces to output string |
+| filename | *System.Boolean*<br>Filename where save the serialized object |
 
-<a name='T-Gmtl-HandyLib-HLSingleton`1'></a>
-## HLSingleton\`1 [#](#T-Gmtl-HandyLib-HLSingleton`1 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Namespace
-
-Gmtl.HandyLib
-
-<a name='P-Gmtl-HandyLib-HLSingleton`1-Instance'></a>
-### Instance `property` [#](#P-Gmtl-HandyLib-HLSingleton`1-Instance 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Summary
+### P:Gmtl.HandyLib.HLSingleton`1.Instance
 
 Class instance
 
-<a name='T-Gmtl-HandyLib-HLString'></a>
-## HLString [#](#T-Gmtl-HandyLib-HLString 'Go To Here') [=](#contents 'Back To Contents')
 
-##### Namespace
-
-Gmtl.HandyLib
-
-##### Summary
+## T:Gmtl.HandyLib.HLString
 
 Handy methods related to System.String
 
-<a name='M-Gmtl-HandyLib-HLString-ValueOrDefault-System-String,System-String-'></a>
-### ValueOrDefault() `method` [#](#M-Gmtl-HandyLib-HLString-ValueOrDefault-System-String,System-String- 'Go To Here') [=](#contents 'Back To Contents')
 
-##### Summary
+### M:Gmtl.HandyLib.HLString.ValueOrDefault(System.String,System.String)
 
 Returns input if it's not null or whitespace, defaultValue otherwise
 
-##### Parameters
 
-This method has no parameters.
+#### Remarks
 
-##### Remarks
+ HLString.ValueOrDefault("test", "replaced"); //'test' returned HLString.ValueOrDefault("", "replaced"); //'replaced' returned HLString.ValueOrDefault(null, "replaced"); //'replaced' returned 
 
-```
-HLString.ValueOrDefault("test", "replaced"); //'test' returned
-            HLString.ValueOrDefault("", "replaced"); //'replaced' returned
-            HLString.ValueOrDefault(null, "replaced"); //'replaced' returned
-```
 
-<a name='M-Gmtl-HandyLib-HLString-ValueOrEmpty-System-String-'></a>
-### ValueOrEmpty() `method` [#](#M-Gmtl-HandyLib-HLString-ValueOrEmpty-System-String- 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Summary
+### M:Gmtl.HandyLib.HLString.ValueOrEmpty(System.String)
 
 Returns input if it's not null or whitespace, String.Empty otherwise
 
-##### Parameters
 
-This method has no parameters.
+#### Remarks
 
-##### Remarks
+ HLString.ValueOrEmpty("test"); //'test' returned HLString.ValueOrEmpty(null); //'String.Empty' returned 
 
-```
-HLString.ValueOrEmpty("test"); //'test' returned
-            HLString.ValueOrEmpty(null); //'String.Empty' returned
-```
 
-<a name='T-Gmtl-HandyLib-IHLMailNotifier'></a>
-## IHLMailNotifier [#](#T-Gmtl-HandyLib-IHLMailNotifier 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Namespace
-
-Gmtl.HandyLib
-
-<a name='M-Gmtl-HandyLib-IHLMailNotifier-TestConfiguration'></a>
-### TestConfiguration() `method` [#](#M-Gmtl-HandyLib-IHLMailNotifier-TestConfiguration 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Summary
+### M:Gmtl.HandyLib.IHLMailNotifier.TestConfiguration
 
 Will try to send message to itself
 
-##### Returns
+
+#### Returns
 
 
 
-##### Parameters
 
-This method has no parameters.
-
-<a name='T-Gmtl-HandyLib-OperationResult`1'></a>
-## OperationResult\`1 [#](#T-Gmtl-HandyLib-OperationResult`1 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Namespace
-
-Gmtl.HandyLib
-
-##### Summary
+## T:Gmtl.HandyLib.OperationResult`1
 
 Generic class working as a wrapper
 
-##### Generic Types
 
-| Name | Description |
-| ---- | ----------- |
-| T | type |
-
-<a name='P-Gmtl-HandyLib-OperationResult`1-Message'></a>
-### Message `property` [#](#P-Gmtl-HandyLib-OperationResult`1-Message 'Go To Here') [=](#contents 'Back To Contents')
-
-##### Summary
+### P:Gmtl.HandyLib.OperationResult`1.Message
 
 Extra info send with operation result (optional)
 
-<a name='P-Gmtl-HandyLib-OperationResult`1-Result'></a>
-### Result `property` [#](#P-Gmtl-HandyLib-OperationResult`1-Result 'Go To Here') [=](#contents 'Back To Contents')
 
-##### Summary
+### P:Gmtl.HandyLib.OperationResult`1.Result
 
 Result value
 
-<a name='P-Gmtl-HandyLib-OperationResult`1-Status'></a>
-### Status `property` [#](#P-Gmtl-HandyLib-OperationResult`1-Status 'Go To Here') [=](#contents 'Back To Contents')
 
-##### Summary
+### P:Gmtl.HandyLib.OperationResult`1.Status
 
 Operation status
 
-<a name='T-Gmtl-HandyLib-OperationStatus'></a>
-## OperationStatus [#](#T-Gmtl-HandyLib-OperationStatus 'Go To Here') [=](#contents 'Back To Contents')
 
-##### Namespace
-
-Gmtl.HandyLib
-
-##### Summary
+## T:Gmtl.HandyLib.OperationStatus
 
 Status of executed operation
+

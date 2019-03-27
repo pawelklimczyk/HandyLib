@@ -10,7 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>HandyLib makes developers life bit easier. Provides string and double values randomizer (test-data), exceptionHelper (serializing) and DateTime helper (Unix DateTime) and others</description>
     <releaseNotes>Initial version of HandyLib</releaseNotes>
-    <copyright>Copyright Gemotial 2015-2016</copyright>
+    <copyright>Copyright Gemotial 2015-2019</copyright>
     <tags>test-data random exception string datetime unix</tags>
   </metadata>
 </package>

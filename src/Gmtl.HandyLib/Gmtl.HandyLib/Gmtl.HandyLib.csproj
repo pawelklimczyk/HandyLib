@@ -1,37 +1,52 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DD6E1BB3-EA42-4F79-BAE2-6A282C5AD9F2}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworks>netstandard2.0;net46;net40</TargetFrameworks>
+    <Version>1.0.0</Version>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <RuntimeIdentifiers>win7-x86;win7-x64</RuntimeIdentifiers>
+    <Authors>Paweł Klimczyk</Authors>
+    <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
+    <Language>en-US</Language>
+    <AssemblyName>Gmtl.HandyLib</AssemblyName>  
+    <AssemblyTitle>Gmtl.HandyLib</AssemblyTitle>
+    <NeutralLanguage>en-US</NeutralLanguage>    
+    <PackageId>Gmtl.HandyLib</PackageId>
     <RootNamespace>Gmtl.HandyLib</RootNamespace>
-    <AssemblyName>Gmtl.HandyLib</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <NuGetPackageImportStamp>3a2349a3</NuGetPackageImportStamp>
+    <Title>Gmtl.HandyLib</Title>
+    <Description>HandyLib makes developers life bit easier. Provides string and double values randomizer (test-data), exceptionHelper (serializing) and DateTime helper (Unix DateTime) and others</Description>    
+    <Summary></Summary>
+    <PackageCopyright>Paweł Klimczyk 2015-2019</PackageCopyright>
+    <PackageTags></PackageTags>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageProjectUrl>https://github.com/pawelklimczyk/HandyLib</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/pawelklimczyk/HandyLib/blob/master/LICENSE</PackageLicenseUrl>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Copyright>Paweł Klimczyk, 2015-2019</Copyright>
+    <RepositoryType>git</RepositoryType>
+    <Company>GEMOTIAL</Company>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>    
+    <RepositoryUrl>https://github.com/pawelklimczyk/HandyLib</RepositoryUrl>
+    <VsxmdAutoDeleteXml>True</VsxmdAutoDeleteXml>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>HandyLib-Documentation.md</DocumentationFile>
+  
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DefineConstants>TRACE;DEBUG;</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <NoWarn>$(NoWarn);CS1591;CS1572;CS1573</NoWarn>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DefineConstants>RELEASE</DefineConstants>
   </PropertyGroup>
-  <ItemGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
+    <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
+  </PropertyGroup>
+  
+  
+    <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
+    <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -42,44 +57,50 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Extensions\HLObjectExtensions.cs" />
-    <Compile Include="HLBase64.cs" />
-    <Compile Include="HLCloner.cs" />
-    <Compile Include="HLCrypter.cs" />
-    <Compile Include="HLDllEmbeddedResource.cs" />
-    <Compile Include="HLDateTime.cs" />
-    <Compile Include="HLExceptionHelper.cs" />
-    <Compile Include="HLListPage.cs" />
-    <Compile Include="HLMailNotifier.cs" />
-    <Compile Include="HLSerializer.cs" />
-    <Compile Include="HLSingleton.cs" />
-    <Compile Include="OperationResult.cs" />
-    <Compile Include="Randomizer\IRandomDouble.cs" />
-    <Compile Include="Randomizer\IRandomString.cs" />
-    <Compile Include="Randomizer\RandomDouble.cs" />
-    <Compile Include="HLRandomizer.cs" />
-    <Compile Include="HLString.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Randomizer\RandomString.cs" />
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net46'">
+    <DefineConstants>NET45;NETFULL</DefineConstants>
+  </PropertyGroup>
+  
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Gmtl.HandyLib.nuspec" />
-    <None Include="packages.config" />
+  
+  <ItemGroup Condition="'$(TargetFramework)' == 'net46'">
+    <PackageReference Include="System.Security.Cryptography.ProtectedData">
+      <Version>4.5.0</Version>
+    </PackageReference>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\Vsxmd.1.2.0\build\Vsxmd.targets" Condition="Exists('..\packages\Vsxmd.1.2.0\build\Vsxmd.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Vsxmd.1.2.0\build\Vsxmd.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Vsxmd.1.2.0\build\Vsxmd.targets'))" />
-  </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Configuration.ConfigurationManager">
+      <Version>4.5.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Security.Cryptography.ProtectedData">
+      <Version>4.5.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  
+  <!-- <ItemGroup>
+    <PackageReference Include="Vsxmd">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup> -->
+  
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net40'">
+    <DefineConstants>NET40;NETFULL</DefineConstants>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <DocumentationFile>HandyLib-Documentation.xml</DocumentationFile>
+  </PropertyGroup>
 </Project>

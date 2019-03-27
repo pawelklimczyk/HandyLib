@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+//using System.Net.Configuration;
 using System.IO;
 using System.Net;
-using System.Net.Configuration;
 using System.Net.Mail;
 
 namespace Gmtl.HandyLib
@@ -13,7 +13,7 @@ namespace Gmtl.HandyLib
         //<system.net>
         //    <mailSettings>
         //        <smtp from = "test@mail.com" >
-        //            < network defaultCredentials="false" enableSsl="true" host="mail.test.com" port="465" userName="test" password="test" />   
+        //            <network defaultCredentials="false" enableSsl="true" host="mail.test.com" port="465" userName="test" password="test" />   
         //        </smtp>
         //    </mailSettings>
         //</system.net>
@@ -33,9 +33,11 @@ namespace Gmtl.HandyLib
                         if (_instance == null)
                         {
                             _instance = new HLMailNotifier();
+                            
+                            //(SmtpSection)
+                            var smtpSection = ConfigurationManager.GetSection("system.net/mailSettings/smtp");
 
-                            var smtpSection = (SmtpSection)ConfigurationManager.GetSection("system.net/mailSettings/smtp");
-                            _instance.from = smtpSection.Network.UserName;
+                            _instance.from = "HLMailNotifier";// smtpSection.Network.UserName;
                         }
                     }
                 }
@@ -53,8 +55,10 @@ namespace Gmtl.HandyLib
         {
             try
             {
-                var smtpSection = (SmtpSection)ConfigurationManager.GetSection("system.net/mailSettings/smtp");
-                string username = smtpSection.Network.UserName;
+                //(SmtpSection)
+                var smtpSection = ConfigurationManager.GetSection("system.net/mailSettings/smtp");
+                
+                string username = "HLMailNotifier"; //smtpSection.Network.UserName;
 
                 return SendMail("Mailer SelfTest", "Mailer SelfTest", username);
             }
@@ -129,7 +133,7 @@ namespace Gmtl.HandyLib
     public interface IHLMailNotifier
     {
         /// <summary>
-        ///     Will try to send message to itself
+        /// Will try to send message to itself
         /// </summary>
         /// <returns></returns>
         bool TestConfiguration();

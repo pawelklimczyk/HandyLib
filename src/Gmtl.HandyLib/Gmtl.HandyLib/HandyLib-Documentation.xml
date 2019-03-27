@@ -1,0 +1,242 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Gmtl.HandyLib</name>
+    </assembly>
+    <members>
+        <member name="T:Gmtl.HandyLib.Extensions.HLObjectExtensions">
+            <summary>
+            Usefull extensions for System.Object
+            </summary>
+        </member>
+        <member name="M:Gmtl.HandyLib.Extensions.HLObjectExtensions.PropertyList(System.Object)">
+            <summary>
+            List all properties and their values 
+            </summary>
+            <param name="obj"></param>
+            <returns>List of all properies and their values</returns>
+        </member>
+        <member name="T:Gmtl.HandyLib.HLCloner">
+            <summary>
+            Clones an object
+            </summary>
+        </member>
+        <member name="T:Gmtl.HandyLib.HLCrypter">
+            <summary>
+            HLCrypter encrypt and decrypt strings
+            </summary>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLCrypter.SetEntropy(System.String)">
+            <summary>
+            Set seed for encryption and decryption
+            </summary>
+            <param name="seed">new seed</param>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLCrypter.EncryptString(System.String)">
+            <summary>
+            Encrypt string
+            </summary>
+            <param name="plainText">text to encrypt</param>
+            <returns>encrypted text using entropy seed</returns>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLCrypter.DecryptString(System.String)">
+            <summary>
+            Decrypt string
+            </summary>
+            <param name="encryptedText">text to decrypt</param>
+            <returns>decrypted text using entropy seed</returns>
+        </member>
+        <member name="T:Gmtl.HandyLib.HLDateTime">
+            <summary>
+            Handy methods related to System.DateTime
+            </summary>
+        </member>
+        <member name="P:Gmtl.HandyLib.HLDateTime.NowUnixTimestamp">
+            <summary>
+            Return Linux timestamp for provided date
+            </summary>
+            <remarks>
+            <code>
+            int unixTimestamp = HLDateTime.NowUnixTimestamp;
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLDateTime.FromUnixTimestamp(System.Int64)">
+            <summary>
+            Convert unix timestamp to System.DateTime
+            </summary>
+            <param name="timestamp">Unix timestamp to be converted</param>
+            <returns>DateTime representation of unix timestamp</returns>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLDateTime.ToUnixTimestamp(System.DateTime)">
+            <summary>
+            Convert System.DateTime to unix timestamp
+            </summary>
+            <param name="dateTime">DateTime struct to be converted</param>
+            <returns>unix timestamp representation for DateTime</returns>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLDllEmbeddedResource.GetTextResource(System.String,System.Reflection.Assembly)">
+            <summary>
+            Return content of the file
+            </summary>
+            <param name="resourceName"> path to the file included as embedded resource. IMPORTANT: replace '\\' with '.' eg. Scripts\\run.bat => Scripts.run.bat</param>
+            <param name="assembly">Assembly with resource</param>
+            <returns>content of the file</returns>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLDllEmbeddedResource.GetTextResource(System.String)">
+            <summary>
+            Return content of the file in calling assembly
+            </summary>
+            <param name="resourceName"> path to the file included as embedded resource. IMPORTANT: replace '\\' with '.' eg. Scripts\\run.bat => Scripts.run.bat</param>
+            <returns>content of the file</returns>
+        </member>
+        <member name="T:Gmtl.HandyLib.HLExceptionHelper">
+            <summary>
+            Handy methods related to System.Exception
+            </summary>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLExceptionHelper.ToXmlString(System.Exception,System.Boolean)">
+            <summary>
+            Return XML serialized string of Exception provided in parameter
+            </summary>
+        </member>
+        <member name="T:Gmtl.HandyLib.HLListPage`1">
+            <summary>
+            Provides base class for 'pagination'
+            </summary>
+            <typeparam name="T">List item type</typeparam>
+        </member>
+        <member name="M:Gmtl.HandyLib.IHLMailNotifier.TestConfiguration">
+            <summary>
+            Will try to send message to itself
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Gmtl.HandyLib.HLRandomizer">
+            <summary>
+            Handy random data provider
+            </summary>
+        </member>
+        <member name="P:Gmtl.HandyLib.HLRandomizer.RandomString">
+            <summary>
+            Random string provider
+            </summary>
+            <remarks> 
+            <code>
+            string randomString1 = HLRandomizer.RandomString.Next();
+            string randomString2 = HLRandomizer.RandomString.Next(100);//max length
+            string randomString3 = HLRandomizer.RandomString.NextExact(10);
+            string randomString4 = HLRandomizer.RandomString.Next(10, 100);//min 100 and max 100
+            </code>
+            </remarks>
+        </member>
+        <member name="P:Gmtl.HandyLib.HLRandomizer.RandomDouble">
+            <summary>
+            Random double provider
+            </summary>
+            <remarks> 
+            <code>
+            double randomDouble = HLRandomizer.RandomDouble.Next(1.0, 100.0);
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Gmtl.HandyLib.HLSerializer">
+            <summary>
+            Serializaton and deserialization helper class
+            </summary>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLSerializer.SerializeToXml``1(``0,System.Boolean)">
+            <summary>
+            Serializes object to XML
+            </summary>
+            <typeparam name="T">Object type</typeparam>
+            <param name="objectToSerialize">Object to serialize</param>
+            <param name="useNamespaces">If true, adds namespaces to output string</param>
+            <returns>Serialized object</returns>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLSerializer.SerializeToXmlFile``1(``0,System.String,System.Boolean)">
+            <summary>
+            Serializes object and saves it into a file
+            </summary>
+            <typeparam name="T">Object type</typeparam>
+            <param name="objectToSerialize">Object to serialize</param>
+            <param name="useNamespaces">If true, adds namespaces to output string</param>
+            <param name="filename">Filename where save the serialized object</param>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLSerializer.DeserializeFromXml``1(System.String)">
+            <summary>
+            Deserializes string to specified object type
+            </summary>
+            <typeparam name="T">Expected object type</typeparam>
+            <param name="xml">serialized object</param>
+            <returns>Deserialized object</returns>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLSerializer.DeserializeFromXmlFile``1(System.String)">
+            <summary>
+            Deserializes object from specified filename
+            </summary>
+            <typeparam name="T">Expected object type</typeparam>
+            <param name="filename">File storing serialized object</param>
+            <returns>Deserialized object</returns>
+        </member>
+        <member name="P:Gmtl.HandyLib.HLSingleton`1.Instance">
+            <summary>
+            Class instance
+            </summary>
+        </member>
+        <member name="T:Gmtl.HandyLib.HLString">
+            <summary>
+            Handy methods related to System.String
+            </summary>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLString.ValueOrDefault(System.String,System.String)">
+            <summary>
+            Returns input if it's not null or whitespace, defaultValue otherwise
+            </summary>
+            <remarks>
+            <code>
+            HLString.ValueOrDefault("test", "replaced"); //'test' returned
+            HLString.ValueOrDefault("", "replaced"); //'replaced' returned
+            HLString.ValueOrDefault(null, "replaced"); //'replaced' returned
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLString.ValueOrEmpty(System.String)">
+            <summary>
+            Returns input if it's not null or whitespace, String.Empty otherwise
+            </summary>
+            <remarks>
+            <code>
+            HLString.ValueOrEmpty("test"); //'test' returned
+            HLString.ValueOrEmpty(null); //'String.Empty' returned
+            </code>
+            </remarks>
+        </member>
+        <member name="T:Gmtl.HandyLib.OperationResult`1">
+            <summary>
+            Generic class working as a wrapper
+            </summary>
+            <typeparam name="T">type</typeparam>
+        </member>
+        <member name="P:Gmtl.HandyLib.OperationResult`1.Result">
+            <summary>
+            Result value
+            </summary>
+        </member>
+        <member name="P:Gmtl.HandyLib.OperationResult`1.Status">
+            <summary>
+            Operation status
+            </summary>
+        </member>
+        <member name="P:Gmtl.HandyLib.OperationResult`1.Message">
+            <summary>
+            Extra info send with operation result (optional)
+            </summary>
+        </member>
+        <member name="T:Gmtl.HandyLib.OperationStatus">
+            <summary>
+            Status of executed operation
+            </summary>
+        </member>
+    </members>
+</doc>
