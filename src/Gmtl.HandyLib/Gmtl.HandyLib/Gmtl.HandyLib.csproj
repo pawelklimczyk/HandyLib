@@ -20,7 +20,6 @@
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageIconUrl></PackageIconUrl>
     <PackageProjectUrl>https://github.com/pawelklimczyk/HandyLib</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/pawelklimczyk/HandyLib/blob/master/LICENSE</PackageLicenseUrl>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Copyright>Paweł Klimczyk, 2015-2019</Copyright>
     <RepositoryType>git</RepositoryType>
@@ -28,8 +27,14 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>    
     <RepositoryUrl>https://github.com/pawelklimczyk/HandyLib</RepositoryUrl>
     <VsxmdAutoDeleteXml>True</VsxmdAutoDeleteXml>
+    <IncludeSymbols>true</IncludeSymbols> 
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat> 
   </PropertyGroup>
-  
+
+  <PropertyGroup>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <DefineConstants>TRACE;DEBUG;</DefineConstants>
   </PropertyGroup>
