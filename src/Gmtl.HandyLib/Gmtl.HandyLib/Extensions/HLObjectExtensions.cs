@@ -3,7 +3,7 @@
 namespace Gmtl.HandyLib.Extensions
 {
     /// <summary>
-    /// Usefull extensions for System.Object
+    /// Useful extensions for System.Object
     /// </summary>
     public static class HLObjectExtensions
     {
@@ -11,7 +11,7 @@ namespace Gmtl.HandyLib.Extensions
         /// List all properties and their values 
         /// </summary>
         /// <param name="obj"></param>
-        /// <returns>List of all properies and their values</returns>
+        /// <returns>List of all properties and their values</returns>
         public static string PropertyList(this object obj)
         {
             var props = obj.GetType().GetProperties();

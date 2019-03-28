@@ -7,9 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\EmbeddedResourceTextFile.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\EmbeddedResourceTextFile.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="nunit" Version="3.11.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.11.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Gmtl.HandyLib\Gmtl.HandyLib.csproj" />
   </ItemGroup>
 
 </Project>

@@ -6,7 +6,7 @@
     <members>
         <member name="T:Gmtl.HandyLib.Extensions.HLObjectExtensions">
             <summary>
-            Usefull extensions for System.Object
+            Useful extensions for System.Object
             </summary>
         </member>
         <member name="M:Gmtl.HandyLib.Extensions.HLObjectExtensions.PropertyList(System.Object)">
@@ -14,7 +14,7 @@
             List all properties and their values 
             </summary>
             <param name="obj"></param>
-            <returns>List of all properies and their values</returns>
+            <returns>List of all properties and their values</returns>
         </member>
         <member name="T:Gmtl.HandyLib.HLCloner">
             <summary>
