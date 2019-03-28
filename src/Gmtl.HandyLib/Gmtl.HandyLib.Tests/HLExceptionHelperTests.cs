@@ -113,18 +113,29 @@ namespace Gmtl.HandyLib.Tests
         
         private Exception CreateExceptionWithStackTrace(string exceptionMessage, int depth = 0)
         {
-            Action<string, int> drillDownStackTrace = null;
+            Action<string, int> drillDownStackTrace2 = (s, i) => { };//dummy implementation
 
-            drillDownStackTrace = (message, step) =>
+            Action<string, int> drillDownStackTrace = (message, step) =>
             {
                 if (step == 0)
                 {
                     throw new Exception(exceptionMessage);
                 }
 
-                drillDownStackTrace(message, step - 1);
+                step--;
+                drillDownStackTrace2(message, step);
             };
 
+            drillDownStackTrace2 = (message, step) =>
+            {
+                if (step == 0)
+                {
+                    throw new Exception(exceptionMessage);
+                }
+
+                step--;
+                drillDownStackTrace(message, step);
+            };
             try
             {
                 if (depth == 0)
