@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 namespace Gmtl.HandyLib
 {
     /// <summary>
-    /// Serializaton and deserialization helper class
+    /// Serialization and deserialization helper class
     /// </summary>
     public class HLSerializer
     {
