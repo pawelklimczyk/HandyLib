@@ -16,28 +16,28 @@ namespace Gmtl.HandyLib
         public string Message { get; private set; }
         public UserMessageType Type { get; private set; }
 
-        public static UserMessage CreateInfo(string title = "", string message = "")
+        public static UserMessage CreateInfo(string message = "", string title = "")
         {
             return Create(title, message, UserMessageType.Info);
         }
 
-        public static UserMessage CreateWarning(string title = "", string message = "")
+        public static UserMessage CreateWarning(string message = "", string title = "")
         {
             return Create(title, message, UserMessageType.Warning);
         }
 
-        public static UserMessage CreateError(string title = "", string message = "")
+        public static UserMessage CreateError(string message = "", string title = "")
         {
             return Create(title, message, UserMessageType.Error);
         }
 
-        public static UserMessage Create(string title = "", string message = "",
+        public static UserMessage Create(string message = "", string title = "",
             UserMessageType type = UserMessageType.Info)
         {
             return new UserMessage
             {
-                Title = title,
                 Message = message,
+                Title = title,
                 Type = type
             };
         }
@@ -49,5 +49,4 @@ namespace Gmtl.HandyLib
         Warning,
         Error
     }
-
 }
