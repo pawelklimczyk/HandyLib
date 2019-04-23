@@ -13,8 +13,15 @@ namespace Gmtl.HandyLib
         private static string GetAssemblyAttribute<T>(Func<T, string> value)
             where T : Attribute
         {
-            T attribute = (T)Attribute.GetCustomAttribute(Assembly.GetEntryAssembly(), typeof(T));
-            return value.Invoke(attribute);
+            try
+            {
+                T attribute = (T) Attribute.GetCustomAttribute(Assembly.GetEntryAssembly(), typeof(T));
+                return value.Invoke(attribute);
+            }
+            catch
+            {
+                return String.Empty;
+            }
         }
     }
 }
