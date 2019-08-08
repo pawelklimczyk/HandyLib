@@ -38,7 +38,14 @@ namespace Gmtl.HandyLib
         /// <returns>DateTime representation of unix timestamp</returns>
         public static DateTime FromUnixTimestamp(long timestamp)
         {
-            return unixStart.AddSeconds(timestamp);
+            if (timestamp > 9999999999)
+            {
+                return unixStart.AddMilliseconds(timestamp);
+            }
+            else
+            {
+                return unixStart.AddSeconds(timestamp);
+            }
         }
 
         /// <summary>

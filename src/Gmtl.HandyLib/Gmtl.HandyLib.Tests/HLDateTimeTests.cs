@@ -15,9 +15,10 @@ namespace Gmtl.HandyLib.Tests
     {
         [TestCase(1454414400, "2016-02-02 12:00:00")]
         [TestCase(946684800, "2000-01-01 00:00:00")]
+        [TestCase(1565259922243, "2019-08-08 10:25:22.243")]
         public void HLDateTime_UnixTimestampDateShouldBeConvertedToDateTime(long timestamp, string expectedDate)
         {
-            DateTime dateExpected = DateTime.ParseExact(expectedDate, "yyyy-MM-dd HH:mm:ss", CultureInfo.CurrentCulture);
+            DateTime dateExpected = DateTime.ParseExact(expectedDate, "yyyy-MM-dd HH:mm:ss.FFF", CultureInfo.CurrentCulture);
 
             var dateConverted = HLDateTime.FromUnixTimestamp(timestamp);
 
