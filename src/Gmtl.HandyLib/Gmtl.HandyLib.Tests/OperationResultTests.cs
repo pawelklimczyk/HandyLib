@@ -6,14 +6,14 @@ namespace Gmtl.HandyLib.Tests
     class OperationResultTests
     {
         [Test]
-        public void SuccessOperationResultShouldBeImplicitlyCastedToTrue()
+        public void SuccessOperationResultShouldBeImplicitlyCastToTrue()
         {
             OperationResult<string> result = OperationResult<string>.Success("test");
             Assert.That(result == true, Is.EqualTo(true));
         }
 
         [Test]
-        public void ErrorOperationResultShouldBeImplicitlyCastedToFalse()
+        public void ErrorOperationResultShouldBeImplicitlyCastToFalse()
         {
             OperationResult<string> result = OperationResult<string>.Error("test");
             Assert.That(result == false, Is.EqualTo(true));
