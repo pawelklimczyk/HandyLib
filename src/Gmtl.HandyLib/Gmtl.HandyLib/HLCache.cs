@@ -14,7 +14,9 @@ namespace Gmtl.HandyLib
         private readonly Func<Dictionary<TKey, TData>> _initializerFunction;
         private static Dictionary<TKey, TData> data = new Dictionary<TKey, TData>();
         private static bool isInitialized = false;
-        private static object locker = new object();
+        private static object _initializeLock = new object();
+        private static object _deleteLock = new object();
+        private static object _insertLock = new object();
 
         public Cache() { }
 
@@ -68,7 +70,7 @@ namespace Gmtl.HandyLib
         {
             if (isInitialized) return;
 
-            lock (locker)
+            lock (_initializeLock)
             {
                 if (isInitialized) return;
 
@@ -83,21 +85,33 @@ namespace Gmtl.HandyLib
 
         public TData Get(TKey key)
         {
+            return data[key];
+        }
+
+        public TData GetOrDefault(TKey key)
+        {
             if (data.ContainsKey(key)) return data[key];
 
             return default(TData);
         }
 
-        public void Insert(TKey key, TData newItemData)
+        public void Delete(TKey key)
         {
-            if (!data.ContainsKey(key))
-                data[key] = newItemData;
+            lock (_deleteLock)
+            {
+                if (data.ContainsKey(key))
+                    data.Remove(key);
+            }
         }
 
-        public void Update(TKey key, TData newItemData)
+        public void InsertOrUpdate(TKey key, TData newItemData)
         {
+            lock (_insertLock) { 
             if (data.ContainsKey(key))
                 data[key] = newItemData;
+            else
+                data.Add(key, newItemData);
+            }
         }
     }
 }
