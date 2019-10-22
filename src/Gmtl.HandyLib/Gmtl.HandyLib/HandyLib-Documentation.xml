@@ -16,6 +16,31 @@
             <param name="obj"></param>
             <returns>List of all properties and their values</returns>
         </member>
+        <member name="T:Gmtl.HandyLib.Cache`2">
+            <summary>
+            Cache cna by initialized via initializeFunc method or by Insert method
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TData"></typeparam>
+        </member>
+        <member name="M:Gmtl.HandyLib.Cache`2.GetAll">
+            <summary>
+            Return a copy of the whole data in cache
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Gmtl.HandyLib.Cache`2.FindBy``1(System.Func{`1,System.Boolean},System.Func{`1,``0},Gmtl.HandyLib.OrderDirection,System.Int32,System.Int32)">
+            <summary>
+            Return a page of data in cache
+            </summary>
+            <typeparam name="TOrder"></typeparam>
+            <param name="filterFunc"></param>
+            <param name="orderFunc"></param>
+            <param name="orderDirection"></param>
+            <param name="page"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
         <member name="T:Gmtl.HandyLib.HLCloner">
             <summary>
             Clones an object
