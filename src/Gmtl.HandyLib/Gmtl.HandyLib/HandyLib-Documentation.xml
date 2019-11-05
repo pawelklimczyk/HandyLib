@@ -145,6 +145,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Gmtl.HandyLib.HLQueue`1">
+            <summary>
+            Queue with Enqueue/Dequeue events
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
         <member name="T:Gmtl.HandyLib.HLRandomizer">
             <summary>
             Handy random data provider

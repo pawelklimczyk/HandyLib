@@ -12,8 +12,11 @@ namespace Gmtl.HandyLib
     public class Cache<TKey, TData>
     {
         private readonly Func<Dictionary<TKey, TData>> _initializerFunction;
-        private static Dictionary<TKey, TData> data = new Dictionary<TKey, TData>();
-        private static bool isInitialized = false;
+        private readonly bool _autoMaintainList;
+        private static Dictionary<TKey, TData> _data = new Dictionary<TKey, TData>();
+        private static List<TData> _inCacheList = new List<TData>();
+
+        private static bool _isInitialized = false;
         private static object _initializeLock = new object();
         private static object _deleteLock = new object();
         private static object _insertLock = new object();
@@ -25,13 +28,32 @@ namespace Gmtl.HandyLib
             _initializerFunction = initializerFunction;
         }
 
+        public Cache(Func<Dictionary<TKey, TData>> initializerFunction, bool autoMaintainList)
+        {
+            _initializerFunction = initializerFunction;
+            _autoMaintainList = autoMaintainList;
+        }
+
+        public Cache(bool autoMaintainList)
+        {
+            _autoMaintainList = autoMaintainList;
+        }
+
         /// <summary>
         /// Return a copy of the whole data in cache
         /// </summary>
         /// <returns></returns>
         public Dictionary<TKey, TData> GetAll()
         {
-            return new Dictionary<TKey, TData>(data);
+            return new Dictionary<TKey, TData>(_data);
+        }
+
+        public List<TData> GetList()
+        {
+            if (_autoMaintainList)
+                return _inCacheList;
+
+            return _data.Values.ToList();
         }
 
         /// <summary>
@@ -48,19 +70,16 @@ namespace Gmtl.HandyLib
         {
             int itemsToSkip = (page < 0 ? 1 : (page - 1)) * pageSize;
 
-            if (!isInitialized) Initialize();
+            if (!_isInitialized) Initialize();
 
-            var query = data.Values.Where(filterFunc);
+            var query = _data.Values.Where(filterFunc);
             if (orderFunc != null)
             {
-                if (orderDirection == OrderDirection.Ascending)
-                    query = query.OrderBy(orderFunc);
-                else
-                    query = query.OrderByDescending(orderFunc);
+                query = orderDirection == OrderDirection.Ascending ? query.OrderBy(orderFunc) : query.OrderByDescending(orderFunc);
             }
 
             var list = query.Skip(itemsToSkip).Take(pageSize).ToList();
-            var totalCount = data.Values.Count(filterFunc);
+            var totalCount = _data.Values.Count(filterFunc);
             HLListPage<TData> dataToReturn = new HLListPage<TData>(list, totalCount, page, pageSize);
 
             return dataToReturn;
@@ -68,29 +87,40 @@ namespace Gmtl.HandyLib
 
         private void Initialize()
         {
-            if (isInitialized) return;
+            if (_isInitialized) return;
 
             lock (_initializeLock)
             {
-                if (isInitialized) return;
+                if (_isInitialized) return;
 
                 if (_initializerFunction != null)
-                    data = _initializerFunction();
+                {
+                    _data = _initializerFunction();
+                    if (_autoMaintainList)
+                    {
+                        BuildListFromDict();
+                    }
+                }
 
-                isInitialized = true;
+                _isInitialized = true;
             }
         }
 
-        public TData this[TKey key] => data[key];
+        private void BuildListFromDict()
+        {
+            _inCacheList = _data.Values.ToList();
+        }
+
+        public TData this[TKey key] => _data[key];
 
         public TData Get(TKey key)
         {
-            return data[key];
+            return _data[key];
         }
 
         public TData GetOrDefault(TKey key)
         {
-            if (data.ContainsKey(key)) return data[key];
+            if (_data.ContainsKey(key)) return _data[key];
 
             return default(TData);
         }
@@ -99,19 +129,49 @@ namespace Gmtl.HandyLib
         {
             lock (_deleteLock)
             {
-                if (data.ContainsKey(key))
-                    data.Remove(key);
+                if (_data.ContainsKey(key))
+                    _data.Remove(key);
+                if (_autoMaintainList)
+                    BuildListFromDict();
             }
         }
 
         public void InsertOrUpdate(TKey key, TData newItemData)
         {
-            lock (_insertLock) { 
-            if (data.ContainsKey(key))
-                data[key] = newItemData;
-            else
-                data.Add(key, newItemData);
+            lock (_insertLock)
+            {
+                if (_data.ContainsKey(key))
+                    _data[key] = newItemData;
+                else
+                    _data.Add(key, newItemData);
+
+                if (_autoMaintainList)
+                    BuildListFromDict();
             }
+        }
+
+        public void UpdateCache(TKey key, TData newItemData, CacheUpdateType updatedType)
+        {
+            switch (updatedType)
+            {
+                case CacheUpdateType.Override:
+                    {
+                        InsertOrUpdate(key, newItemData);
+                        break;
+                    }
+                case CacheUpdateType.Delete:
+                    {
+                        Delete(key);
+                        break;
+                    }
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(updatedType), updatedType, null);
+            }
+        }
+        public enum CacheUpdateType
+        {
+            Override = 0,
+            Delete = 1
         }
     }
 }
