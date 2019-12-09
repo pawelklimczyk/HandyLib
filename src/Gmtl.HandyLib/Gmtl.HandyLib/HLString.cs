@@ -41,5 +41,18 @@ namespace Gmtl.HandyLib
         {
             return ValueOrDefault(input, String.Empty);
         }
+
+        /// <summary>
+        /// Returns truncated string
+        /// </summary>
+        public static string MaxOf(string input, int lettersCount, string suffix = "")
+        {
+            string sanitized = ValueOrDefault(input, String.Empty);
+
+            if (sanitized.Length <= lettersCount)
+                return sanitized;
+
+            return sanitized.Substring(0, lettersCount) + suffix;
+        }
     }
 }
