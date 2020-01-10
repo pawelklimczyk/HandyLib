@@ -251,6 +251,11 @@
             </code>
             </remarks>
         </member>
+        <member name="M:Gmtl.HandyLib.HLString.MaxOf(System.String,System.Int32,System.String)">
+            <summary>
+            Returns truncated string
+            </summary>
+        </member>
         <member name="T:Gmtl.HandyLib.OperationResult`1">
             <summary>
             Generic class working as a wrapper
