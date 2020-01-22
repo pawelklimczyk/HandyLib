@@ -91,5 +91,17 @@ namespace Gmtl.HandyLib.Tests
             //Assert
             Assert.That(result, Is.EqualTo(input));
         }
+
+        [TestCase("paweł","pawel")]
+        [TestCase("Paweł", "Pawel")]
+        [TestCase("ąćźż","aczz")]
+        public void HLString_providedString_shouldRemoveNonStandardLetters(string inputString, string expectedOutput)
+        {
+            //Act
+            string result = HLString.RemoveAccents(inputString);
+
+            //Assert
+            Assert.That(result, Is.EqualTo(expectedOutput));
+        }
     }
 }
