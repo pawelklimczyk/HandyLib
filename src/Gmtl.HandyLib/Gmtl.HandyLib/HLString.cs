@@ -59,6 +59,46 @@ namespace Gmtl.HandyLib
             return sanitized.Substring(0, lettersCount) + suffix;
         }
 
+        //public static string DecodeHtml(string input)
+        //{
+        //    //TODO
+        //    return input;
+        //}
+
+        //public static string EncodeHtml(string input)
+        //{
+        //    //TODO
+        //    return input;
+        //}
+
+        public static string StripHtml(string input)
+        {
+            char[] array = new char[input.Length];
+            int arrayIndex = 0;
+            bool inside = false;
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                char let = input[i];
+                if (let == '<')
+                {
+                    inside = true;
+                    continue;
+                }
+                if (let == '>')
+                {
+                    inside = false;
+                    continue;
+                }
+                if (!inside)
+                {
+                    array[arrayIndex] = let;
+                    arrayIndex++;
+                }
+            }
+            return new string(array, 0, arrayIndex);
+        }
+
         /// <summary>
         /// Removes non-standard letters like ę=>e
         /// </summary>
@@ -177,7 +217,5 @@ namespace Gmtl.HandyLib
         { "Я", "Ya" },
         { "я", "ya" },
     };
-
-
     }
 }

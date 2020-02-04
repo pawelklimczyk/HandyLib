@@ -103,5 +103,16 @@ namespace Gmtl.HandyLib.Tests
             //Assert
             Assert.That(result, Is.EqualTo(expectedOutput));
         }
+
+        [TestCase("<h1>test</h1>", "test")]
+        [TestCase("<p>test 123 123</p>", "test 123 123")]
+        public void HLString_shouldStripHtml(string inputString, string expectedOutput)
+        {
+            //Act
+            string result = HLString.StripHtml(inputString);
+
+            //Assert
+            Assert.That(result, Is.EqualTo(expectedOutput));
+        }
     }
 }
