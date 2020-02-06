@@ -37,7 +37,9 @@ namespace Gmtl.HandyLib
         public string AsJson()
         {
             StringBuilder builder = new StringBuilder();
+
             builder.Append("{");
+
             builder.Append("\"status\":\"" + (Status == OperationStatus.Success ? "true" : "false") + "\",");
             builder.Append("\"message\":\"" + (Message != null ? Message.Replace("\"", "'") : "") + "\",");
 
@@ -52,6 +54,7 @@ namespace Gmtl.HandyLib
             }
 
             builder.Append("}");
+
             return builder.ToString();
         }
 
@@ -79,15 +82,5 @@ namespace Gmtl.HandyLib
         {
             return operationResult.Status == OperationStatus.Success;
         }
-    }
-
-    /// <summary>
-    /// Status of executed operation
-    /// </summary>
-    public enum OperationStatus
-    {
-        Success,
-        Warning,
-        Error
     }
 }

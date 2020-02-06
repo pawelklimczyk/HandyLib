@@ -3,7 +3,7 @@
 namespace Gmtl.HandyLib.Tests
 {
     [TestFixture]
-    class OperationResultTests
+    public class OperationResultTests
     {
         [Test]
         public void SuccessOperationResultShouldBeImplicitlyCastToTrue()
