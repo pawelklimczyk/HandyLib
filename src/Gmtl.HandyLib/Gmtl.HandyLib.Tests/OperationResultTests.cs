@@ -33,9 +33,10 @@ namespace Gmtl.HandyLib.Tests
         public void OperationShouldBeReturnedAsJsonStringWithAComplexObject()
         {
             var jsonObj = "{\"field1\":\"value1\", \"field2\":\"value2\"}";
-            string result = OperationResult<string>.Error( jsonObj, "test").AsJson();
+            string result = OperationResult<object>.Error( jsonObj, "test").AsJson();
 
             Assert.That(result, Contains.Substring(jsonObj));
+            Assert.That(result, !Contains.Substring("\"{"));
         }
     }
 }

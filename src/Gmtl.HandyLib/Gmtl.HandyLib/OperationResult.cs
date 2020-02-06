@@ -5,6 +5,7 @@
 // -------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Text;
 
 namespace Gmtl.HandyLib
 {
@@ -35,11 +36,23 @@ namespace Gmtl.HandyLib
         /// <returns></returns>
         public string AsJson()
         {
-            return String.Format("{{\"status\":\"{0}\",\"message\":\"{1}\",\"data\":\"{2}\"}}", 
-                Status == OperationStatus.Success ? "true" : "false",
-                Message != null ? Message.Replace("\"", "'") : "", 
-                Result != null ? Result.ToString() : ""); 
+            StringBuilder builder = new StringBuilder();
+            builder.Append("{");
+            builder.Append("\"status\":\"" + (Status == OperationStatus.Success ? "true" : "false") + "\",");
+            builder.Append("\"message\":\"" + (Message != null ? Message.Replace("\"", "'") : "") + "\",");
 
+            if (typeof(T) == typeof(string))
+            {
+                builder.Append("\"data\":\"" + (Result != null ? Result.ToString() : "") + "\"");
+            }
+            else
+            {
+                //assume we have complex object, so add {}
+                builder.Append("\"data\":{" + (Result != null ? Result.ToString() : "") + "}");
+            }
+
+            builder.Append("}");
+            return builder.ToString();
         }
 
         public static OperationResult<T> Error(T value = default(T), string message = "")
