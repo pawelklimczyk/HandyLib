@@ -29,6 +29,10 @@ namespace Gmtl.HandyLib
         /// </summary>
         public string Message { get; set; }
 
+        /// <summary>
+        /// return Object as a JSON string
+        /// </summary>
+        /// <returns></returns>
         public string AsJson()
         {
             return String.Format("{{\"status\":\"{0}\",\"message\":\"{1}\",\"data\":\"{2}\"}}", Status == OperationStatus.Success ? "true" : "false", Message != null ? Message.Replace("\"", "'") : "", Result != null ? Result.ToString().Replace("\"", "'") : ""); 

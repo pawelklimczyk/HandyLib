@@ -282,6 +282,12 @@
             Extra info send with operation result (optional)
             </summary>
         </member>
+        <member name="M:Gmtl.HandyLib.OperationResult`1.AsJson">
+            <summary>
+            return Object as a JSON string
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Gmtl.HandyLib.OperationStatus">
             <summary>
             Status of executed operation
