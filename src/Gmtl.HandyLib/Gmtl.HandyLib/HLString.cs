@@ -124,6 +124,16 @@ namespace Gmtl.HandyLib
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Converts first letter in sentence to uppercase letter
+        /// </summary>
+        public static string FirstLetterToUpper(this string input)
+        {
+            if (string.IsNullOrEmpty(input))
+                throw new ArgumentException("There is no first letter");
+
+            return char.ToUpper(input[0]) + input.Substring(1);
+        }
 
         static Dictionary<string, string> foreign_characters = new Dictionary<string, string>
     {
