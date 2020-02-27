@@ -119,6 +119,7 @@ namespace Gmtl.HandyLib.Tests
         [TestCase("ławka", "Ławka")]
         [TestCase("ławka leśna", "Ławka leśna")]
         [TestCase("TEST", "TEST")]
+        [TestCase("<TEST>", "<TEST>")]
         public void HLString_shouldMakeFirstCharacterUppercase(string inputString, string expectedOutput)
         {
             //Act
@@ -126,6 +127,18 @@ namespace Gmtl.HandyLib.Tests
 
             //Assert
             Assert.That(result, Is.EqualTo(expectedOutput));
+        }
+
+        [TestCase("<TEST>")]
+        [TestCase("")]
+        [TestCase(null)]
+        public void HLString_shouldReturnInput(string inputString)
+        {
+            //Act
+            string result = HLString.FirstLetterToUpper(inputString);
+
+            //Assert
+            Assert.That(result, Is.EqualTo(inputString));
         }
     }
 }

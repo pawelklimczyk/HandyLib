@@ -121,6 +121,7 @@ namespace Gmtl.HandyLib
                     sb.Append(c);
                 }
             }
+
             return sb.ToString();
         }
 
@@ -129,8 +130,8 @@ namespace Gmtl.HandyLib
         /// </summary>
         public static string FirstLetterToUpper(this string input)
         {
-            if (string.IsNullOrEmpty(input))
-                throw new ArgumentException("There is no first letter");
+            if (string.IsNullOrWhiteSpace(input))
+                return input;
 
             return char.ToUpper(input[0]) + input.Substring(1);
         }

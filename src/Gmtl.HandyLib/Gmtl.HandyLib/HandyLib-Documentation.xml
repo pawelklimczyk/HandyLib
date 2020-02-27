@@ -261,6 +261,11 @@
             Removes non-standard letters like ę=>e
             </summary>
         </member>
+        <member name="M:Gmtl.HandyLib.HLString.FirstLetterToUpper(System.String)">
+            <summary>
+            Converts first letter in sentence to uppercase letter
+            </summary>
+        </member>
         <member name="T:Gmtl.HandyLib.OperationResult`1">
             <summary>
             Generic class working as a wrapper
