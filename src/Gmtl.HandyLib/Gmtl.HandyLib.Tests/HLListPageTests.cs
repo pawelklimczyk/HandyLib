@@ -17,5 +17,17 @@ namespace Gmtl.HandyLib.Tests
 
             Assert.That(page.All(i => i > 0));
         }
+
+        [Test]
+        public void HLListPage_ProvidedEmptyList_ShouldPresentEmptyHLListPage()
+        {
+            List<int> items = new List<int>();
+
+            HLListPage<int> page = new HLListPage<int>(items, items.Count, 1, items.Count);
+
+            Assert.That(page.IsEmpty);
+            Assert.That(page.PageSize == HLListPage<int>.DefaultPageSize);
+            Assert.That(page.PageNumber == 1);
+        }
     }
 }

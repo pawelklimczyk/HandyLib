@@ -18,13 +18,15 @@ namespace Gmtl.HandyLib
     {
         private readonly List<T> itemsOnPage;
 
+        public static int DefaultPageSize = 20;
+
         public HLListPage(IEnumerable<T> items, int totalCount, int pageNumber, int pageSize)
         {
             if (pageNumber < 1)
-                throw new ArgumentOutOfRangeException("pageNumber", pageNumber, "pageNumber cannot be less than 1..");
+                pageNumber = 1;
 
             if (pageSize < 1)
-                throw new ArgumentOutOfRangeException("pageSize", pageSize, "pageSize cannot be less than 1.");
+                pageSize = DefaultPageSize;
 
             if (items == null)
                 throw new ArgumentNullException("items", "superset cannot be null.");
