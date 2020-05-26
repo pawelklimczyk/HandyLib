@@ -4,7 +4,6 @@
 // </copyright>
 // -------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Text;
 
 namespace Gmtl.HandyLib
@@ -67,6 +66,10 @@ namespace Gmtl.HandyLib
                 Status = OperationStatus.Error
             };
         }
+        public static OperationResult<T> Error(string message)
+        {
+            return Error(default(T), message);
+        }
 
         public static OperationResult<T> Success(T value = default(T), string message = "")
         {
@@ -76,6 +79,11 @@ namespace Gmtl.HandyLib
                 Message = message,
                 Status = OperationStatus.Success
             };
+        }
+
+        public static OperationResult<T> Success(string message)
+        {
+            return Success(default(T), message);
         }
 
         public static implicit operator bool(OperationResult<T> operationResult)
