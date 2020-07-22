@@ -4,6 +4,7 @@
 // </copyright>
 // -------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Text;
 
 namespace Gmtl.HandyLib
@@ -38,11 +39,16 @@ namespace Gmtl.HandyLib
             StringBuilder builder = new StringBuilder();
 
             builder.Append("{");
-
             builder.Append("\"status\":\"" + (Status == OperationStatus.Success ? "true" : "false") + "\",");
             builder.Append("\"message\":\"" + (Message != null ? Message.Replace("\"", "'") : "") + "\",");
-
-            if (typeof(T) == typeof(string))
+            
+            Type type = typeof(T);
+            
+            if (type.IsPrimitive || type.IsEnum || type == typeof(decimal))
+            {
+                builder.Append("\"data\":" + (Result != null ? Result.ToString() : ""));
+            }
+            else if (type == typeof(string))
             {
                 builder.Append("\"data\":\"" + (Result != null ? Result.ToString() : "") + "\"");
             }

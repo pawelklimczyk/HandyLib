@@ -28,7 +28,14 @@ namespace Gmtl.HandyLib.Tests
 
             Assert.That(result, Is.EqualTo("{\"status\":\"false\",\"message\":\"test message\",\"data\":\"test value\"}"));
         }
-        
+        [Test]
+        public void OperationShouldBeReturnedAsJsonInt()
+        {
+            string result = OperationResult<int>.Error(123, "test message").AsJson();
+
+            Assert.That(result, Is.EqualTo("{\"status\":\"false\",\"message\":\"test message\",\"data\":123}"));
+        }
+
         [Test]
         public void OperationShouldBeReturnedAsJsonStringWithAComplexObject()
         {
