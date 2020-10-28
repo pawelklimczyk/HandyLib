@@ -104,6 +104,22 @@ namespace Gmtl.HandyLib.Tests
             Assert.That(result, Is.EqualTo(expectedOutput));
         }
 
+        [TestCase("paweł", "pawel")]
+        [TestCase("Paweł", "pawel")]
+        [TestCase("Paweł Klimczyk", "pawel-klimczyk")]
+        [TestCase(" Paweł Klimczyk", "pawel-klimczyk")]
+        [TestCase(" Paweł Klimczyk ", "pawel-klimczyk")]
+        [TestCase(" Paweł-Klimczyk-", "pawel-klimczyk")]
+        [TestCase("ąćźż", "aczz")]
+        public void HLString_providedString_shouldCreateUrlFriendlyText(string inputString, string expectedOutput)
+        {
+            //Act
+            string result = HLString.UrlFriendly(inputString);
+
+            //Assert
+            Assert.That(result, Is.EqualTo(expectedOutput));
+        }
+
         [TestCase("<h1>test</h1>", "test")]
         [TestCase("<p>test 123 123</p>", "test 123 123")]
         public void HLString_shouldStripHtml(string inputString, string expectedOutput)

@@ -110,11 +110,7 @@ namespace Gmtl.HandyLib
             {
                 int len = sb.Length;
 
-                foreach (var entry in foreign_characters.Where(entry => entry.Key.IndexOf(c) != -1))
-                {
-                    sb.Append(entry.Value);
-                    break;
-                }
+                sb.Append(FindReplacement(c));
 
                 if (len == sb.Length)
                 {
@@ -134,6 +130,81 @@ namespace Gmtl.HandyLib
                 return input;
 
             return char.ToUpper(input[0]) + input.Substring(1);
+        }
+
+        /// <summary>
+        /// Creates http url friendly text from input
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="maxLength"></param>
+        /// <returns></returns>
+        public static string UrlFriendly(this string input, int maxLength = 0)
+        {
+            if (String.IsNullOrWhiteSpace(input)) return String.Empty;
+
+            var normalizedString = input
+                .ToLowerInvariant()
+                .Normalize(NormalizationForm.FormD);
+
+            var stringBuilder = new StringBuilder();
+            var stringLength = normalizedString.Length;
+            var prevdash = false;
+            var trueLength = 0;
+
+            char c;
+
+            for (int i = 0; i < stringLength; i++)
+            {
+                c = normalizedString[i];
+
+                switch (CharUnicodeInfo.GetUnicodeCategory(c))
+                {
+                    case UnicodeCategory.LowercaseLetter:
+                    case UnicodeCategory.UppercaseLetter:
+                    case UnicodeCategory.DecimalDigitNumber:
+                        if (c < 128)
+                            stringBuilder.Append(c);
+                        else
+                            stringBuilder.Append(FindReplacement(c));
+
+                        prevdash = false;
+                        trueLength = stringBuilder.Length;
+                        break;
+
+                    // Check if the character is to be replaced by a hyphen but only if the last character wasn't
+                    case UnicodeCategory.SpaceSeparator:
+                    case UnicodeCategory.ConnectorPunctuation:
+                    case UnicodeCategory.DashPunctuation:
+                    case UnicodeCategory.OtherPunctuation:
+                    case UnicodeCategory.MathSymbol:
+                        if (!prevdash)
+                        {
+                            stringBuilder.Append('-');
+                            prevdash = true;
+                            trueLength = stringBuilder.Length;
+                        }
+                        break;
+                }
+
+                // If we are at max length, stop parsing
+                if (maxLength > 0 && trueLength >= maxLength)
+                    break;
+            }
+
+            var result = stringBuilder.ToString().Trim('-');
+
+            // Remove any excess character to meet maxlength criteria
+            return maxLength <= 0 || result.Length <= maxLength ? result : result.Substring(0, maxLength);
+        }
+
+        private static string FindReplacement(char input)
+        {
+            foreach (var entry in foreign_characters.Where(entry => entry.Key.IndexOf(input) != -1))
+            {
+                return entry.Value;
+            }
+
+            return String.Empty;
         }
 
         static Dictionary<string, string> foreign_characters = new Dictionary<string, string>
