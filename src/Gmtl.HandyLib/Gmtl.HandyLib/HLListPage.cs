@@ -34,13 +34,19 @@ namespace Gmtl.HandyLib
             TotalCount = totalCount;
             PageSize = pageSize;
             PageNumber = pageNumber;
+            TotalPages = (TotalCount / PageSize) + (TotalCount % PageSize);
             itemsOnPage = new List<T>(items);
         }
 
         public int TotalCount { get; private set; }
+        public int TotalPages { get; private set; }
+
         public int PageNumber { get; private set; }
         public int PageSize { get; private set; }
 
+        /// <summary>
+        /// Actual number of items on page
+        /// </summary>
         public int PageCount
         {
             get { return this.itemsOnPage.Count; }
