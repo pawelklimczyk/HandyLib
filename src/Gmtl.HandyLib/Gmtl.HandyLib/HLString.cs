@@ -138,7 +138,7 @@ namespace Gmtl.HandyLib
         /// <param name="input"></param>
         /// <param name="maxLength"></param>
         /// <returns></returns>
-        public static string UrlFriendly(this string input, int maxLength = 0)
+        public static string ToSlug(this string input, int maxLength = 0)
         {
             if (String.IsNullOrWhiteSpace(input)) return String.Empty;
 

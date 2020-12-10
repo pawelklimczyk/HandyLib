@@ -271,7 +271,7 @@
             Converts first letter in sentence to uppercase letter
             </summary>
         </member>
-        <member name="M:Gmtl.HandyLib.HLString.UrlFriendly(System.String,System.Int32)">
+        <member name="M:Gmtl.HandyLib.HLString.Slug(System.String,System.Int32)">
             <summary>
             Creates http url friendly text from input
             </summary>

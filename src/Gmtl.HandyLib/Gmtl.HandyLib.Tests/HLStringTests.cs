@@ -114,7 +114,7 @@ namespace Gmtl.HandyLib.Tests
         public void HLString_providedString_shouldCreateUrlFriendlyText(string inputString, string expectedOutput)
         {
             //Act
-            string result = HLString.UrlFriendly(inputString);
+            string result = HLString.ToSlug(inputString);
 
             //Assert
             Assert.That(result, Is.EqualTo(expectedOutput));
