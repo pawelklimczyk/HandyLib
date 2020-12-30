@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Gmtl.HandyLib
+namespace Gmtl.HandyLib.Cache
 {
     /// <summary>
     /// Cache cna by initialized via initializeFunc method or by Insert method
@@ -167,11 +167,6 @@ namespace Gmtl.HandyLib
                 default:
                     throw new ArgumentOutOfRangeException(nameof(updatedType), updatedType, null);
             }
-        }
-        public enum CacheUpdateType
-        {
-            Override = 0,
-            Delete = 1
         }
     }
 }
