@@ -261,6 +261,11 @@
             Returns truncated string
             </summary>
         </member>
+        <member name="M:Gmtl.HandyLib.HLString.StripHtml(System.String)">
+            <summary>
+            Removes HTML tags from input
+            </summary>
+        </member>
         <member name="M:Gmtl.HandyLib.HLString.RemoveAccents(System.String)">
             <summary>
             Removes non-standard letters like ę=>e
@@ -269,6 +274,11 @@
         <member name="M:Gmtl.HandyLib.HLString.FirstLetterToUpper(System.String)">
             <summary>
             Converts first letter in sentence to uppercase letter
+            </summary>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLString.ReplaceMultispaces(System.String)">
+            <summary>
+            Replaces multiple spaces with single
             </summary>
         </member>
         <member name="M:Gmtl.HandyLib.HLString.ToSlug(System.String,System.Int32)">

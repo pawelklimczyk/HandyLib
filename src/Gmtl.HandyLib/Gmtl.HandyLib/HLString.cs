@@ -27,7 +27,7 @@ namespace Gmtl.HandyLib
         /// HLString.ValueOrDefault(null, "replaced"); //'replaced' returned
         /// </code>
         /// </remarks>
-        public static string ValueOrDefault(string input, string defaultValue)
+        public static string ValueOrDefault(this string input, string defaultValue)
         {
             return string.IsNullOrWhiteSpace(input) ? defaultValue : input;
         }
@@ -41,7 +41,7 @@ namespace Gmtl.HandyLib
         /// HLString.ValueOrEmpty(null); //'String.Empty' returned
         /// </code>
         /// </remarks>
-        public static string ValueOrEmpty(string input)
+        public static string ValueOrEmpty(this string input)
         {
             return ValueOrDefault(input, String.Empty);
         }
@@ -49,7 +49,7 @@ namespace Gmtl.HandyLib
         /// <summary>
         /// Returns truncated string
         /// </summary>
-        public static string MaxOf(string input, int lettersCount, string suffix = "")
+        public static string MaxOf(this string input, int lettersCount, string suffix = "")
         {
             string sanitized = ValueOrDefault(input, String.Empty);
 
@@ -71,7 +71,10 @@ namespace Gmtl.HandyLib
         //    return input;
         //}
 
-        public static string StripHtml(string input)
+        /// <summary>
+        /// Removes HTML tags from input
+        /// </summary>
+        public static string StripHtml(this string input)
         {
             char[] array = new char[input.Length];
             int arrayIndex = 0;
@@ -102,7 +105,7 @@ namespace Gmtl.HandyLib
         /// <summary>
         /// Removes non-standard letters like ę=>e
         /// </summary>
-        public static string RemoveAccents(string input)
+        public static string RemoveAccents(this string input)
         {
             StringBuilder sb = new StringBuilder();
 
@@ -130,6 +133,16 @@ namespace Gmtl.HandyLib
                 return input;
 
             return char.ToUpper(input[0]) + input.Substring(1);
+        }
+
+        /// <summary>
+        /// Replaces multiple spaces with single
+        /// </summary>
+        public static string ReplaceMultiSpaces(this string input)
+        {
+            if (String.IsNullOrWhiteSpace(input)) return String.Empty;
+
+            return String.Join(" ", input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
         }
 
         /// <summary>
