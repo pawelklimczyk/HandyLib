@@ -125,6 +125,11 @@ namespace Gmtl.HandyLib.Cache
             return default(TData);
         }
 
+        public bool HasKey(TKey key)
+        {
+            return _data.ContainsKey(key);
+        }
+
         public void Delete(TKey key)
         {
             lock (_deleteLock)
