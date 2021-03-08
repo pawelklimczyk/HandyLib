@@ -9,7 +9,7 @@ namespace Gmtl.HandyLib.Cache
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TData"></typeparam>
-    public class Cache<TKey, TData>
+    public class Cache<TKey, TData> : ICache<TKey, TData>
     {
         private readonly Func<Dictionary<TKey, TData>> _initializerFunction;
         private readonly bool _autoMaintainList;
