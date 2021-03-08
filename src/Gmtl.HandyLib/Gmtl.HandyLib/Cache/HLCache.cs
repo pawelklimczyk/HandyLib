@@ -136,6 +136,16 @@ namespace Gmtl.HandyLib.Cache
             }
         }
 
+        public void DeleteAll()
+        {
+            lock (_deleteLock)
+            {
+                _data.Clear();
+                if (_autoMaintainList)
+                    BuildListFromDict();
+            }
+        }
+
         public void InsertOrUpdate(TKey key, TData newItemData)
         {
             lock (_insertLock)

@@ -20,6 +20,8 @@ namespace Gmtl.HandyLib.Cache
 
          void Delete(TKey key);
 
+         void DeleteAll();
+
          void InsertOrUpdate(TKey key, TData newItemData);
 
          void UpdateCache(TKey key, TData newItemData, CacheUpdateType updatedType);
