@@ -150,6 +150,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Gmtl.HandyLib.HLPredicateBuilder">
+            <summary>
+            Expression predicate builder
+            </summary>
+        </member>
         <member name="T:Gmtl.HandyLib.HLQueue`1">
             <summary>
             Queue with Enqueue/Dequeue events
@@ -276,7 +281,7 @@
             Converts first letter in sentence to uppercase letter
             </summary>
         </member>
-        <member name="M:Gmtl.HandyLib.HLString.ReplaceMultispaces(System.String)">
+        <member name="M:Gmtl.HandyLib.HLString.ReplaceMultiSpaces(System.String)">
             <summary>
             Replaces multiple spaces with single
             </summary>
