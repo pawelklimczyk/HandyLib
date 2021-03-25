@@ -151,9 +151,20 @@
             <returns></returns>
         </member>
         <member name="T:Gmtl.HandyLib.HLPredicateBuilder">
-            <summary>
-            Expression predicate builder
-            </summary>
+             <summary>
+             Expression predicate builder
+             </summary>
+             <remarks>
+             <code>
+             Expression&lt;Func&lt;OfferMailingSubscription, bool&gt;&gt; filter = s =&gt; EF.Functions.ILike(s.Email, subs.Email);
+             
+             if (!string.IsNullOrWhiteSpace(subs.Location))
+                 filter = HLPredicateBuilder.And(filter, s =&gt; EF.Functions.ILike(s.Location, subs.Location));
+            
+             if (!string.IsNullOrWhiteSpace(subs.Position))
+                 filter = HLPredicateBuilder.And(filter, s =&gt; EF.Functions.ILike(s.Position, subs.Position));
+             </code>
+             </remarks>
         </member>
         <member name="T:Gmtl.HandyLib.HLQueue`1">
             <summary>

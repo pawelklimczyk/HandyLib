@@ -9,10 +9,21 @@ using System.Linq;
 using System.Linq.Expressions;
 
 namespace Gmtl.HandyLib
-{ 
+{
     /// <summary>
     /// Expression predicate builder
     /// </summary>
+    /// <remarks>
+    /// <code>
+    /// Expression&lt;Func&lt;OfferMailingSubscription, bool&gt;&gt; filter = s =&gt; EF.Functions.ILike(s.Email, subs.Email);
+    /// 
+    /// if (!string.IsNullOrWhiteSpace(subs.Location))
+    ///     filter = HLPredicateBuilder.And(filter, s =&gt; EF.Functions.ILike(s.Location, subs.Location));
+    ///
+    /// if (!string.IsNullOrWhiteSpace(subs.Position))
+    ///     filter = HLPredicateBuilder.And(filter, s =&gt; EF.Functions.ILike(s.Position, subs.Position));
+    /// </code>
+    /// </remarks>
     public static class HLPredicateBuilder
     {
         public static Expression<Func<T, bool>> True<T>() { return f => true; }
