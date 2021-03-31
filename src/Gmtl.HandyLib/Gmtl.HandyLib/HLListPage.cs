@@ -19,7 +19,7 @@ namespace Gmtl.HandyLib
         private readonly List<T> itemsOnPage;
 
         public static int DefaultPageSize = 20;
-
+        
         public HLListPage(IEnumerable<T> items, int totalCount, int pageNumber, int pageSize)
         {
             if (pageNumber < 1)
@@ -32,11 +32,29 @@ namespace Gmtl.HandyLib
                 throw new ArgumentNullException("items", "superset cannot be null.");
 
             TotalCount = totalCount;
+            TotalPages = (totalCount / pageSize) + (totalCount % pageSize);
+
             PageSize = pageSize;
             PageNumber = pageNumber;
-            TotalPages = (TotalCount / PageSize) + (TotalCount % PageSize);
+
+            HasPreviousPage = PageNumber > 1;
+            HasNextPage = PageNumber < TotalPages;
+            IsFirstPage = PageNumber == 1;
+            IsLastPage = PageNumber >= TotalPages;
+
+            FirstItemOnPage = (PageNumber - 1) * PageSize + 1;
+            int num = FirstItemOnPage + PageSize - 1;
+            LastItemOnPage = num > TotalCount ? TotalCount : num;
+
             itemsOnPage = new List<T>(items);
         }
+
+        public bool HasPreviousPage { get; private set; }
+        public bool HasNextPage { get; private set; }
+        public bool IsFirstPage { get; private set; }
+        public bool IsLastPage { get; private set; }
+        public int FirstItemOnPage { get; private set; }
+        public int LastItemOnPage { get; private set; }
 
         public int TotalCount { get; private set; }
         public int TotalPages { get; private set; }
@@ -45,9 +63,9 @@ namespace Gmtl.HandyLib
         public int PageSize { get; private set; }
 
         /// <summary>
-        /// Actual number of items on page
+        /// Actual number of items on current page
         /// </summary>
-        public int PageCount
+        public int Count
         {
             get { return this.itemsOnPage.Count; }
         }

@@ -139,9 +139,9 @@
             </summary>
             <typeparam name="T">List item type</typeparam>
         </member>
-        <member name="P:Gmtl.HandyLib.HLListPage`1.PageCount">
+        <member name="P:Gmtl.HandyLib.HLListPage`1.Count">
             <summary>
-            Actual number of items on page
+            Actual number of items on current page
             </summary>
         </member>
         <member name="M:Gmtl.HandyLib.IHLMailNotifier.TestConfiguration">
