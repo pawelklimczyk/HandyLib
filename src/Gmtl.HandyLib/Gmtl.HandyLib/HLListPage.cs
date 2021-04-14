@@ -19,7 +19,7 @@ namespace Gmtl.HandyLib
         private readonly List<T> itemsOnPage;
 
         public static int DefaultPageSize = 20;
-        
+
         public HLListPage(IEnumerable<T> items, int totalCount, int pageNumber, int pageSize)
         {
             if (pageNumber < 1)
@@ -32,7 +32,7 @@ namespace Gmtl.HandyLib
                 throw new ArgumentNullException("items", "superset cannot be null.");
 
             TotalCount = totalCount;
-            TotalPages = (totalCount / pageSize) + (totalCount % pageSize);
+            TotalPages = (totalCount / pageSize) + (((totalCount % pageSize) > 0) ? 1 : 0);
 
             PageSize = pageSize;
             PageNumber = pageNumber;
