@@ -7,13 +7,13 @@
     <Authors>Paweł Klimczyk</Authors>
     <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
     <Language>en-US</Language>
-    <AssemblyName>Gmtl.HandyLib</AssemblyName>  
+    <AssemblyName>Gmtl.HandyLib</AssemblyName>
     <AssemblyTitle>Gmtl.HandyLib</AssemblyTitle>
-    <NeutralLanguage>en-US</NeutralLanguage>    
+    <NeutralLanguage>en-US</NeutralLanguage>
     <PackageId>Gmtl.HandyLib</PackageId>
     <RootNamespace>Gmtl.HandyLib</RootNamespace>
     <Title>Gmtl.HandyLib</Title>
-    <Description>HandyLib makes developers life bit easier. Provides string and double values randomizer (test-data), exceptionHelper (serializing) and DateTime helper (Unix DateTime) and others</Description>    
+    <Description>HandyLib makes developers life bit easier. Provides string and double values randomizer (test-data), exceptionHelper (serializing) and DateTime helper (Unix DateTime) and others</Description>
     <Summary></Summary>
     <PackageCopyright>Paweł Klimczyk 2015-2019</PackageCopyright>
     <PackageTags></PackageTags>
@@ -24,13 +24,12 @@
     <Copyright>Paweł Klimczyk, 2015-2019</Copyright>
     <RepositoryType>git</RepositoryType>
     <Company>GEMOTIAL</Company>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>    
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/pawelklimczyk/HandyLib</RepositoryUrl>
     <VsxmdAutoDeleteXml>True</VsxmdAutoDeleteXml>
     <IncludeSymbols>true</IncludeSymbols> 
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat> 
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
-
   <PropertyGroup>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>

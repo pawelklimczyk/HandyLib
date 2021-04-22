@@ -41,9 +41,9 @@ namespace Gmtl.HandyLib
             builder.Append("{");
             builder.Append("\"status\":\"" + (Status == OperationStatus.Success ? "true" : "false") + "\",");
             builder.Append("\"message\":\"" + (Message != null ? Message.Replace("\"", "'") : "") + "\",");
-            
+
             Type type = typeof(T);
-            
+
             if (type.IsPrimitive || type.IsEnum || type == typeof(decimal))
             {
                 builder.Append("\"data\":" + (Result != null ? Result.ToString() : ""));
@@ -54,8 +54,12 @@ namespace Gmtl.HandyLib
             }
             else
             {
-                //assume we have complex object, so add {}
-                builder.Append("\"data\":{" + (Result != null ? Result.ToString() : "") + "}");
+                string objectAsJson = Result != null ? Result.ToString() : "";
+                if (objectAsJson.StartsWith("{")) //if object has { don't add it
+                    builder.Append("\"data\":" + objectAsJson);
+                else
+                    //assume we have complex object, so add {}
+                    builder.Append("\"data\":{" + objectAsJson + "}");
             }
 
             builder.Append("}");
