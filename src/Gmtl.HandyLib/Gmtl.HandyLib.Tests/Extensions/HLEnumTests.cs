@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Gmtl.HandyLib.Extensions;
+using System.Linq;
 
 namespace Gmtl.HandyLib.Tests.Extensions
 {
@@ -14,6 +15,14 @@ namespace Gmtl.HandyLib.Tests.Extensions
         {
             string actualOutput = val.GetDescription();
             Assert.AreEqual(actualOutput, expectedOutput);
+        }
+
+        public void HLEnumTests_shouldGetListOfValues()
+        {
+            var output = HLEnumExtensions.GetValues<TestEnum>().ToList();
+            Assert.Contains(TestEnum.Value1, output);
+            Assert.Contains(TestEnum.Value100, output);
+            Assert.Contains(TestEnum.ValueWithoutDescription, output);
         }
     }
 

@@ -39,6 +39,11 @@
             Return Description attribute value
             </summary>
         </member>
+        <member name="M:Gmtl.HandyLib.Extensions.HLEnumExtensions.GetValues``1">
+            <summary>
+            Get list of values in enum
+            </summary>
+        </member>
         <member name="T:Gmtl.HandyLib.Extensions.HLObjectExtensions">
             <summary>
             Useful extensions for System.Object

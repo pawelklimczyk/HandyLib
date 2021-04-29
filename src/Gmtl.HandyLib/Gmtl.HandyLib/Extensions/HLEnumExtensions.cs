@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
@@ -21,8 +22,16 @@ namespace Gmtl.HandyLib.Extensions
                     .GetMember(value.ToString())
                     .FirstOrDefault()?
                     .GetCustomAttribute<DescriptionAttribute>()?
-                    .Description 
+                    .Description
                     ?? value.ToString();
+        }
+     
+        /// <summary>
+        /// Get list of values in enum
+        /// </summary>
+        public static IEnumerable<T> GetValues<T>()
+        {
+            return Enum.GetValues(typeof(T)).Cast<T>();
         }
     }
 }
