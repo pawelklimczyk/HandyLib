@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net46;net40</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net46</TargetFrameworks>
     <Version>1.0.0</Version>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <RuntimeIdentifiers>win7-x86;win7-x64</RuntimeIdentifiers>
@@ -21,7 +21,7 @@
     <PackageIconUrl></PackageIconUrl>
     <PackageProjectUrl>https://github.com/pawelklimczyk/HandyLib</PackageProjectUrl>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Copyright>Paweł Klimczyk, 2015-2019</Copyright>
+    <Copyright>Paweł Klimczyk, 2015-2021</Copyright>
     <RepositoryType>git</RepositoryType>
     <Company>GEMOTIAL</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -64,20 +64,7 @@
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net46'">
     <DefineConstants>NET45;NETFULL</DefineConstants>
   </PropertyGroup>
-  
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
-    <Reference Include="mscorlib" />
-    <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  
+    
   <ItemGroup Condition="'$(TargetFramework)' == 'net46'">
     <PackageReference Include="System.Security.Cryptography.ProtectedData">
       <Version>4.5.0</Version>
@@ -99,11 +86,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
   </ItemGroup> -->
-  
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net40'">
-    <DefineConstants>NET40;NETFULL</DefineConstants>
-  </PropertyGroup>
-  
+    
   <PropertyGroup>
     <DocumentationFile>HandyLib-Documentation.xml</DocumentationFile>
   </PropertyGroup>
