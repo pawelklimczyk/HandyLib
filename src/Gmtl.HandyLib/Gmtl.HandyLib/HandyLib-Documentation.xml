@@ -29,6 +29,16 @@
             <param name="pageSize"></param>
             <returns></returns>
         </member>
+        <member name="T:Gmtl.HandyLib.Extensions.HLEnumExtensions">
+            <summary>
+            Extensions for Enum
+            </summary>
+        </member>
+        <member name="M:Gmtl.HandyLib.Extensions.HLEnumExtensions.GetDescription(System.Enum)">
+            <summary>
+            Return Description attribute value
+            </summary>
+        </member>
         <member name="T:Gmtl.HandyLib.Extensions.HLObjectExtensions">
             <summary>
             Useful extensions for System.Object
