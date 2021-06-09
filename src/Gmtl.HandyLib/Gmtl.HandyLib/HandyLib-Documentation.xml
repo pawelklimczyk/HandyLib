@@ -357,5 +357,12 @@
             Provides a container for standard UI user messages
             </summary>
         </member>
+        <member name="M:Gmtl.HandyLib.Validators.HLPhoneValidator.IsValidPhoneNumber(System.String)">
+            <summary>
+            Test if provided string is valid phone number
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
