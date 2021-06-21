@@ -364,5 +364,17 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="T:Gmtl.HandyLib.Validators.HLUrlValidator">
+            <summary>
+            Validator for internet urls
+            </summary>
+        </member>
+        <member name="M:Gmtl.HandyLib.Validators.HLUrlValidator.IsValidUrl(System.String)">
+            <summary>
+            Validates if provided string is valid url
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
