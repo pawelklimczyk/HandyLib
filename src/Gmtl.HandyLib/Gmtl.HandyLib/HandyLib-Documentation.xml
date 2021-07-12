@@ -341,7 +341,7 @@
             Extra info send with operation result (optional)
             </summary>
         </member>
-        <member name="M:Gmtl.HandyLib.OperationResult`1.AsJson">
+        <member name="M:Gmtl.HandyLib.OperationResult`1.AsJson(System.String)">
             <summary>
             return Object as a JSON string
             </summary>

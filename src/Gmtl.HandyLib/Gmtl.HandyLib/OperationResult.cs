@@ -34,7 +34,7 @@ namespace Gmtl.HandyLib
         /// return Object as a JSON string
         /// </summary>
         /// <returns></returns>
-        public string AsJson()
+        public string AsJson(string dataInParantheses = null)
         {
             StringBuilder builder = new StringBuilder();
 
@@ -42,24 +42,32 @@ namespace Gmtl.HandyLib
             builder.Append("\"status\":\"" + (Status == OperationStatus.Success ? "true" : "false") + "\",");
             builder.Append("\"message\":\"" + (Message != null ? Message.Replace("\"", "'") : "") + "\",");
 
-            Type type = typeof(T);
-
-            if (type.IsPrimitive || type.IsEnum || type == typeof(decimal))
+            if (dataInParantheses != null)
             {
-                builder.Append("\"data\":" + (Result != null ? Result.ToString() : ""));
-            }
-            else if (type == typeof(string))
-            {
-                builder.Append("\"data\":\"" + (Result != null ? Result.ToString() : "") + "\"");
+                builder.Append("\"data\":" + dataInParantheses);
             }
             else
             {
-                string objectAsJson = Result != null ? Result.ToString() : "";
-                if (objectAsJson.StartsWith("{")) //if object has { don't add it
-                    builder.Append("\"data\":" + objectAsJson);
+
+                Type type = typeof(T);
+
+                if (type.IsPrimitive || type.IsEnum || type == typeof(decimal))
+                {
+                    builder.Append("\"data\":" + (Result != null ? Result.ToString() : ""));
+                }
+                else if (type == typeof(string))
+                {
+                    builder.Append("\"data\":\"" + (Result != null ? Result.ToString() : "") + "\"");
+                }
                 else
-                    //assume we have complex object, so add {}
-                    builder.Append("\"data\":{" + objectAsJson + "}");
+                {
+                    string objectAsJson = Result != null ? Result.ToString() : "";
+                    if (objectAsJson.StartsWith("{")) //if object has { don't add it
+                        builder.Append("\"data\":" + objectAsJson);
+                    else
+                        //assume we have complex object, so add {}
+                        builder.Append("\"data\":{" + objectAsJson + "}");
+                }
             }
 
             builder.Append("}");

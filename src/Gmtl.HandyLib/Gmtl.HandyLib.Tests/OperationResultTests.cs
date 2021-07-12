@@ -45,5 +45,15 @@ namespace Gmtl.HandyLib.Tests
             Assert.That(result, Contains.Substring(jsonObj));
             Assert.That(result, !Contains.Substring("\"{"));
         }
+
+        [Test]
+        public void OperationShouldBeReturnedAsJsonStringWithAComplexObjectProvidedAsParam()
+        {
+            var jsonObj = "{\"field1-edited\":\"value1\", \"field2-edited\":\"value2\"}";
+            string result = OperationResult<object>.Error(jsonObj, "test").AsJson(jsonObj);
+
+            Assert.That(result, Contains.Substring(jsonObj));
+            Assert.That(result, !Contains.Substring("\"{"));
+        }
     }
 }
