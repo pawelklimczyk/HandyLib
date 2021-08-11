@@ -7,6 +7,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Gmtl.HandyLib
 {
@@ -19,6 +20,12 @@ namespace Gmtl.HandyLib
         private readonly List<T> itemsOnPage;
 
         public static int DefaultPageSize = 20;
+
+        /// <summary>
+        /// Creates one page based on input
+        /// </summary>
+        /// <param name="items"></param>
+        public HLListPage(IEnumerable<T> items) : this(items, items.Count(), 1, items.Count()) { }
 
         public HLListPage(IEnumerable<T> items, int totalCount, int pageNumber, int pageSize)
         {
