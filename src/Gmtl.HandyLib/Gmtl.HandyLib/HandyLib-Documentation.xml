@@ -265,6 +265,26 @@
             Class instance
             </summary>
         </member>
+        <member name="T:Gmtl.HandyLib.HLStopWatch">
+            <summary>
+            Helper for efficient handling Stopwatch class
+            </summary>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLStopWatch.Start(System.String)">
+            <summary>
+            Starts the watched with provided or default key
+            </summary>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLStopWatch.Stop(System.String)">
+            <summary>
+            Stops the watcher and return elapsed milliseconds
+            </summary>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLStopWatch.Elapsed(System.String)">
+            <summary>
+            Returns how many milliseconds elapsed since start
+            </summary>
+        </member>
         <member name="T:Gmtl.HandyLib.HLString">
             <summary>
             Handy methods related to System.String
