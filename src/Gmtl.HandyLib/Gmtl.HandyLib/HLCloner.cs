@@ -18,6 +18,7 @@ namespace Gmtl.HandyLib
     {
         /// <summary>
         /// Clones an object using BinaryFormatter
+        /// Type must be marked with [Serializable] attribute
         /// </summary>
         /// <typeparam name="T">Type of the object</typeparam>
         /// <param name="obj">Actual object to clone</param>
