@@ -347,6 +347,32 @@
             <param name="maxLength"></param>
             <returns></returns>
         </member>
+        <member name="T:Gmtl.HandyLib.Operation">
+            <summary>
+            Class for managing multiple operations and their statuses
+            </summary>
+        </member>
+        <member name="P:Gmtl.HandyLib.Operation.Func">
+            <summary>
+            Function to be executed
+            </summary>
+        </member>
+        <member name="P:Gmtl.HandyLib.Operation.ErrorMsg">
+            <summary>
+            Message if Func return false
+            </summary>
+        </member>
+        <member name="P:Gmtl.HandyLib.Operation.SuccessMsg">
+            <summary>
+            Message if Func return true
+            </summary>
+        </member>
+        <member name="M:Gmtl.HandyLib.Operation.Execute">
+            <summary>
+            Executed Func and returns a result
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Gmtl.HandyLib.OperationResult`1">
             <summary>
             Generic class working as a wrapper
