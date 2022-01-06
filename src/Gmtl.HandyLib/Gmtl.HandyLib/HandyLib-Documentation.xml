@@ -373,6 +373,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Gmtl.HandyLib.Operation.Create(Gmtl.HandyLib.OperationResult{System.Boolean})">
+            <summary>
+            Create operation that was already executed. Just pass the result
+            </summary>
+        </member>
         <member name="T:Gmtl.HandyLib.OperationResult`1">
             <summary>
             Generic class working as a wrapper

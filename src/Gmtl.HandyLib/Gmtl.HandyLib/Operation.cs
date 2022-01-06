@@ -59,6 +59,19 @@ namespace Gmtl.HandyLib
             return OperationResult<bool>.Success();
         }
 
+        public static Operation Create(bool status, string errorMsg = "Error", string successMsg = "Ok")
+        {
+            return Operation.Create(() => status, errorMsg, successMsg);
+        }
+
+        /// <summary>
+        /// Create operation that was already executed. Just pass the result
+        /// </summary>
+        public static Operation Create(OperationResult<bool> result)
+        {
+            return Operation.Create(() => result.Result, result.Message, result.Message);
+        }
+
         public static Operation Create(Func<bool> func, string errorMsg = "Error", string successMsg = "Ok")
         {
             return new Operation()
