@@ -33,21 +33,20 @@ namespace Gmtl.HandyLib
                 bool result = Func();
                 if (result)
                 {
-                    return OperationResult<bool>.Success(message: SuccessMsg);
+                    return OperationResult<bool>.Success(true, SuccessMsg);
                 }
                 else
                 {
-                    return OperationResult<bool>.Error(message: ErrorMsg);
+                    return OperationResult<bool>.Error(false, ErrorMsg);
                 }
             }
             catch
             {
-                return OperationResult<bool>.Error(message: ErrorMsg);
+                return OperationResult<bool>.Error(false, ErrorMsg);
             }
         }
 
-
-        public static OperationResult<bool> All(params Operation[] operations)
+        public static OperationResult<bool> ExecuteAll(params Operation[] operations)
         {
             foreach (var op in operations)
             {
@@ -56,12 +55,12 @@ namespace Gmtl.HandyLib
                     return r;
             }
 
-            return OperationResult<bool>.Success();
+            return OperationResult<bool>.Success(value:true, "All operations were successful");
         }
 
-        public static Operation Create(bool status, string errorMsg = "Error", string successMsg = "Ok")
+        public static Operation Create(bool result, string errorMsg = "Error", string successMsg = "Ok")
         {
-            return Operation.Create(() => status, errorMsg, successMsg);
+            return Operation.Create(() => result, errorMsg, successMsg);
         }
 
         /// <summary>

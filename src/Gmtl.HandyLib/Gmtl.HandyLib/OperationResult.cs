@@ -5,6 +5,7 @@
 // -------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Diagnostics;
 using System.Text;
 
 namespace Gmtl.HandyLib
@@ -13,6 +14,7 @@ namespace Gmtl.HandyLib
     /// Generic class working as a wrapper
     /// </summary>
     /// <typeparam name="T">type</typeparam>
+    [DebuggerDisplay("{Result} {Status}")]
     public class OperationResult<T>
     {
         /// <summary>
@@ -75,7 +77,7 @@ namespace Gmtl.HandyLib
             return builder.ToString();
         }
 
-        public static OperationResult<T> Error(T value = default(T), string message = "")
+        public static OperationResult<T> Error(T value = default(T), string message = "Default error status message")
         {
             return new OperationResult<T>
             {
@@ -89,7 +91,7 @@ namespace Gmtl.HandyLib
             return Error(default(T), message);
         }
 
-        public static OperationResult<T> Success(T value = default(T), string message = "")
+        public static OperationResult<T> Success(T value = default(T), string message = "Default Ok status message")
         {
             return new OperationResult<T>
             {
