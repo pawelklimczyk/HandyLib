@@ -347,6 +347,19 @@
             <param name="maxLength"></param>
             <returns></returns>
         </member>
+        <member name="T:Gmtl.HandyLib.HLTasks">
+            <summary>
+            System.Threading.Tasks extensions
+            </summary>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLTasks.PrimitiveSleep(System.Int32,System.Threading.CancellationToken[])">
+            <summary>
+            Sleep for tasks with cancellation token support
+            </summary>
+            <param name="minutes">sleep in minutes</param>
+            <param name="tokens">external tokens</param>
+            <returns></returns>
+        </member>
         <member name="T:Gmtl.HandyLib.Operation">
             <summary>
             Class for managing multiple operations and their statuses
