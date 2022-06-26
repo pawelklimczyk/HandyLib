@@ -1,93 +1,103 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net46</TargetFrameworks>
-    <Version>1.0.0</Version>
-    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-    <RuntimeIdentifiers>win7-x86;win7-x64</RuntimeIdentifiers>
-    <Authors>Paweł Klimczyk</Authors>
-    <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
-    <Language>en-US</Language>
-    <AssemblyName>Gmtl.HandyLib</AssemblyName>
-    <AssemblyTitle>Gmtl.HandyLib</AssemblyTitle>
-    <NeutralLanguage>en-US</NeutralLanguage>
-    <PackageId>Gmtl.HandyLib</PackageId>
-    <RootNamespace>Gmtl.HandyLib</RootNamespace>
-    <Title>Gmtl.HandyLib</Title>
-    <Description>HandyLib makes developers life bit easier. Provides string and double values randomizer (test-data), exceptionHelper (serializing) and DateTime helper (Unix DateTime) and others</Description>
-    <Summary></Summary>
-    <PackageCopyright>Paweł Klimczyk 2015-2019</PackageCopyright>
-    <PackageTags></PackageTags>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <PackageIconUrl></PackageIconUrl>
-    <PackageProjectUrl>https://github.com/pawelklimczyk/HandyLib</PackageProjectUrl>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Copyright>Paweł Klimczyk, 2015-2021</Copyright>
-    <RepositoryType>git</RepositoryType>
-    <Company>GEMOTIAL</Company>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <RepositoryUrl>https://github.com/pawelklimczyk/HandyLib</RepositoryUrl>
-    <VsxmdAutoDeleteXml>True</VsxmdAutoDeleteXml>
-    <IncludeSymbols>true</IncludeSymbols> 
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;net461;net6.0</TargetFrameworks>
+		<Version>1.0.0</Version>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<RuntimeIdentifiers>win7-x86;win7-x64</RuntimeIdentifiers>
+		<Authors>Paweł Klimczyk</Authors>
+		<RequireLicenseAcceptance>false</RequireLicenseAcceptance>
+		<Language>en-US</Language>
+		<AssemblyName>Gmtl.HandyLib</AssemblyName>
+		<AssemblyTitle>Gmtl.HandyLib</AssemblyTitle>
+		<NeutralLanguage>en-US</NeutralLanguage>
+		<PackageId>Gmtl.HandyLib</PackageId>
+		<RootNamespace>Gmtl.HandyLib</RootNamespace>
+		<Title>Gmtl.HandyLib</Title>
+		<Description>HandyLib makes developers life bit easier. Provides string and double values randomizer (test-data), exceptionHelper (serializing) and DateTime helper (Unix DateTime) and others</Description>
+		<Summary></Summary>
+		<PackageCopyright>Paweł Klimczyk 2015-2019</PackageCopyright>
+		<PackageTags></PackageTags>
+		<PackageReleaseNotes></PackageReleaseNotes>
+		<PackageIconUrl></PackageIconUrl>
+		<PackageProjectUrl>https://github.com/pawelklimczyk/HandyLib</PackageProjectUrl>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<Copyright>Paweł Klimczyk, 2015-2021</Copyright>
+		<RepositoryType>git</RepositoryType>
+		<Company>GEMOTIAL</Company>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<RepositoryUrl>https://github.com/pawelklimczyk/HandyLib</RepositoryUrl>
+		<VsxmdAutoDeleteXml>True</VsxmdAutoDeleteXml>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	</PropertyGroup>
+	<PropertyGroup>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
-    <DefineConstants>TRACE;DEBUG;</DefineConstants>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<DefineConstants>TRACE;DEBUG;</DefineConstants>
+	</PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <NoWarn>$(NoWarn);CS1591;CS1572;CS1573</NoWarn>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DefineConstants>RELEASE</DefineConstants>
-  </PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+		<NoWarn>$(NoWarn);CS1591;CS1572;CS1573</NoWarn>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<DefineConstants>RELEASE</DefineConstants>
+	</PropertyGroup>
 
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
-    <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
-  </PropertyGroup>
-  
-  
-    <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
-    <Reference Include="mscorlib" />
-    <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <PropertyGroup Condition=" '$(TargetFramework)' == 'net46'">
-    <DefineConstants>NET45;NETFULL</DefineConstants>
-  </PropertyGroup>
-    
-  <ItemGroup Condition="'$(TargetFramework)' == 'net46'">
-    <PackageReference Include="System.Security.Cryptography.ProtectedData">
-      <Version>4.5.0</Version>
-    </PackageReference>
-  </ItemGroup>
-  
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="System.Configuration.ConfigurationManager">
-      <Version>4.5.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.Security.Cryptography.ProtectedData">
-      <Version>4.5.0</Version>
-    </PackageReference>
-  </ItemGroup>
-  
-  <!-- <ItemGroup>
+	<PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
+		<DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(TargetFramework)' == 'net6.0'">
+		<DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net461' ">
+		<Reference Include="mscorlib" />
+		<Reference Include="System" />
+		<Reference Include="System.Configuration" />
+		<Reference Include="System.Core" />
+		<Reference Include="System.Security" />
+		<Reference Include="System.Xml.Linq" />
+		<Reference Include="System.Data.DataSetExtensions" />
+		<Reference Include="Microsoft.CSharp" />
+		<Reference Include="System.Data" />
+		<Reference Include="System.Xml" />
+	</ItemGroup>
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net461'">
+		<DefineConstants>NET45;NETFULL</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+		<PackageReference Include="System.Security.Cryptography.ProtectedData">
+			<Version>4.5.0</Version>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+		<PackageReference Include="System.Configuration.ConfigurationManager">
+			<Version>4.5.0</Version>
+		</PackageReference>
+		<PackageReference Include="System.Security.Cryptography.ProtectedData">
+			<Version>4.5.0</Version>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+		<PackageReference Include="System.Configuration.ConfigurationManager">
+			<Version>4.5.0</Version>
+		</PackageReference>
+		<PackageReference Include="System.Security.Cryptography.ProtectedData">
+			<Version>4.5.0</Version>
+		</PackageReference>
+	</ItemGroup>
+	<!-- <ItemGroup>
     <PackageReference Include="Vsxmd">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
   </ItemGroup> -->
-    
-  <PropertyGroup>
-    <DocumentationFile>HandyLib-Documentation.xml</DocumentationFile>
-  </PropertyGroup>
+
+	<PropertyGroup>
+		<DocumentationFile>HandyLib-Documentation.xml</DocumentationFile>
+	</PropertyGroup>
 </Project>
