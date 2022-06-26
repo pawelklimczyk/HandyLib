@@ -106,6 +106,11 @@ namespace Gmtl.HandyLib
             return Success(default(T), message);
         }
 
+        public static OperationResult<T> FromBool(bool isSuccess, string successMessage = "", string errorMessage = "")
+        {
+            return (isSuccess) ? Success(default(T), successMessage) : Error(default(T), successMessage);
+        }
+
         public static implicit operator bool(OperationResult<T> operationResult)
         {
             return operationResult.Status == OperationStatus.Success;

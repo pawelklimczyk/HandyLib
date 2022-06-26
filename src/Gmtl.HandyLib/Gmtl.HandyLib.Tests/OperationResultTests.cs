@@ -55,5 +55,21 @@ namespace Gmtl.HandyLib.Tests
             Assert.That(result, Contains.Substring(jsonObj));
             Assert.That(result, !Contains.Substring("\"{"));
         }
+
+        [Test]
+        public void FromBoolTrueShouldCreateSuccessOperationResult()
+        {
+            OperationResult<string> result = OperationResult<string>.FromBool(true);
+
+            Assert.IsTrue(result.Status == OperationStatus.Success);
+        }
+
+        [Test]
+        public void FromBoolFalseShouldCreateErrorOperationResult()
+        {
+            OperationResult<string> result = OperationResult<string>.FromBool(false);
+
+            Assert.IsTrue(result.Status == OperationStatus.Error);
+        }
     }
 }
