@@ -15,13 +15,13 @@
 		<Title>Gmtl.HandyLib</Title>
 		<Description>HandyLib makes developers life bit easier. Provides string and double values randomizer (test-data), exceptionHelper (serializing) and DateTime helper (Unix DateTime) and others</Description>
 		<Summary></Summary>
-		<PackageCopyright>Paweł Klimczyk 2015-2019</PackageCopyright>
+		<PackageCopyright>Paweł Klimczyk 2015-2022</PackageCopyright>
 		<PackageTags></PackageTags>
 		<PackageReleaseNotes></PackageReleaseNotes>
 		<PackageIconUrl></PackageIconUrl>
 		<PackageProjectUrl>https://github.com/pawelklimczyk/HandyLib</PackageProjectUrl>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-		<Copyright>Paweł Klimczyk, 2015-2021</Copyright>
+		<Copyright>Paweł Klimczyk, 2015-2022</Copyright>
 		<RepositoryType>git</RepositoryType>
 		<Company>GEMOTIAL</Company>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
