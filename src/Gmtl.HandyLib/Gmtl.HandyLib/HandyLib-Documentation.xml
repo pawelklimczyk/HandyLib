@@ -102,7 +102,7 @@
         </member>
         <member name="P:Gmtl.HandyLib.HLDateTime.NowUnixTimestamp">
             <summary>
-            Return Linux timestamp for provided date
+            Return local Linux timestamp 
             </summary>
             <remarks>
             <code>
@@ -122,7 +122,12 @@
             Convert System.DateTime to unix timestamp
             </summary>
             <param name="dateTime">DateTime struct to be converted</param>
-            <returns>unix timestamp representation for DateTime</returns>
+            <returns>unix timestamp representation for the provided DateTime</returns>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLDateTime.TimeAgo(System.DateTime)">
+            <summary>
+            Return user-friendly date description
+            </summary>
         </member>
         <member name="M:Gmtl.HandyLib.HLDllEmbeddedResource.GetTextResource(System.String,System.Reflection.Assembly)">
             <summary>
@@ -164,6 +169,11 @@
         <member name="P:Gmtl.HandyLib.HLListPage`1.Count">
             <summary>
             Actual number of items on current page
+            </summary>
+        </member>
+        <member name="T:Gmtl.HandyLib.IHLMailNotifier">
+            <summary>
+            HLMailNotifier interface
             </summary>
         </member>
         <member name="M:Gmtl.HandyLib.IHLMailNotifier.TestConfiguration">

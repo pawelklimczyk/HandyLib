@@ -129,7 +129,10 @@ namespace Gmtl.HandyLib
             }
         }
     }
-    
+
+    /// <summary>
+    /// HLMailNotifier interface
+    /// </summary>
     public interface IHLMailNotifier
     {
         /// <summary>

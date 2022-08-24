@@ -52,7 +52,7 @@ namespace Gmtl.HandyLib
         /// Convert System.DateTime to unix timestamp
         /// </summary>
         /// <param name="dateTime">DateTime struct to be converted</param>
-        /// <returns>unix timestamp representation for DateTime</returns>
+        /// <returns>unix timestamp representation for the provided DateTime</returns>
         public static long ToUnixTimestamp(this DateTime dateTime)
         {
             return (long)(dateTime - unixStart).TotalSeconds;
