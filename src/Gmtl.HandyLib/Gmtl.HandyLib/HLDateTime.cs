@@ -16,7 +16,7 @@ namespace Gmtl.HandyLib
         private static DateTime unixStart = new DateTime(1970, 1, 1, 0, 0, 0, 0);
 
         /// <summary>
-        /// Return Linux timestamp for provided date
+        /// Return local Linux timestamp 
         /// </summary>
         /// <remarks>
         /// <code>
@@ -59,11 +59,14 @@ namespace Gmtl.HandyLib
         }
 
         //TODO create setup method to support different languages
-        private static string lessThanHourAgo = "nie całą godzinę temu";
-        private static string someHoursAgo = " godzin temu";
-        private static string someDaysAgo = " dni temu";
-        private static string yesterday = "wczoraj";
+        private static string _lessThanHourAgo = "nie całą godzinę temu";
+        private static string _someHoursAgo = " godzin temu";
+        private static string _someDaysAgo = " dni temu";
+        private static string _yesterday = "wczoraj";
 
+        /// <summary>
+        /// Return user-friendly date description
+        /// </summary>
         public static string TimeAgo(this DateTime time)
         {
             var difference = DateTime.Today - time;
@@ -72,18 +75,18 @@ namespace Gmtl.HandyLib
             {
                 if (difference.TotalHours < 0)
                 {
-                    return lessThanHourAgo;
+                    return _lessThanHourAgo;
                 }
 
-                return ((int)difference.TotalHours) + someHoursAgo;
+                return ((int)difference.TotalHours) + _someHoursAgo;
             }
 
             if (difference.TotalDays >= 2)
             {
-                return ((int)difference.TotalDays) + someDaysAgo;
+                return ((int)difference.TotalDays) + _someDaysAgo;
             }
 
-            return yesterday;
+            return _yesterday;
         }
     }
 }
