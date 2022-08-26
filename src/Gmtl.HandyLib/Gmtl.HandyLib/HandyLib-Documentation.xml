@@ -396,6 +396,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Gmtl.HandyLib.Operation.ExecuteAll(Gmtl.HandyLib.Operation[])">
+            <summary>
+            Executed all operation in sequece
+            </summary>
+        </member>
         <member name="M:Gmtl.HandyLib.Operation.Create(Gmtl.HandyLib.OperationResult{System.Boolean})">
             <summary>
             Create operation that was already executed. Just pass the result

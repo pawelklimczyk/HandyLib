@@ -23,7 +23,6 @@ namespace Gmtl.HandyLib.Tests
             //Arrange
             string exceptionMessage = "TestMessage";
             Exception exc = new Exception(exceptionMessage);
-
             //Act
             serializedException = exc.ToXmlString(true);
 

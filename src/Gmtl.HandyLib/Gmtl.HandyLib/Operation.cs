@@ -46,6 +46,9 @@ namespace Gmtl.HandyLib
             }
         }
 
+        /// <summary>
+        /// Executed all operation in sequece
+        /// </summary>
         public static OperationResult<bool> ExecuteAll(params Operation[] operations)
         {
             foreach (var op in operations)
