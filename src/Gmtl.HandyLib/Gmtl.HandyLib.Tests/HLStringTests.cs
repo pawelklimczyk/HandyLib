@@ -26,7 +26,7 @@ namespace Gmtl.HandyLib.Tests
             //Assert
             Assert.That(result, Is.EqualTo(inputString));
         }
-        
+
         [Test]
         public void HLString_providedEmptyString_shouldReturnDefaultValue()
         {
@@ -48,7 +48,7 @@ namespace Gmtl.HandyLib.Tests
             //Assert
             Assert.That(result, Is.EqualTo(defaultValue));
         }
-        
+
         [Test]
         public void HLString_providedNUll_shouldReturnDefaultValue()
         {
@@ -68,7 +68,7 @@ namespace Gmtl.HandyLib.Tests
             //Assert
             Assert.That(result, Is.EqualTo(String.Empty));
         }
-        
+
         [Test]
         public void HLString_providedEmptyValue_shouldReturnEmpty()
         {
@@ -92,9 +92,9 @@ namespace Gmtl.HandyLib.Tests
             Assert.That(result, Is.EqualTo(input));
         }
 
-        [TestCase("paweł","pawel")]
+        [TestCase("paweł", "pawel")]
         [TestCase("Paweł", "Pawel")]
-        [TestCase("ąćźż","aczz")]
+        [TestCase("ąćźż", "aczz")]
         public void HLString_providedString_shouldRemoveNonStandardLetters(string inputString, string expectedOutput)
         {
             //Act
@@ -135,7 +135,7 @@ namespace Gmtl.HandyLib.Tests
             Assert.That(result, Is.EqualTo(expectedOutput));
         }
 
-        [TestCase("test","Test")]
+        [TestCase("test", "Test")]
         [TestCase("ławka", "Ławka")]
         [TestCase("ławka leśna", "Ławka leśna")]
         [TestCase("TEST", "TEST")]
@@ -151,7 +151,6 @@ namespace Gmtl.HandyLib.Tests
 
         [TestCase("<TEST>")]
         [TestCase("")]
-        [TestCase(null)]
         public void HLString_shouldReturnInput(string inputString)
         {
             //Act
@@ -159,6 +158,16 @@ namespace Gmtl.HandyLib.Tests
 
             //Assert
             Assert.That(result, Is.EqualTo(inputString));
+        }
+
+        [TestCase(null)]
+        public void HLString_shouldReturnEmptyString(string inputString)
+        {
+            //Act
+            string result = HLString.FirstLetterToUpper(inputString);
+
+            //Assert
+            Assert.That(result, Is.EqualTo(string.Empty));
         }
     }
 }

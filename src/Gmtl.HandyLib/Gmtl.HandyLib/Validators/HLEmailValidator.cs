@@ -1,17 +1,15 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace Gmtl.HandyLib.Validators
 {
-    public class HLEmailValidator
+    public static class HLEmailValidator
     {
         private static Regex _regex = CreateRegEx();
-        public static bool IsValidEmail(string source)
+
+        public static bool IsValidEmail(this string source)
         {
-            if (String.IsNullOrWhiteSpace(source))
-            {
+            if (string.IsNullOrWhiteSpace(source))
                 return false;
-            }
 
             return _regex.Match(source).Length > 0;
         }

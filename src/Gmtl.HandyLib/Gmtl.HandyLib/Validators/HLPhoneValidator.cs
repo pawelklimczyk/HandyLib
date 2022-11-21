@@ -11,11 +11,11 @@ namespace Gmtl.HandyLib.Validators
         /// <returns></returns>
         public static bool IsValidPhoneNumber(this string input)
         {
+            if (string.IsNullOrWhiteSpace(input))
+                return false;
+
             try
             {
-                if (string.IsNullOrWhiteSpace(input))
-                    return false;
-
                 input = input.Replace(" ", String.Empty);
                 char[] arr = input.ToCharArray();
 
