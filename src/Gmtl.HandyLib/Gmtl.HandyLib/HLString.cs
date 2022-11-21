@@ -76,6 +76,9 @@ namespace Gmtl.HandyLib
         /// </summary>
         public static string StripHtml(this string input)
         {
+            if (string.IsNullOrWhiteSpace(input))
+                return string.Empty;
+
             char[] array = new char[input.Length];
             int arrayIndex = 0;
             bool inside = false;
@@ -107,6 +110,9 @@ namespace Gmtl.HandyLib
         /// </summary>
         public static string RemoveAccents(this string input)
         {
+            if (string.IsNullOrWhiteSpace(input))
+                return string.Empty;
+
             StringBuilder sb = new StringBuilder();
 
             foreach (char c in input)
@@ -130,7 +136,7 @@ namespace Gmtl.HandyLib
         public static string FirstLetterToUpper(this string input)
         {
             if (string.IsNullOrWhiteSpace(input))
-                return input;
+                return string.Empty;
 
             return char.ToUpper(input[0]) + input.Substring(1);
         }
@@ -140,7 +146,8 @@ namespace Gmtl.HandyLib
         /// </summary>
         public static string ReplaceMultiSpaces(this string input)
         {
-            if (String.IsNullOrWhiteSpace(input)) return String.Empty;
+            if (String.IsNullOrWhiteSpace(input)) 
+                return string.Empty;
 
             return String.Join(" ", input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
         }
@@ -153,7 +160,8 @@ namespace Gmtl.HandyLib
         /// <returns></returns>
         public static string ToSlug(this string input, int maxLength = 0)
         {
-            if (String.IsNullOrWhiteSpace(input)) return String.Empty;
+            if (string.IsNullOrWhiteSpace(input))
+                return string.Empty;
 
             var normalizedString = input
                 .ToLowerInvariant()
@@ -212,7 +220,7 @@ namespace Gmtl.HandyLib
 
         private static string FindReplacement(char input)
         {
-            foreach (var entry in foreign_characters.Where(entry => entry.Key.IndexOf(input) != -1))
+            foreach (var entry in _foreignCharacters.Where(entry => entry.Key.IndexOf(input) != -1))
             {
                 return entry.Value;
             }
@@ -220,7 +228,7 @@ namespace Gmtl.HandyLib
             return String.Empty;
         }
 
-        static Dictionary<string, string> foreign_characters = new Dictionary<string, string>
+        static Dictionary<string, string> _foreignCharacters = new Dictionary<string, string>
     {
         { "äæǽ", "ae" },
         { "öœ", "oe" },
