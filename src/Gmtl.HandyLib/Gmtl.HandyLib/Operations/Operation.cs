@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Gmtl.HandyLib
+namespace Gmtl.HandyLib.Operations
 {
     /// <summary>
     /// Class for managing multiple operations and their statuses
@@ -58,12 +58,12 @@ namespace Gmtl.HandyLib
                     return r;
             }
 
-            return OperationResult<bool>.Success(value:true, "All operations were successful");
+            return OperationResult<bool>.Success(value: true, "All operations were successful");
         }
 
         public static Operation Create(bool result, string errorMsg = "Error", string successMsg = "Ok")
         {
-            return Operation.Create(() => result, errorMsg, successMsg);
+            return Create(() => result, errorMsg, successMsg);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Gmtl.HandyLib
         /// </summary>
         public static Operation Create(OperationResult<bool> result)
         {
-            return Operation.Create(() => result.Result, result.Message, result.Message);
+            return Create(() => result.Result, result.Message, result.Message);
         }
 
         public static Operation Create(Func<bool> func, string errorMsg = "Error", string successMsg = "Ok")

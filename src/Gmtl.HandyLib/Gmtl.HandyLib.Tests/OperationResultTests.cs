@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Gmtl.HandyLib.Operations;
+using NUnit.Framework;
 
 namespace Gmtl.HandyLib.Tests
 {

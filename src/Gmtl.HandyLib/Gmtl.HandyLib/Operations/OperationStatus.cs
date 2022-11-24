@@ -1,4 +1,4 @@
-﻿namespace Gmtl.HandyLib
+﻿namespace Gmtl.HandyLib.Operations
 {
     /// <summary>
     /// Status of executed operation

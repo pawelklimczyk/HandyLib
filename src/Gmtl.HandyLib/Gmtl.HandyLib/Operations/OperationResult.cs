@@ -8,7 +8,7 @@ using System;
 using System.Diagnostics;
 using System.Text;
 
-namespace Gmtl.HandyLib
+namespace Gmtl.HandyLib.Operations
 {
     /// <summary>
     /// Generic class working as a wrapper
@@ -77,7 +77,7 @@ namespace Gmtl.HandyLib
             return builder.ToString();
         }
 
-        public static OperationResult<T> Error(T value = default(T), string message = "Default error status message")
+        public static OperationResult<T> Error(T value = default, string message = "Default error status message")
         {
             return new OperationResult<T>
             {
@@ -88,10 +88,10 @@ namespace Gmtl.HandyLib
         }
         public static OperationResult<T> Error(string message)
         {
-            return Error(default(T), message);
+            return Error(default, message);
         }
 
-        public static OperationResult<T> Success(T value = default(T), string message = "Default Ok status message")
+        public static OperationResult<T> Success(T value = default, string message = "Default Ok status message")
         {
             return new OperationResult<T>
             {
@@ -103,17 +103,17 @@ namespace Gmtl.HandyLib
 
         public static OperationResult<T> Success(string message)
         {
-            return Success(default(T), message);
+            return Success(default, message);
         }
 
         public static OperationResult<T> FromBool(bool isSuccess, string successMessage = "", string errorMessage = "")
         {
-            return (isSuccess) ? Success(default(T), successMessage) : Error(default(T), errorMessage);
+            return isSuccess ? Success(default, successMessage) : Error(default, errorMessage);
         }
 
         public static OperationResult<T> FromBool(bool isSuccess, T value, string successMessage = "", string errorMessage = "")
         {
-            return (isSuccess) ? Success(value, successMessage) : Error(value, errorMessage);
+            return isSuccess ? Success(value, successMessage) : Error(value, errorMessage);
         }
 
         public static implicit operator bool(OperationResult<T> operationResult)
