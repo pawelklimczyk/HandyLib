@@ -370,70 +370,70 @@
             <param name="tokens">external tokens</param>
             <returns></returns>
         </member>
-        <member name="T:Gmtl.HandyLib.Operation">
+        <member name="T:Gmtl.HandyLib.Operations.Operation">
             <summary>
             Class for managing multiple operations and their statuses
             </summary>
         </member>
-        <member name="P:Gmtl.HandyLib.Operation.Func">
+        <member name="P:Gmtl.HandyLib.Operations.Operation.Func">
             <summary>
             Function to be executed
             </summary>
         </member>
-        <member name="P:Gmtl.HandyLib.Operation.ErrorMsg">
+        <member name="P:Gmtl.HandyLib.Operations.Operation.ErrorMsg">
             <summary>
             Message if Func return false
             </summary>
         </member>
-        <member name="P:Gmtl.HandyLib.Operation.SuccessMsg">
+        <member name="P:Gmtl.HandyLib.Operations.Operation.SuccessMsg">
             <summary>
             Message if Func return true
             </summary>
         </member>
-        <member name="M:Gmtl.HandyLib.Operation.Execute">
+        <member name="M:Gmtl.HandyLib.Operations.Operation.Execute">
             <summary>
             Executed Func and returns a result
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Gmtl.HandyLib.Operation.ExecuteAll(Gmtl.HandyLib.Operation[])">
+        <member name="M:Gmtl.HandyLib.Operations.Operation.ExecuteAll(Gmtl.HandyLib.Operations.Operation[])">
             <summary>
             Executed all operation in sequece
             </summary>
         </member>
-        <member name="M:Gmtl.HandyLib.Operation.Create(Gmtl.HandyLib.OperationResult{System.Boolean})">
+        <member name="M:Gmtl.HandyLib.Operations.Operation.Create(Gmtl.HandyLib.Operations.OperationResult{System.Boolean})">
             <summary>
             Create operation that was already executed. Just pass the result
             </summary>
         </member>
-        <member name="T:Gmtl.HandyLib.OperationResult`1">
+        <member name="T:Gmtl.HandyLib.Operations.OperationResult`1">
             <summary>
             Generic class working as a wrapper
             </summary>
             <typeparam name="T">type</typeparam>
         </member>
-        <member name="P:Gmtl.HandyLib.OperationResult`1.Result">
+        <member name="P:Gmtl.HandyLib.Operations.OperationResult`1.Result">
             <summary>
             Result value
             </summary>
         </member>
-        <member name="P:Gmtl.HandyLib.OperationResult`1.Status">
+        <member name="P:Gmtl.HandyLib.Operations.OperationResult`1.Status">
             <summary>
             Operation status
             </summary>
         </member>
-        <member name="P:Gmtl.HandyLib.OperationResult`1.Message">
+        <member name="P:Gmtl.HandyLib.Operations.OperationResult`1.Message">
             <summary>
             Extra info send with operation result (optional)
             </summary>
         </member>
-        <member name="M:Gmtl.HandyLib.OperationResult`1.AsJson(System.String)">
+        <member name="M:Gmtl.HandyLib.Operations.OperationResult`1.AsJson(System.String)">
             <summary>
             return Object as a JSON string
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Gmtl.HandyLib.OperationStatus">
+        <member name="T:Gmtl.HandyLib.Operations.OperationStatus">
             <summary>
             Status of executed operation
             </summary>
