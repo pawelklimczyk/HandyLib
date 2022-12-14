@@ -85,23 +85,69 @@ namespace Gmtl.HandyLib
 
             for (int i = 0; i < input.Length; i++)
             {
-                char let = input[i];
-                if (let == '<')
+                char currentChar = input[i];
+                if (currentChar == '<')
                 {
                     inside = true;
                     continue;
                 }
-                if (let == '>')
+                if (currentChar == '>')
                 {
                     inside = false;
                     continue;
                 }
                 if (!inside)
                 {
-                    array[arrayIndex] = let;
+                    array[arrayIndex] = currentChar;
                     arrayIndex++;
                 }
             }
+
+            return new string(array, 0, arrayIndex);
+        }
+
+        /// <summary>
+        /// Removes all attributes from HTML string
+        /// </summary>
+        public static string CleanHtml(this string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+                return string.Empty;
+
+            char[] array = new char[input.Length];
+            int arrayIndex = 0;
+            bool inside = false;
+            bool tagNameFinished = false;
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                char currentChar = input[i];
+                if (currentChar == '<')
+                {
+                    inside = true;
+                    tagNameFinished = false;
+                }
+                if (currentChar == '>')
+                {
+                    inside = false;
+                    tagNameFinished = false;
+                }
+                if (inside && currentChar == ' ')
+                {
+                    tagNameFinished = true;
+                }
+
+                if (!inside
+                    || (inside && (currentChar == '/' || currentChar == '<' || currentChar == '>'))
+                    || (inside && !tagNameFinished)
+                    )
+                {
+                    array[arrayIndex] = currentChar;
+                    arrayIndex++;
+                }
+
+            }
+
             return new string(array, 0, arrayIndex);
         }
 
@@ -146,7 +192,7 @@ namespace Gmtl.HandyLib
         /// </summary>
         public static string ReplaceMultiSpaces(this string input)
         {
-            if (String.IsNullOrWhiteSpace(input)) 
+            if (String.IsNullOrWhiteSpace(input))
                 return string.Empty;
 
             return String.Join(" ", input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));

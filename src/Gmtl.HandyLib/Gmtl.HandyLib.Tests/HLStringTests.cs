@@ -135,6 +135,23 @@ namespace Gmtl.HandyLib.Tests
             Assert.That(result, Is.EqualTo(expectedOutput));
         }
 
+        [TestCase("<h1>test</h1>", "<h1>test</h1>")]
+        [TestCase("<h1><span>test</span></h1>", "<h1><span>test</span></h1>")]
+        [TestCase("<h1 style=\"teststyle\" attr='test attr'><span style=\"teststyle\" attr='test attr'>test</span></h1>", "<h1><span>test</span></h1>")]
+        [TestCase("<h1 style=\"teststyle\" attr='test attr'>test</h1>", "<h1>test</h1>")]
+        [TestCase("<br/>test 123 123", "<br/>test 123 123")]
+        [TestCase("<br />test 123 123", "<br/>test 123 123")]
+        [TestCase("<br style=\"teststyle\" attr='test attr' />test 123 123", "<br/>test 123 123")]
+        [TestCase("<br style=\"teststyle\" attr='test attr'/>test 123 123", "<br/>test 123 123")]
+        public void HLString_shouldCleanHtml(string inputString, string expectedOutput)
+        {
+            //Act
+            string result = HLString.CleanHtml(inputString);
+
+            //Assert
+            Assert.That(result, Is.EqualTo(expectedOutput));
+        }
+
         [TestCase("test", "Test")]
         [TestCase("ławka", "Ławka")]
         [TestCase("ławka leśna", "Ławka leśna")]

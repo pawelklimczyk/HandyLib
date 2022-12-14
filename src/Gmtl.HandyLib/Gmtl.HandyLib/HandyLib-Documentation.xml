@@ -334,6 +334,11 @@
             Removes HTML tags from input
             </summary>
         </member>
+        <member name="M:Gmtl.HandyLib.HLString.CleanHtml(System.String)">
+            <summary>
+            Removes all attributes from HTML string
+            </summary>
+        </member>
         <member name="M:Gmtl.HandyLib.HLString.RemoveAccents(System.String)">
             <summary>
             Removes non-standard letters like ę=>e
