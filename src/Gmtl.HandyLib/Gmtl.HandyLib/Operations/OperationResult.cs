@@ -121,4 +121,6 @@ namespace Gmtl.HandyLib.Operations
             return operationResult.Status == OperationStatus.Success;
         }
     }
+
+    public class OperationResult : OperationResult<bool> { }
 }
