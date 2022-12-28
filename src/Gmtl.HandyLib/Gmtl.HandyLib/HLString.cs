@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Gmtl.HandyLib
 {
@@ -17,6 +18,14 @@ namespace Gmtl.HandyLib
     /// </summary>
     public static class HLString
     {
+        private static Dictionary<string, Regex> _replaceMultipleRegexCache = new Dictionary<string, Regex>();
+        private static object _replaceMultipleRegexCacheLock = new object();
+
+        static HLString()
+        {
+            _replaceMultipleRegexCache.Add(" ", CreateNewReplacedMultipleRegex(" "));
+        }
+
         /// <summary>
         /// Returns input if it's not null or whitespace, defaultValue otherwise
         /// </summary>
@@ -188,15 +197,35 @@ namespace Gmtl.HandyLib
         }
 
         /// <summary>
-        /// Replaces multiple spaces with single
+        /// Replaces multiple characters with single
         /// </summary>
-        public static string ReplaceMultiSpaces(this string input)
+        public static string ReplaceMulti(this string name, string patternToReplace = " ")
         {
-            if (String.IsNullOrWhiteSpace(input))
-                return string.Empty;
+            if (string.IsNullOrEmpty(patternToReplace))
+            {
+                return name;
+            }
 
-            return String.Join(" ", input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+            name = name.Trim();
+
+            if (string.IsNullOrEmpty(name))
+            {
+                return string.Empty;
+            } 
+         
+            lock (_replaceMultipleRegexCacheLock)
+            {
+                if (!_replaceMultipleRegexCache.ContainsKey(patternToReplace))
+                {
+                    _replaceMultipleRegexCache.Add(patternToReplace, CreateNewReplacedMultipleRegex(patternToReplace));
+                }
+            }
+            
+            name = _replaceMultipleRegexCache[patternToReplace].Replace(name, patternToReplace);
+
+            return name;
         }
+
 
         /// <summary>
         /// Creates http url friendly text from input
@@ -275,96 +304,101 @@ namespace Gmtl.HandyLib
         }
 
         static Dictionary<string, string> _foreignCharacters = new Dictionary<string, string>
-    {
-        { "äæǽ", "ae" },
-        { "öœ", "oe" },
-        { "ü", "ue" },
-        { "Ä", "Ae" },
-        { "Ü", "Ue" },
-        { "Ö", "Oe" },
-        { "ÀÁÂÃÄÅǺĀĂĄǍΑΆẢẠẦẪẨẬẰẮẴẲẶА", "A" },
-        { "àáâãåǻāăąǎªαάảạầấẫẩậằắẵẳặа", "a" },
-        { "Б", "B" },
-        { "б", "b" },
-        { "ÇĆĈĊČ", "C" },
-        { "çćĉċč", "c" },
-        { "Д", "D" },
-        { "д", "d" },
-        { "ÐĎĐΔ", "Dj" },
-        { "ðďđδ", "dj" },
-        { "ÈÉÊËĒĔĖĘĚΕΈẼẺẸỀẾỄỂỆЕЭ", "E" },
-        { "èéêëēĕėęěέεẽẻẹềếễểệеэ", "e" },
-        { "Ф", "F" },
-        { "ф", "f" },
-        { "ĜĞĠĢΓГҐ", "G" },
-        { "ĝğġģγгґ", "g" },
-        { "ĤĦ", "H" },
-        { "ĥħ", "h" },
-        { "ÌÍÎÏĨĪĬǏĮİΗΉΊΙΪỈỊИЫ", "I" },
-        { "ìíîïĩīĭǐįıηήίιϊỉịиыї", "i" },
-        { "Ĵ", "J" },
-        { "ĵ", "j" },
-        { "ĶΚК", "K" },
-        { "ķκк", "k" },
-        { "ĹĻĽĿŁΛЛ", "L" },
-        { "ĺļľŀłλл", "l" },
-        { "М", "M" },
-        { "м", "m" },
-        { "ÑŃŅŇΝН", "N" },
-        { "ñńņňŉνн", "n" },
-        { "ÒÓÔÕŌŎǑŐƠØǾΟΌΩΏỎỌỒỐỖỔỘỜỚỠỞỢО", "O" },
-        { "òóôõōŏǒőơøǿºοόωώỏọồốỗổộờớỡởợо", "o" },
-        { "П", "P" },
-        { "п", "p" },
-        { "ŔŖŘΡР", "R" },
-        { "ŕŗřρр", "r" },
-        { "ŚŜŞȘŠΣС", "S" },
-        { "śŝşșšſσςс", "s" },
-        { "ȚŢŤŦτТ", "T" },
-        { "țţťŧт", "t" },
-        { "ÙÚÛŨŪŬŮŰŲƯǓǕǗǙǛŨỦỤỪỨỮỬỰУ", "U" },
-        { "ùúûũūŭůűųưǔǖǘǚǜυύϋủụừứữửựу", "u" },
-        { "ÝŸŶΥΎΫỲỸỶỴЙ", "Y" },
-        { "ýÿŷỳỹỷỵй", "y" },
-        { "В", "V" },
-        { "в", "v" },
-        { "Ŵ", "W" },
-        { "ŵ", "w" },
-        { "ŹŻŽΖЗ", "Z" },
-        { "źżžζз", "z" },
-        { "ÆǼ", "AE" },
-        { "ß", "ss" },
-        { "Ĳ", "IJ" },
-        { "ĳ", "ij" },
-        { "Œ", "OE" },
-        { "ƒ", "f" },
-        { "ξ", "ks" },
-        { "π", "p" },
-        { "β", "v" },
-        { "μ", "m" },
-        { "ψ", "ps" },
-        { "Ё", "Yo" },
-        { "ё", "yo" },
-        { "Є", "Ye" },
-        { "є", "ye" },
-        { "Ї", "Yi" },
-        { "Ж", "Zh" },
-        { "ж", "zh" },
-        { "Х", "Kh" },
-        { "х", "kh" },
-        { "Ц", "Ts" },
-        { "ц", "ts" },
-        { "Ч", "Ch" },
-        { "ч", "ch" },
-        { "Ш", "Sh" },
-        { "ш", "sh" },
-        { "Щ", "Shch" },
-        { "щ", "shch" },
-        { "ЪъЬь", "" },
-        { "Ю", "Yu" },
-        { "ю", "yu" },
-        { "Я", "Ya" },
-        { "я", "ya" },
-    };
+        {
+            { "äæǽ", "ae" },
+            { "öœ", "oe" },
+            { "ü", "ue" },
+            { "Ä", "Ae" },
+            { "Ü", "Ue" },
+            { "Ö", "Oe" },
+            { "ÀÁÂÃÄÅǺĀĂĄǍΑΆẢẠẦẪẨẬẰẮẴẲẶА", "A" },
+            { "àáâãåǻāăąǎªαάảạầấẫẩậằắẵẳặа", "a" },
+            { "Б", "B" },
+            { "б", "b" },
+            { "ÇĆĈĊČ", "C" },
+            { "çćĉċč", "c" },
+            { "Д", "D" },
+            { "д", "d" },
+            { "ÐĎĐΔ", "Dj" },
+            { "ðďđδ", "dj" },
+            { "ÈÉÊËĒĔĖĘĚΕΈẼẺẸỀẾỄỂỆЕЭ", "E" },
+            { "èéêëēĕėęěέεẽẻẹềếễểệеэ", "e" },
+            { "Ф", "F" },
+            { "ф", "f" },
+            { "ĜĞĠĢΓГҐ", "G" },
+            { "ĝğġģγгґ", "g" },
+            { "ĤĦ", "H" },
+            { "ĥħ", "h" },
+            { "ÌÍÎÏĨĪĬǏĮİΗΉΊΙΪỈỊИЫ", "I" },
+            { "ìíîïĩīĭǐįıηήίιϊỉịиыї", "i" },
+            { "Ĵ", "J" },
+            { "ĵ", "j" },
+            { "ĶΚК", "K" },
+            { "ķκк", "k" },
+            { "ĹĻĽĿŁΛЛ", "L" },
+            { "ĺļľŀłλл", "l" },
+            { "М", "M" },
+            { "м", "m" },
+            { "ÑŃŅŇΝН", "N" },
+            { "ñńņňŉνн", "n" },
+            { "ÒÓÔÕŌŎǑŐƠØǾΟΌΩΏỎỌỒỐỖỔỘỜỚỠỞỢО", "O" },
+            { "òóôõōŏǒőơøǿºοόωώỏọồốỗổộờớỡởợо", "o" },
+            { "П", "P" },
+            { "п", "p" },
+            { "ŔŖŘΡР", "R" },
+            { "ŕŗřρр", "r" },
+            { "ŚŜŞȘŠΣС", "S" },
+            { "śŝşșšſσςс", "s" },
+            { "ȚŢŤŦτТ", "T" },
+            { "țţťŧт", "t" },
+            { "ÙÚÛŨŪŬŮŰŲƯǓǕǗǙǛŨỦỤỪỨỮỬỰУ", "U" },
+            { "ùúûũūŭůűųưǔǖǘǚǜυύϋủụừứữửựу", "u" },
+            { "ÝŸŶΥΎΫỲỸỶỴЙ", "Y" },
+            { "ýÿŷỳỹỷỵй", "y" },
+            { "В", "V" },
+            { "в", "v" },
+            { "Ŵ", "W" },
+            { "ŵ", "w" },
+            { "ŹŻŽΖЗ", "Z" },
+            { "źżžζз", "z" },
+            { "ÆǼ", "AE" },
+            { "ß", "ss" },
+            { "Ĳ", "IJ" },
+            { "ĳ", "ij" },
+            { "Œ", "OE" },
+            { "ƒ", "f" },
+            { "ξ", "ks" },
+            { "π", "p" },
+            { "β", "v" },
+            { "μ", "m" },
+            { "ψ", "ps" },
+            { "Ё", "Yo" },
+            { "ё", "yo" },
+            { "Є", "Ye" },
+            { "є", "ye" },
+            { "Ї", "Yi" },
+            { "Ж", "Zh" },
+            { "ж", "zh" },
+            { "Х", "Kh" },
+            { "х", "kh" },
+            { "Ц", "Ts" },
+            { "ц", "ts" },
+            { "Ч", "Ch" },
+            { "ч", "ch" },
+            { "Ш", "Sh" },
+            { "ш", "sh" },
+            { "Щ", "Shch" },
+            { "щ", "shch" },
+            { "ЪъЬь", "" },
+            { "Ю", "Yu" },
+            { "ю", "yu" },
+            { "Я", "Ya" },
+            { "я", "ya" },
+        };
+
+        private static Regex CreateNewReplacedMultipleRegex(string pattern)
+        {
+            return new Regex(@"[" + pattern + "]{2,}", RegexOptions.None);
+        }
     }
 }

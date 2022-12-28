@@ -186,5 +186,20 @@ namespace Gmtl.HandyLib.Tests
             //Assert
             Assert.That(result, Is.EqualTo(string.Empty));
         }
+
+        [TestCase("teestee", "e", "teste")]
+        [TestCase("aa  bb cc    dd", " ", "aa bb cc dd")]
+        [TestCase("aa__!__!__!rer__!rere____!111", "__!", "aa__!rer__!rere__!111")]
+        [TestCase("<TEST>", "", "<TEST>")]
+        [TestCase("<TEST>", "  ", "<TEST>")]
+        [TestCase("<TE    ST>", "  ", "<TE  ST>")]
+        public void HLString_shouldReplacedMultipleCharacters(string inputString, string charactersToReplace, string expectedOutput)
+        {
+            //Act
+            string result = HLString.ReplaceMulti(inputString, charactersToReplace);
+
+            //Assert
+            Assert.That(result, Is.EqualTo(expectedOutput));
+        }
     }
 }

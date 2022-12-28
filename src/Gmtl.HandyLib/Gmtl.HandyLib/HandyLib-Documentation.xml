@@ -349,9 +349,9 @@
             Converts first letter in sentence to uppercase letter
             </summary>
         </member>
-        <member name="M:Gmtl.HandyLib.HLString.ReplaceMultiSpaces(System.String)">
+        <member name="M:Gmtl.HandyLib.HLString.ReplaceMulti(System.String,System.String)">
             <summary>
-            Replaces multiple spaces with single
+            Replaces multiple characters with single
             </summary>
         </member>
         <member name="M:Gmtl.HandyLib.HLString.ToSlug(System.String,System.Int32)">
