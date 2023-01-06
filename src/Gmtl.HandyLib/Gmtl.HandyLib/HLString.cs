@@ -211,8 +211,8 @@ namespace Gmtl.HandyLib
             if (string.IsNullOrEmpty(name))
             {
                 return string.Empty;
-            } 
-         
+            }
+
             lock (_replaceMultipleRegexCacheLock)
             {
                 if (!_replaceMultipleRegexCache.ContainsKey(patternToReplace))
@@ -220,7 +220,7 @@ namespace Gmtl.HandyLib
                     _replaceMultipleRegexCache.Add(patternToReplace, CreateNewReplacedMultipleRegex(patternToReplace));
                 }
             }
-            
+
             name = _replaceMultipleRegexCache[patternToReplace].Replace(name, patternToReplace);
 
             return name;
@@ -398,7 +398,7 @@ namespace Gmtl.HandyLib
 
         private static Regex CreateNewReplacedMultipleRegex(string pattern)
         {
-            return new Regex(@"[" + pattern + "]{2,}", RegexOptions.None);
+            return new Regex(@"(" + Regex.Escape(pattern) + "){2,}", RegexOptions.None);
         }
     }
 }
