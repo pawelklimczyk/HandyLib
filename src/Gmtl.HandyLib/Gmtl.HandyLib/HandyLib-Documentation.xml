@@ -344,6 +344,12 @@
             Removes non-standard letters like ę=>e
             </summary>
         </member>
+        <member name="M:Gmtl.HandyLib.HLString.RemoveUnicode(System.String)">
+            <summary>
+            Removes all unicode characters from string
+            Useful in XML deserialization
+            </summary>
+        </member>
         <member name="M:Gmtl.HandyLib.HLString.FirstLetterToUpper(System.String)">
             <summary>
             Converts first letter in sentence to uppercase letter

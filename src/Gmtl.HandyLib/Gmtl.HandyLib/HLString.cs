@@ -19,6 +19,7 @@ namespace Gmtl.HandyLib
     public static class HLString
     {
         private static Dictionary<string, Regex> _replaceMultipleRegexCache = new Dictionary<string, Regex>();
+        private static Regex _unicodeRegex = new Regex(@"[^\u0000-\u007F]", RegexOptions.Compiled);
         private static object _replaceMultipleRegexCacheLock = new object();
 
         static HLString()
@@ -183,6 +184,15 @@ namespace Gmtl.HandyLib
             }
 
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Removes all unicode characters from string
+        /// Useful in XML deserialization
+        /// </summary>
+        public static string RemoveUnicode(this string input)
+        {
+            return _unicodeRegex.Replace(input, string.Empty);
         }
 
         /// <summary>
