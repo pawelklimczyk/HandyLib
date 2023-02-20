@@ -12,18 +12,20 @@ namespace Gmtl.HandyLib.Cache
         HLListPage<TData> FindBy<TOrder>(Func<TData, bool> filterFunc, Func<TData, TOrder> orderFunc = null,
             OrderDirection orderDirection = OrderDirection.Ascending, int page = 1, int pageSize = 10);
 
-         TData this[TKey key] { get; }
+        TData this[TKey key] { get; }
 
-         TData Get(TKey key);
+        TData Get(TKey key);
 
-         TData GetOrDefault(TKey key);
+        TData GetOrDefault(TKey key);
 
-         void Delete(TKey key);
+        void Delete(TKey key);
 
-         void DeleteAll();
+        void DeleteAll();
 
-         void InsertOrUpdate(TKey key, TData newItemData);
+        void InsertOrUpdate(TKey key, TData newItemData);
 
-         void UpdateCache(TKey key, TData newItemData, CacheUpdateType updatedType);
+        void UpdateCache(TKey key, TData newItemData, CacheUpdateType updatedType);
+
+        bool Empty { get; }
     }
 }

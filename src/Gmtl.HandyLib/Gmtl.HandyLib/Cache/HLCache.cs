@@ -21,6 +21,8 @@ namespace Gmtl.HandyLib.Cache
         private static object _deleteLock = new object();
         private static object _insertLock = new object();
 
+        public bool Empty => _data.Count == 0;
+
         public Cache() { }
 
         public Cache(Func<Dictionary<TKey, TData>> initializerFunction)
