@@ -27,5 +27,7 @@ namespace Gmtl.HandyLib.Cache
         void UpdateCache(TKey key, TData newItemData, CacheUpdateType updatedType);
 
         bool Empty { get; }
+
+        long Count { get; }
     }
 }

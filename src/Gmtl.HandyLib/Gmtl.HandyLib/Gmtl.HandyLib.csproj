@@ -90,6 +90,10 @@
 			<Version>4.5.0</Version>
 		</PackageReference>
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Tasks\" />
+	</ItemGroup>
 	<!-- <ItemGroup>
     <PackageReference Include="Vsxmd">
       <PrivateAssets>all</PrivateAssets>

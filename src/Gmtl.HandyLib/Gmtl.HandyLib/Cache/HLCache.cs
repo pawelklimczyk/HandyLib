@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace Gmtl.HandyLib.Cache
 {
@@ -22,6 +23,7 @@ namespace Gmtl.HandyLib.Cache
         private static object _insertLock = new object();
 
         public bool Empty => _data.Count == 0;
+        public long Count => _data.Count;
 
         public Cache() { }
 
