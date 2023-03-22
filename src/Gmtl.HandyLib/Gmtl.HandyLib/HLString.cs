@@ -19,7 +19,7 @@ namespace Gmtl.HandyLib
     public static class HLString
     {
         private static Dictionary<string, Regex> _replaceMultipleRegexCache = new Dictionary<string, Regex>();
-        private static Regex _unicodeRegex = new Regex(@"[^\u0000-\u007F]", RegexOptions.Compiled);
+        private static Regex _unicodeRegex = new Regex(@"[\u0000-\u0008\u000A-\u001F]", RegexOptions.Compiled | RegexOptions.Multiline | RegexOptions.IgnoreCase);
         private static object _replaceMultipleRegexCacheLock = new object();
 
         static HLString()
