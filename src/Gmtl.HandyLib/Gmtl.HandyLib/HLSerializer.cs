@@ -4,12 +4,17 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
+#if NETCOREAPP3_1_OR_GREATER
+using System.Text.Json;
+using System.Text.Json.Serialization;
+#endif
+
 namespace Gmtl.HandyLib
 {
     /// <summary>
     /// Serialization and deserialization helper class
     /// </summary>
-    public class HLSerializer
+    public static class HLSerializer
     {
         /// <summary>
         /// Serializes object to XML
@@ -18,12 +23,13 @@ namespace Gmtl.HandyLib
         /// <param name="objectToSerialize">Object to serialize</param>
         /// <param name="useNamespaces">If true, adds namespaces to output string</param>
         /// <returns>Serialized object</returns>
-        public static string SerializeToXml<T>(T objectToSerialize, bool useNamespaces = true)
+        public static string SerializeToXml<T>(this T objectToSerialize, bool useNamespaces = true)
         {
             if (objectToSerialize == null)
             {
                 return string.Empty;
             }
+
             try
             {
                 var xmlSerializer = new XmlSerializer(typeof(T));
@@ -65,7 +71,7 @@ namespace Gmtl.HandyLib
         /// <param name="objectToSerialize">Object to serialize</param>
         /// <param name="useNamespaces">If true, adds namespaces to output string</param>
         /// <param name="filename">Filename where save the serialized object</param>
-        public static void SerializeToXmlFile<T>(T objectToSerialize, string filename, bool useNamespaces = true)
+        public static void SerializeToXmlFile<T>(this T objectToSerialize, string filename, bool useNamespaces = true)
         {
             try
             {
@@ -83,14 +89,13 @@ namespace Gmtl.HandyLib
         /// <typeparam name="T">Expected object type</typeparam>
         /// <param name="xml">serialized object</param>
         /// <returns>Deserialized object</returns>
-        public static T DeserializeFromXml<T>(string xml) where T : new()
+        public static T DeserializeFromXml<T>(this string xml)
         {
-            T xmlObject = new T();
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
 
             using (StringReader stringReader = new StringReader(xml))
             {
-                xmlObject = (T)xmlSerializer.Deserialize(stringReader);
+                T xmlObject = (T)xmlSerializer.Deserialize(stringReader);
                 return xmlObject;
             }
         }
@@ -101,7 +106,7 @@ namespace Gmtl.HandyLib
         /// <typeparam name="T">Expected object type</typeparam>
         /// <param name="filename">File storing serialized object</param>
         /// <returns>Deserialized object</returns>
-        public static T DeserializeFromXmlFile<T>(string filename) where T : new()
+        public static T DeserializeFromXmlFile<T>(this string filename)
         {
             if (!File.Exists(filename))
             {
@@ -110,5 +115,28 @@ namespace Gmtl.HandyLib
 
             return DeserializeFromXml<T>(File.ReadAllText(filename));
         }
+
+#if NETCOREAPP3_1_OR_GREATER 
+        public static string SerializeToJson<T>(this T objectToSerialize, JsonSerializerOptions options = null)
+        {
+            if (options == null)
+            {
+                options = new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                    IgnoreNullValues = true,
+                };
+            }
+
+            return JsonSerializer.Serialize(objectToSerialize, options);
+        }
+
+        public static T DeserializeFromJson<T>(this string json)
+        {
+            return JsonSerializer.Deserialize<T>(json);
+        }
+#endif
+
+
     }
 }
