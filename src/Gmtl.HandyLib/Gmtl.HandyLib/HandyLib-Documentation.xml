@@ -296,6 +296,12 @@
             Returns how many milliseconds elapsed since start
             </summary>
         </member>
+        <member name="M:Gmtl.HandyLib.HLStopWatch.Clean(System.String)">
+            <summary>
+            Clear StopWatch
+            </summary>
+            <param name="key">StopWatch key</param>
+        </member>
         <member name="T:Gmtl.HandyLib.HLString">
             <summary>
             Handy methods related to System.String

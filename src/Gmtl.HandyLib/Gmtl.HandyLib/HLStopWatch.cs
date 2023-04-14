@@ -9,9 +9,8 @@ namespace Gmtl.HandyLib
     /// </summary>
     public static class HLStopWatch
     {
-        private static Dictionary<string, Stopwatch> watchers = new Dictionary<string, Stopwatch>();
-        private static object locker = new object();
-        private static string defaultKey = HLRandomizer.RandomString.Next(10, 15);
+        private static Dictionary<string, Stopwatch> _watchers = new Dictionary<string, Stopwatch>();
+        private static object _locker = new object();
 
         /// <summary>
         /// Starts the watched with provided or default key
@@ -20,19 +19,19 @@ namespace Gmtl.HandyLib
         {
             if (String.IsNullOrWhiteSpace(key))
             {
-                key = defaultKey;
+                key = HLRandomizer.RandomString.Next(16, 32);
             }
 
-            lock (locker)
+            lock (_locker)
             {
-                if (watchers.ContainsKey(key))
+                if (_watchers.ContainsKey(key))
                 {
                     throw new Exception($"StopWatch already exists. Clean it with Clean({key}).");
                 }
 
                 Stopwatch watch = new Stopwatch();
                 watch.Start();
-                watchers.Add(key, watch);
+                _watchers.Add(key, watch);
             }
 
             return key;
@@ -41,21 +40,16 @@ namespace Gmtl.HandyLib
         /// <summary>
         /// Stops the watcher and return elapsed milliseconds
         /// </summary>
-        public static long Stop(string key = null)
+        public static long Stop(string key)
         {
-            if (String.IsNullOrWhiteSpace(key))
+            lock (_locker)
             {
-                key = defaultKey;
-            }
-
-            lock (locker)
-            {
-                if (watchers.ContainsKey(key))
+                if (_watchers.ContainsKey(key))
                 {
                     Stopwatch watch = new Stopwatch();
-                    long elapsed = watchers[key].ElapsedMilliseconds;
+                    long elapsed = _watchers[key].ElapsedMilliseconds;
                     CleanNoLock(key);
-                    
+
                     return elapsed;
                 }
                 else
@@ -68,18 +62,13 @@ namespace Gmtl.HandyLib
         /// <summary>
         /// Returns how many milliseconds elapsed since start
         /// </summary>
-        public static long Elapsed(string key = null)
+        public static long Elapsed(string key)
         {
-            if (String.IsNullOrWhiteSpace(key))
+            lock (_locker)
             {
-                key = defaultKey;
-            }
-
-            lock (locker)
-            {
-                if (watchers.ContainsKey(key))
+                if (_watchers.ContainsKey(key))
                 {
-                    return watchers[key].ElapsedMilliseconds;
+                    return _watchers[key].ElapsedMilliseconds;
                 }
                 else
                 {
@@ -88,9 +77,13 @@ namespace Gmtl.HandyLib
             }
         }
 
+        /// <summary>
+        /// Clear StopWatch
+        /// </summary>
+        /// <param name="key">StopWatch key</param>
         public static void Clean(string key)
         {
-            lock (locker)
+            lock (_locker)
             {
                 CleanNoLock(key);
             }
@@ -98,14 +91,14 @@ namespace Gmtl.HandyLib
 
         private static void CleanNoLock(string key)
         {
-            if (watchers.ContainsKey(key))
+            if (_watchers.ContainsKey(key))
             {
-                Stopwatch watch = watchers[key];
+                Stopwatch watch = _watchers[key];
                 if (watch != null)
                 {
                     watch.Stop();
                 }
-                watchers.Remove(key);
+                _watchers.Remove(key);
             }
         }
     }
