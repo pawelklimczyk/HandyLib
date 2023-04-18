@@ -387,41 +387,48 @@
             <param name="tokens">external tokens</param>
             <returns></returns>
         </member>
-        <member name="T:Gmtl.HandyLib.Operations.Operation">
+        <member name="T:Gmtl.HandyLib.Operations.Operation`1">
             <summary>
             Class for managing multiple operations and their statuses
             </summary>
         </member>
-        <member name="P:Gmtl.HandyLib.Operations.Operation.Func">
-            <summary>
-            Function to be executed
-            </summary>
-        </member>
-        <member name="P:Gmtl.HandyLib.Operations.Operation.ErrorMsg">
+        <member name="P:Gmtl.HandyLib.Operations.Operation`1.ErrorMsg">
             <summary>
             Message if Func return false
             </summary>
         </member>
-        <member name="P:Gmtl.HandyLib.Operations.Operation.SuccessMsg">
+        <member name="P:Gmtl.HandyLib.Operations.Operation`1.SuccessMsg">
             <summary>
             Message if Func return true
             </summary>
         </member>
-        <member name="M:Gmtl.HandyLib.Operations.Operation.Execute">
-            <summary>
-            Executed Func and returns a result
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Gmtl.HandyLib.Operations.Operation.ExecuteAll(Gmtl.HandyLib.Operations.Operation[])">
+        <member name="M:Gmtl.HandyLib.Operations.Operation`1.ExecuteAll(Gmtl.HandyLib.Operations.Operation{`0}[])">
             <summary>
             Executed all operation in sequece
             </summary>
         </member>
-        <member name="M:Gmtl.HandyLib.Operations.Operation.Create(Gmtl.HandyLib.Operations.OperationResult{System.Boolean})">
+        <member name="M:Gmtl.HandyLib.Operations.Operation`1.Create(Gmtl.HandyLib.Operations.OperationResult{`0})">
             <summary>
             Create operation that was already executed. Just pass the result
             </summary>
+        </member>
+        <member name="M:Gmtl.HandyLib.Operations.Operation`1.Create(System.Func{`0},System.String,System.String)">
+            <summary>
+            Function returning pure value
+            </summary>
+            <param name="func"></param>
+            <param name="errorMsg"></param>
+            <param name="successMsg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gmtl.HandyLib.Operations.Operation`1.Create(System.Func{Gmtl.HandyLib.Operations.OperationResult{`0}},System.String,System.String)">
+            <summary>
+            Function returning OperationResult value
+            </summary>
+            <param name="func"></param>
+            <param name="errorMsg"></param>
+            <param name="successMsg"></param>
+            <returns></returns>
         </member>
         <member name="T:Gmtl.HandyLib.Operations.OperationResult`1">
             <summary>
