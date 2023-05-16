@@ -63,8 +63,7 @@
         </member>
         <member name="M:Gmtl.HandyLib.HLCloner.CloneViaSerialization``1(``0)">
             <summary>
-            Clones an object using BinaryFormatter
-            Type must be marked with [Serializable] attribute
+            Clones an object using XmlSerializer
             </summary>
             <typeparam name="T">Type of the object</typeparam>
             <param name="obj">Actual object to clone</param>
@@ -421,6 +420,15 @@
             <param name="successMsg"></param>
             <returns></returns>
         </member>
+        <member name="M:Gmtl.HandyLib.Operations.Operation`1.Create(System.Action,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="action"></param>
+            <param name="errorMsg"></param>
+            <param name="successMsg"></param>
+            <returns></returns>
+        </member>
         <member name="M:Gmtl.HandyLib.Operations.Operation`1.Create(System.Func{Gmtl.HandyLib.Operations.OperationResult{`0}},System.String,System.String)">
             <summary>
             Function returning OperationResult value
@@ -430,13 +438,39 @@
             <param name="successMsg"></param>
             <returns></returns>
         </member>
+        <member name="M:Gmtl.HandyLib.Operations.Operation`1.IfSuccess(System.Action)">
+            <summary>
+            
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gmtl.HandyLib.Operations.Operation`1.IfError(System.Action)">
+            <summary>
+            
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gmtl.HandyLib.Operations.Operation`1.Always(System.Action)">
+            <summary>
+            
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
         <member name="T:Gmtl.HandyLib.Operations.OperationResult`1">
             <summary>
             Generic class working as a wrapper
             </summary>
             <typeparam name="T">type</typeparam>
         </member>
-        <member name="P:Gmtl.HandyLib.Operations.OperationResult`1.Result">
+        <member name="F:Gmtl.HandyLib.Operations.OperationResult`1._mainErrorKey">
+            <summary>
+            Used as the default error key
+            </summary>
+        </member>
+        <member name="P:Gmtl.HandyLib.Operations.OperationResult`1.Value">
             <summary>
             Result value
             </summary>
@@ -446,12 +480,22 @@
             Operation status
             </summary>
         </member>
+        <member name="P:Gmtl.HandyLib.Operations.OperationResult`1.IsSuccess">
+            <summary>
+            Indicates if operation was successful
+            </summary>
+        </member>
         <member name="P:Gmtl.HandyLib.Operations.OperationResult`1.Message">
             <summary>
             Extra info send with operation result (optional)
             </summary>
         </member>
-        <member name="M:Gmtl.HandyLib.Operations.OperationResult`1.AsJson(System.String)">
+        <member name="P:Gmtl.HandyLib.Operations.OperationResult`1.Errors">
+            <summary>
+            List of potential errors from the Operation
+            </summary>
+        </member>
+        <member name="M:Gmtl.HandyLib.Operations.OperationResult`1.AsJson">
             <summary>
             return Object as a JSON string
             </summary>

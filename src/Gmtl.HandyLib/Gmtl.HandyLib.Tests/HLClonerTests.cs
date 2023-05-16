@@ -18,7 +18,6 @@ namespace Gmtl.HandyLib.Tests
             StringAssert.AreEqualIgnoringCase(originalItem.Name, clone.Name);
         }
 
-        [Serializable]
         public class Item
         {
             public int Id { get; set; }
