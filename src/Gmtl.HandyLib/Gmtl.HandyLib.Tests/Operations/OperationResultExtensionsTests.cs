@@ -1,7 +1,7 @@
 ﻿using Gmtl.HandyLib.Operations;
 using NUnit.Framework;
 
-namespace Gmtl.HandyLib.Tests
+namespace Gmtl.HandyLib.Tests.Operations
 {
     [TestFixture]
     public class OperationResultExtensionsTests
@@ -53,7 +53,7 @@ namespace Gmtl.HandyLib.Tests
         {
             var operationObject = new OperationObject();
             var mainOperation = Operation<OperationObject>.Create(() => { operationObject.Operation1 = true; })
-                .IfSuccess(() => 
+                .IfSuccess(() =>
                     Operation<OperationObject>.Create(() => { operationObject.Operation2 = true; })
                     .IfSuccess(() => operationObject.Operation3 = true)
                     .Execute());

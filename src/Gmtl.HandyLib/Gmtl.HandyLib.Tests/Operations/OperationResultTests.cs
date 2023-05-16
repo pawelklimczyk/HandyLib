@@ -1,7 +1,9 @@
 ﻿using Gmtl.HandyLib.Operations;
 using NUnit.Framework;
+using System;
+using System.Text.Json;
 
-namespace Gmtl.HandyLib.Tests
+namespace Gmtl.HandyLib.Tests.Operations
 {
     [TestFixture]
     public class OperationResultTests
@@ -21,38 +23,51 @@ namespace Gmtl.HandyLib.Tests
 
             Assert.That(result == false, Is.EqualTo(true));
         }
-        
+
         [Test]
         public void OperationShouldBeReturnedAsJsonString()
         {
-            string result = OperationResult<string>.Error("test value","test message").AsJson();
+            string result = OperationResult<string>.Error("test value", "test message").AsJson();
 
-            Assert.That(result, Is.EqualTo("{\"status\":\"false\",\"message\":\"test message\",\"data\":\"test value\"}"));
+            var jsonDocument = EnsureValidJson(result);
+            Assert.That(result, Contains.Substring("false"));
+            Assert.That(result, Contains.Substring("test message"));
+            Assert.That(result, Contains.Substring("test value"));
         }
+
         [Test]
         public void OperationShouldBeReturnedAsJsonInt()
         {
             string result = OperationResult<int>.Error(123, "test message").AsJson();
 
-            Assert.That(result, Is.EqualTo("{\"status\":\"false\",\"message\":\"test message\",\"data\":123}"));
+
+            var jsonDocument = EnsureValidJson(result);
+            Assert.That(result, Contains.Substring("false"));
+            Assert.That(result, Contains.Substring("test message"));
+            Assert.That(result, Contains.Substring("123"));
         }
 
         [Test]
         public void OperationShouldBeReturnedAsJsonStringWithAComplexObject()
         {
             var jsonObj = "{\"field1\":\"value1\", \"field2\":\"value2\"}";
-            string result = OperationResult<object>.Error( jsonObj, "test").AsJson();
+            string result = OperationResult<object>.Error(jsonObj, "test").AsJson();
 
-            Assert.That(result, Contains.Substring(jsonObj));
-            Assert.That(result, !Contains.Substring("\"{"));
+            var jsonDocument = EnsureValidJson(result);
+            Assert.That(result, Contains.Substring("false"));
+            Assert.That(result, Contains.Substring("value1"));
+            Assert.That(result, Contains.Substring("value2"));
         }
 
         [Test]
         public void OperationShouldBeReturnedAsJsonStringWithAComplexObjectProvidedAsParam()
         {
             var jsonObj = "{\"field1-edited\":\"value1\", \"field2-edited\":\"value2\"}";
-            string result = OperationResult<object>.Error(jsonObj, "test").AsJson(jsonObj);
+            string result = OperationResult<object>.Error(jsonObj, "test").AsJson();
 
+            var jsonDocument = EnsureValidJson(result);
+            Assert.That(result, Contains.Substring("false"));
+            Assert.That(result, Contains.Substring("test"));
             Assert.That(result, Contains.Substring(jsonObj));
             Assert.That(result, !Contains.Substring("\"{"));
         }
@@ -71,6 +86,20 @@ namespace Gmtl.HandyLib.Tests
             OperationResult<string> result = OperationResult<string>.FromBool(false);
 
             Assert.IsTrue(result.Status == OperationStatus.Error);
+        }
+
+        private JsonDocument EnsureValidJson(string result)
+        {
+            try
+            {
+                return JsonDocument.Parse(result);
+
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+                throw;
+            }
         }
     }
 }

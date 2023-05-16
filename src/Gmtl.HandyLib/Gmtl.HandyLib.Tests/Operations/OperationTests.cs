@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using System;
 
-namespace Gmtl.HandyLib.Tests
+namespace Gmtl.HandyLib.Tests.Operations
 {
     [TestFixture]
     public class OperationTests
@@ -17,10 +17,10 @@ namespace Gmtl.HandyLib.Tests
 
             Assert.True(result.Status == OperationStatus.Success);
 
-            Assert.AreEqual(result.Result.Sum, a + b);
-            Assert.AreEqual(result.Result.Deduction, a - b);
-            Assert.AreEqual(result.Result.Multiplication, a * b);
-            Assert.AreEqual(result.Result.Division, a / b);
+            Assert.AreEqual(result.Value.Sum, a + b);
+            Assert.AreEqual(result.Value.Deduction, a - b);
+            Assert.AreEqual(result.Value.Multiplication, a * b);
+            Assert.AreEqual(result.Value.Division, a / b);
         }
 
         [Test]
@@ -33,10 +33,10 @@ namespace Gmtl.HandyLib.Tests
 
             Assert.True(result.Status == OperationStatus.Success);
 
-            Assert.AreEqual(result.Result.Sum, a + b);
-            Assert.AreEqual(result.Result.Deduction, a - b);
-            Assert.AreEqual(result.Result.Multiplication, a * b);
-            Assert.AreEqual(result.Result.Division, a / b);
+            Assert.AreEqual(result.Value.Sum, a + b);
+            Assert.AreEqual(result.Value.Deduction, a - b);
+            Assert.AreEqual(result.Value.Multiplication, a * b);
+            Assert.AreEqual(result.Value.Division, a / b);
         }
 
         [Test]

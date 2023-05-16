@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Gmtl.HandyLib.Operations
 {
@@ -18,11 +19,11 @@ namespace Gmtl.HandyLib.Operations
         /// </summary>
         public string SuccessMsg { get; private set; }
 
-        private OperationResult<TResult> result;
+        private OperationResult<TResult> _result;
 
-        private Action ActionPure;
-        private Func<TResult> FuncPure;
-        private Func<OperationResult<TResult>> OperationResultFunc;
+        private Action _actionPure;
+        private Func<TResult> _funcPure;
+        private Func<OperationResult<TResult>> _operationResultFunc;
 
         private List<Action> _successOperations = new List<Action>();
         private List<Action> _errorOperations = new List<Action>();
@@ -32,26 +33,26 @@ namespace Gmtl.HandyLib.Operations
         {
             try
             {
-                if (FuncPure != null)
+                if (_funcPure != null)
                 {
-                    result = OperationResult<TResult>.Success(FuncPure());
+                    _result = OperationResult<TResult>.Success(_funcPure());
                 }
-                else if (OperationResultFunc != null)
+                else if (_operationResultFunc != null)
                 {
-                    result = OperationResultFunc();
+                    _result = _operationResultFunc();
                 }
-                else if (ActionPure != null)
+                else if (_actionPure != null)
                 {
-                    ActionPure();
-                    result = OperationResult<TResult>.Success();
+                    _actionPure();
+                    _result = OperationResult<TResult>.Success();
                 }
             }
             catch
             {
-                result = OperationResult<TResult>.Error(value: default(TResult), ErrorMsg);
+                _result = OperationResult<TResult>.Error(value: default(TResult), ErrorMsg);
             }
 
-            switch (result.Status)
+            switch (_result.Status)
             {
                 case OperationStatus.Success:
                     _successOperations.ForEach(a => safeExecute(a));
@@ -63,7 +64,7 @@ namespace Gmtl.HandyLib.Operations
 
             _alwaysOperations.ForEach(a => safeExecute(a));
 
-            return result;
+            return _result;
         }
 
         /// <summary>
@@ -88,8 +89,8 @@ namespace Gmtl.HandyLib.Operations
         {
             return new Operation<TResult>()
             {
-                result = result,
-                ErrorMsg = result.Status == OperationStatus.Error ? result.Message : null,
+                _result = result,
+                ErrorMsg = result.Status == OperationStatus.Error ? string.Join(", ", result.Errors.Select(x => x.ErrorKey + ": " + x.ErrorMessage    )) : null,
                 SuccessMsg = result.Status == OperationStatus.Success ? result.Message : null
             };
         }
@@ -105,12 +106,12 @@ namespace Gmtl.HandyLib.Operations
         {
             return new Operation<TResult>()
             {
-                FuncPure = func,
+                _funcPure = func,
                 ErrorMsg = errorMsg,
                 SuccessMsg = successMsg
             };
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -122,7 +123,7 @@ namespace Gmtl.HandyLib.Operations
         {
             return new Operation<TResult>()
             {
-                ActionPure = action,
+                _actionPure = action,
                 ErrorMsg = errorMsg,
                 SuccessMsg = successMsg
             };
@@ -139,12 +140,12 @@ namespace Gmtl.HandyLib.Operations
         {
             return new Operation<TResult>()
             {
-                OperationResultFunc = func,
+                _operationResultFunc = func,
                 ErrorMsg = errorMsg,
                 SuccessMsg = successMsg
             };
         }
-        
+
         /// <summary>
         /// 
         /// </summary>

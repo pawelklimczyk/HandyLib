@@ -1,39 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<IsPackable>false</IsPackable>
+		<AssemblyVersion>1.99.0.0</AssemblyVersion>
+		<FileVersion>1.99.0.0</FileVersion>
+		<Version>1.99.0</Version>
+		<Product>Gmtl.HandyLib.Tests</Product>
+		<Copyright>Gmtl.HandyLib.Tests-Copyright</Copyright>
+		<Description>Gmtl.HandyLib.Tests-Description</Description>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+	<ItemGroup>
+		<None Remove="Resources\EmbeddedResourceTextFile.txt" />
+	</ItemGroup>
 
-    <IsPackable>false</IsPackable>
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\EmbeddedResourceTextFile.txt" />
+	</ItemGroup>
 
-    <AssemblyVersion>1.99.0.0</AssemblyVersion>
+	<ItemGroup>
+		<PackageReference Include="nunit" Version="3.13.3" />
+		<PackageReference Include="NUnit3TestAdapter" Version="4.4.2" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+	</ItemGroup>
 
-    <FileVersion>1.99.0.0</FileVersion>
-
-    <Version>1.99.0</Version>
-
-    <Product>Gmtl.HandyLib.Tests</Product>
-
-    <Copyright>Gmtl.HandyLib.Tests-Copyright</Copyright>
-
-    <Description>Gmtl.HandyLib.Tests-Description</Description>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Resources\EmbeddedResourceTextFile.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\EmbeddedResourceTextFile.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="nunit" Version="3.13.3" />
-    <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Gmtl.HandyLib\Gmtl.HandyLib.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Gmtl.HandyLib\Gmtl.HandyLib.csproj" />
+	</ItemGroup>
 
 </Project>

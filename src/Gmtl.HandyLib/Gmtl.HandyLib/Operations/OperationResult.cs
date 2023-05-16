@@ -5,7 +5,10 @@
 // -------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Gmtl.HandyLib.Operations
@@ -14,13 +17,18 @@ namespace Gmtl.HandyLib.Operations
     /// Generic class working as a wrapper
     /// </summary>
     /// <typeparam name="T">type</typeparam>
-    [DebuggerDisplay("{Result} {Status}")]
+    [DebuggerDisplay("{Value} {Status}")]
     public class OperationResult<T>
     {
         /// <summary>
+        /// Used as the default error key
+        /// </summary>
+        private const string _mainErrorKey = "MainError";
+
+        /// <summary>
         /// Result value
         /// </summary>
-        public T Result { get; set; }
+        public T Value { get; set; }
 
         /// <summary>
         /// Operation status
@@ -28,64 +36,106 @@ namespace Gmtl.HandyLib.Operations
         public OperationStatus Status { get; set; }
 
         /// <summary>
+        /// Indicates if operation was successful
+        /// </summary>
+        public bool IsSuccess
+        {
+            get { return Status == OperationStatus.Success; }
+        }
+
+        /// <summary>
         /// Extra info send with operation result (optional)
         /// </summary>
         public string Message { get; set; }
 
         /// <summary>
+        /// List of potential errors from the Operation
+        /// </summary>
+        public List<SubError> Errors { get; set; } = new List<SubError>();
+
+        /// <summary>
         /// return Object as a JSON string
         /// </summary>
         /// <returns></returns>
-        public string AsJson(string dataInParantheses = null)
+        public string AsJson()
         {
             StringBuilder builder = new StringBuilder();
 
-            builder.Append("{");
-            builder.Append("\"status\":\"" + (Status == OperationStatus.Success ? "true" : "false") + "\",");
-            builder.Append("\"message\":\"" + (Message != null ? Message.Replace("\"", "'") : "") + "\",");
+            builder.AppendLine("{");
+            builder.AppendLine("\"status\":\"" + (Status == OperationStatus.Success ? "true" : "false") + "\",");
+            builder.AppendLine("\"message\":\"" + (Message != null ? ReplaceDoubleQuote(Message) : "") + "\",");
 
-            if (dataInParantheses != null)
+            Type type = typeof(T);
+
+            if (type.IsPrimitive || type.IsEnum || type == typeof(decimal))
             {
-                builder.Append("\"data\":" + dataInParantheses);
+                builder.Append("\"data\":" + (Value != null ? Value.ToString() : ""));
+            }
+            else if (type == typeof(string))
+            {
+                builder.Append("\"data\":\"" + (Value != null ? ReplaceDoubleQuote(Value.ToString()) : "") + "\"");
             }
             else
             {
-
-                Type type = typeof(T);
-
-                if (type.IsPrimitive || type.IsEnum || type == typeof(decimal))
-                {
-                    builder.Append("\"data\":" + (Result != null ? Result.ToString() : ""));
-                }
-                else if (type == typeof(string))
-                {
-                    builder.Append("\"data\":\"" + (Result != null ? Result.ToString() : "") + "\"");
-                }
+                string objectAsJson = Value != null ? Value.ToString() : "";
+                if (objectAsJson.StartsWith("{")) //if object has { don't add it
+                    builder.Append("\"data\":" + objectAsJson);
                 else
-                {
-                    string objectAsJson = Result != null ? Result.ToString() : "";
-                    if (objectAsJson.StartsWith("{")) //if object has { don't add it
-                        builder.Append("\"data\":" + objectAsJson);
-                    else
-                        //assume we have complex object, so add {}
-                        builder.Append("\"data\":{" + objectAsJson + "}");
-                }
+                    //assume we have complex object, so add {}
+                    builder.Append("\"data\":{" + objectAsJson + "}");
             }
 
-            builder.Append("}");
+            if (Errors != null && Errors.Any())
+            {
+                builder.AppendLine(",");
+                builder.AppendLine("\"errors\": [");
+                builder.AppendLine(string.Join(",", Errors.Select(e => AddErrorToJsonResult(e))));
+                builder.AppendLine("]");
+            }
+            else
+            {
+                builder.AppendLine("");
+            }
+
+            builder.AppendLine("}");
+
+            return builder.ToString();
+        }
+
+        public class SubError
+        {
+            public string ErrorKey { get; set; }
+
+            public string ErrorMessage { get; set; }
+        }
+
+        private string AddErrorToJsonResult(SubError error)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine("{\"" + error.ErrorKey + "\":\"" + error.ErrorMessage + "\"}");
 
             return builder.ToString();
         }
 
         public static OperationResult<T> Error(T value = default, string message = "Default error status message")
         {
-            return new OperationResult<T>
+            var result = new OperationResult<T>
             {
-                Result = value,
+                Value = value,
                 Message = message,
                 Status = OperationStatus.Error
             };
+
+            result.AddError(_mainErrorKey, message);
+
+            return result;
         }
+
+        private void AddError(string errorKey, string message)
+        {
+            Errors.Add(new SubError { ErrorKey = errorKey, ErrorMessage = message });
+        }
+
         public static OperationResult<T> Error(string message)
         {
             return Error(default, message);
@@ -95,7 +145,7 @@ namespace Gmtl.HandyLib.Operations
         {
             return new OperationResult<T>
             {
-                Result = value,
+                Value = value,
                 Message = message,
                 Status = OperationStatus.Success
             };
@@ -119,6 +169,14 @@ namespace Gmtl.HandyLib.Operations
         public static implicit operator bool(OperationResult<T> operationResult)
         {
             return operationResult.Status == OperationStatus.Success;
+        }
+
+
+        private static string ReplaceDoubleQuote(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input)) return string.Empty;
+
+            return input.Replace("\"", "'");
         }
     }
 

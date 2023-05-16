@@ -6,7 +6,6 @@
     public enum OperationStatus
     {
         Success,
-        Warning,
         Error
     }
 }
