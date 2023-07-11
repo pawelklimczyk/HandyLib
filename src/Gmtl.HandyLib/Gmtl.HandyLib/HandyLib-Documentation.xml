@@ -465,11 +465,6 @@
             </summary>
             <typeparam name="T">type</typeparam>
         </member>
-        <member name="F:Gmtl.HandyLib.Operations.OperationResult`1._mainErrorKey">
-            <summary>
-            Used as the default error key
-            </summary>
-        </member>
         <member name="P:Gmtl.HandyLib.Operations.OperationResult`1.Value">
             <summary>
             Result value

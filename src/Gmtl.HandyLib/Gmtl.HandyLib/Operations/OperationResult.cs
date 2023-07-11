@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
 
 namespace Gmtl.HandyLib.Operations
@@ -20,11 +19,6 @@ namespace Gmtl.HandyLib.Operations
     [DebuggerDisplay("{Value} {Status}")]
     public class OperationResult<T>
     {
-        /// <summary>
-        /// Used as the default error key
-        /// </summary>
-        private const string _mainErrorKey = "MainError";
-
         /// <summary>
         /// Result value
         /// </summary>
@@ -57,6 +51,7 @@ namespace Gmtl.HandyLib.Operations
         /// return Object as a JSON string
         /// </summary>
         /// <returns></returns>
+        [Obsolete]
         public string AsJson()
         {
             StringBuilder builder = new StringBuilder();
@@ -117,7 +112,7 @@ namespace Gmtl.HandyLib.Operations
             return builder.ToString();
         }
 
-        public static OperationResult<T> Error(T value = default, string message = "Default error status message")
+        public static OperationResult<T> Error(T value = default, string message = "ERROR")
         {
             var result = new OperationResult<T>
             {
@@ -126,12 +121,10 @@ namespace Gmtl.HandyLib.Operations
                 Status = OperationStatus.Error
             };
 
-            result.AddError(_mainErrorKey, message);
-
             return result;
         }
 
-        private void AddError(string errorKey, string message)
+        public void AddError(string errorKey, string message)
         {
             Errors.Add(new SubError { ErrorKey = errorKey, ErrorMessage = message });
         }
@@ -141,7 +134,7 @@ namespace Gmtl.HandyLib.Operations
             return Error(default, message);
         }
 
-        public static OperationResult<T> Success(T value = default, string message = "Default Ok status message")
+        public static OperationResult<T> Success(T value = default, string message = "OK")
         {
             return new OperationResult<T>
             {
@@ -170,7 +163,6 @@ namespace Gmtl.HandyLib.Operations
         {
             return operationResult.Status == OperationStatus.Success;
         }
-
 
         private static string ReplaceDoubleQuote(string input)
         {
