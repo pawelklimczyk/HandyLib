@@ -112,7 +112,7 @@ namespace Gmtl.HandyLib.Operations
             return builder.ToString();
         }
 
-        public static OperationResult<T> Error(T value = default, string message = "ERROR")
+        public static OperationResult<T> Error(T value, string message = "ERROR")
         {
             var result = new OperationResult<T>
             {
@@ -123,10 +123,38 @@ namespace Gmtl.HandyLib.Operations
 
             return result;
         }
+        public static OperationResult<T> Error(T value, Dictionary<string, string> errors)
+        {
+            if (errors == null)
+                throw new ArgumentNullException("errors");
+            if (errors.Count == 0)
+                throw new ArgumentException("errors");
 
-        public void AddError(string errorKey, string message)
+            var result = new OperationResult<T>
+            {
+                Value = value,
+                Message = "ERROR",
+                Status = OperationStatus.Error
+            };
+
+            return result.AddErrors(errors);
+        }
+
+        public OperationResult<T> AddError(string errorKey, string message)
         {
             Errors.Add(new SubError { ErrorKey = errorKey, ErrorMessage = message });
+
+            return this;
+        }
+
+        public OperationResult<T> AddErrors(Dictionary<string, string> errors)
+        {
+            foreach (var error in errors)
+            {
+                Errors.Add(new SubError { ErrorKey = error.Key, ErrorMessage = error.Value });
+            }
+
+            return this;
         }
 
         public static OperationResult<T> Error(string message)
