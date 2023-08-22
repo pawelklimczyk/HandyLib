@@ -1,6 +1,7 @@
 ﻿using Gmtl.HandyLib.Operations;
 using NUnit.Framework;
 using System;
+using System.Linq;
 using System.Text.Json;
 
 namespace Gmtl.HandyLib.Tests.Operations
@@ -86,6 +87,19 @@ namespace Gmtl.HandyLib.Tests.Operations
             OperationResult<string> result = OperationResult<string>.FromBool(false);
 
             Assert.IsTrue(result.Status == OperationStatus.Error);
+        }
+
+        [Test]
+        public void OperationResultShouldCopyErrorsFromPreviousOperationResult()
+        {
+            OperationResult<string> result1 = OperationResult<string>.FromBool(false);
+            result1.AddError("Error1", "message1");
+            result1.AddError("Error2", "message2");
+
+            OperationResult<int> result2 = OperationResult<int>.Error(0, result1);
+            Assert.IsTrue(result2.Errors.Any(e => e.ErrorKey == "Error1" && e.ErrorMessage == "message1"));
+            Assert.IsTrue(result2.Errors.Any(e => e.ErrorKey == "Error2" && e.ErrorMessage == "message2"));
+            Assert.IsTrue(result2.Errors.Count == 2);
         }
 
         private JsonDocument EnsureValidJson(string result)

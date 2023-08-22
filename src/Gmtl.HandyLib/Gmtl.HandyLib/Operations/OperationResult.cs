@@ -112,7 +112,7 @@ namespace Gmtl.HandyLib.Operations
             return builder.ToString();
         }
 
-        public static OperationResult<T> Error(T value, string message = "ERROR")
+        public static OperationResult<T> Error(T value, string message = "ERROR OCCURED")
         {
             var result = new OperationResult<T>
             {
@@ -123,6 +123,27 @@ namespace Gmtl.HandyLib.Operations
 
             return result;
         }
+
+        public static OperationResult<T> Error<T2>(T value, OperationResult<T2> parentResult)
+        {
+            if (parentResult == null)
+                throw new ArgumentNullException("parentResult");
+
+            var result = new OperationResult<T>
+            {
+                Value = value,
+                Message = "ERROR",
+                Status = OperationStatus.Error
+            };
+            
+            foreach(var parentError in parentResult.Errors)
+            {
+                result.Errors.Add(new SubError { ErrorKey = parentError.ErrorKey, ErrorMessage = parentError.ErrorMessage });
+            }
+
+            return result;
+        }
+
         public static OperationResult<T> Error(T value, Dictionary<string, string> errors)
         {
             if (errors == null)
