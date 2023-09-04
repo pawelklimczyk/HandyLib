@@ -123,12 +123,5 @@
 
 	<PropertyGroup>
 		<DocumentationFile>HandyLib-Documentation.xml</DocumentationFile>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
-			<_Parameter1>Gmtl.HandyLib.Tests</_Parameter1>
-		</AssemblyAttribute>
-	</ItemGroup>
-	
+	</PropertyGroup>	
 </Project>
