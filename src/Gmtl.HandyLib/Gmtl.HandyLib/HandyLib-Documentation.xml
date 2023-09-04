@@ -153,6 +153,13 @@
             Return XML serialized string of Exception provided in parameter
             </summary>
         </member>
+        <member name="M:Gmtl.HandyLib.HLHash.ComputeHash(System.String)">
+            <summary>
+            Computes has for given input
+            The computed hash is different each time because the salt is generated dynamically
+            </summary>
+            <param name="input">input to hash</param>
+        </member>
         <member name="T:Gmtl.HandyLib.HLListPage`1">
             <summary>
             Provides base class for 'pagination'

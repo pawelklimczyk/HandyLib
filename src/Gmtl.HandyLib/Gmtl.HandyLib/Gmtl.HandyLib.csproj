@@ -123,5 +123,5 @@
 
 	<PropertyGroup>
 		<DocumentationFile>HandyLib-Documentation.xml</DocumentationFile>
-	</PropertyGroup>
+	</PropertyGroup>	
 </Project>
