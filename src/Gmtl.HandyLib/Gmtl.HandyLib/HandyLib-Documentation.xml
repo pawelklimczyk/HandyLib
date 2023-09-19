@@ -17,7 +17,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Gmtl.HandyLib.Cache.Cache`2.FindBy``1(System.Func{`1,System.Boolean},System.Func{`1,``0},Gmtl.HandyLib.OrderDirection,System.Int32,System.Int32)">
+        <member name="M:Gmtl.HandyLib.Cache.Cache`2.FindBy``1(System.Func{`1,System.Boolean},System.Func{`1,``0},Gmtl.HandyLib.Models.OrderDirection,System.Int32,System.Int32)">
             <summary>
             Return a page of data in cache
             </summary>
@@ -176,17 +176,6 @@
             <summary>
             Actual number of items on current page
             </summary>
-        </member>
-        <member name="T:Gmtl.HandyLib.IHLMailNotifier">
-            <summary>
-            HLMailNotifier interface
-            </summary>
-        </member>
-        <member name="M:Gmtl.HandyLib.IHLMailNotifier.TestConfiguration">
-            <summary>
-            Will try to send message to itself
-            </summary>
-            <returns></returns>
         </member>
         <member name="T:Gmtl.HandyLib.HLPredicateBuilder">
              <summary>
@@ -393,6 +382,11 @@
             <param name="tokens">external tokens</param>
             <returns></returns>
         </member>
+        <member name="T:Gmtl.HandyLib.Models.UserMessage">
+            <summary>
+            Provides a container for standard UI user messages
+            </summary>
+        </member>
         <member name="T:Gmtl.HandyLib.Operations.Operation`1">
             <summary>
             Class for managing multiple operations and their statuses
@@ -506,11 +500,6 @@
         <member name="T:Gmtl.HandyLib.Operations.OperationStatus">
             <summary>
             Status of executed operation
-            </summary>
-        </member>
-        <member name="T:Gmtl.HandyLib.UserMessage">
-            <summary>
-            Provides a container for standard UI user messages
             </summary>
         </member>
         <member name="M:Gmtl.HandyLib.Validators.HLPhoneValidator.IsValidPhoneNumber(System.String)">

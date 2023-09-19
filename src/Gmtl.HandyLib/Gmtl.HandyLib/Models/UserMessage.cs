@@ -4,8 +4,7 @@
 // </copyright>
 // -------------------------------------------------------------------------------------------------------------------
 
-
-namespace Gmtl.HandyLib
+namespace Gmtl.HandyLib.Models
 {
     /// <summary>
     /// Provides a container for standard UI user messages
@@ -19,6 +18,11 @@ namespace Gmtl.HandyLib
         public static UserMessage CreateInfo(string message = "", string title = "")
         {
             return Create(title, message, UserMessageType.Info);
+        }
+
+        public static UserMessage CreateSuccess(string message = "", string title = "")
+        {
+            return Create(title, message, UserMessageType.Success);
         }
 
         public static UserMessage CreateWarning(string message = "", string title = "")
@@ -45,8 +49,10 @@ namespace Gmtl.HandyLib
 
     public enum UserMessageType
     {
-        Info,
-        Warning,
-        Error
+        NotSet = 0,
+        Info = 10,
+        Warning = 20,
+        Success = 30,
+        Error = 100
     }
 }

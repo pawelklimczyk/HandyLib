@@ -1,4 +1,4 @@
-﻿namespace Gmtl.HandyLib
+﻿namespace Gmtl.HandyLib.Models
 {
     public enum OrderDirection
     {

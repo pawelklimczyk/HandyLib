@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Gmtl.HandyLib.Models;
 
 namespace Gmtl.HandyLib.Cache
 {
