@@ -102,6 +102,14 @@ namespace Gmtl.HandyLib.Tests.Operations
             Assert.IsTrue(result2.Errors.Count == 2);
         }
 
+        [Test]
+        public void BooleanOperationResultsShouldBeSuccess()
+        {
+            OperationResult result = OperationResult.Success();
+
+            Assert.IsTrue(result.Status == OperationStatus.Success);
+        }
+
         private JsonDocument EnsureValidJson(string result)
         {
             try

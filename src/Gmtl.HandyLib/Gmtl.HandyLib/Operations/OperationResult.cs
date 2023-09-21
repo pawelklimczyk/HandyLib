@@ -17,35 +17,12 @@ namespace Gmtl.HandyLib.Operations
     /// </summary>
     /// <typeparam name="T">type</typeparam>
     [DebuggerDisplay("{Value} {Status}")]
-    public class OperationResult<T>
+    public class OperationResult<T> : OperationResult
     {
         /// <summary>
         /// Result value
         /// </summary>
         public T Value { get; set; }
-
-        /// <summary>
-        /// Operation status
-        /// </summary>
-        public OperationStatus Status { get; set; }
-
-        /// <summary>
-        /// Indicates if operation was successful
-        /// </summary>
-        public bool IsSuccess
-        {
-            get { return Status == OperationStatus.Success; }
-        }
-
-        /// <summary>
-        /// Extra info send with operation result (optional)
-        /// </summary>
-        public string Message { get; set; }
-
-        /// <summary>
-        /// List of potential errors from the Operation
-        /// </summary>
-        public List<SubError> Errors { get; set; } = new List<SubError>();
 
         /// <summary>
         /// return Object as a JSON string
@@ -97,13 +74,6 @@ namespace Gmtl.HandyLib.Operations
             return builder.ToString();
         }
 
-        public class SubError
-        {
-            public string ErrorKey { get; set; }
-
-            public string ErrorMessage { get; set; }
-        }
-
         private string AddErrorToJsonResult(SubError error)
         {
             StringBuilder builder = new StringBuilder();
@@ -135,8 +105,8 @@ namespace Gmtl.HandyLib.Operations
                 Message = "ERROR",
                 Status = OperationStatus.Error
             };
-            
-            foreach(var parentError in parentResult.Errors)
+
+            foreach (var parentError in parentResult.Errors)
             {
                 result.Errors.Add(new SubError { ErrorKey = parentError.ErrorKey, ErrorMessage = parentError.ErrorMessage });
             }
@@ -158,24 +128,9 @@ namespace Gmtl.HandyLib.Operations
                 Status = OperationStatus.Error
             };
 
-            return result.AddErrors(errors);
-        }
+            result.AddErrors(errors);
 
-        public OperationResult<T> AddError(string errorKey, string message)
-        {
-            Errors.Add(new SubError { ErrorKey = errorKey, ErrorMessage = message });
-
-            return this;
-        }
-
-        public OperationResult<T> AddErrors(Dictionary<string, string> errors)
-        {
-            foreach (var error in errors)
-            {
-                Errors.Add(new SubError { ErrorKey = error.Key, ErrorMessage = error.Value });
-            }
-
-            return this;
+            return result;
         }
 
         public static OperationResult<T> Error(string message)
@@ -221,5 +176,73 @@ namespace Gmtl.HandyLib.Operations
         }
     }
 
-    public class OperationResult : OperationResult<bool> { }
+    /// <summary>
+    /// Boolean OperationResult
+    /// </summary>
+    public class OperationResult
+    {
+        /// <summary>
+        /// Operation status
+        /// </summary>
+        public OperationStatus Status { get; set; }
+
+        /// <summary>
+        /// Indicates if operation was successful
+        /// </summary>
+        public bool IsSuccess
+        {
+            get { return Status == OperationStatus.Success; }
+        }
+
+        /// <summary>
+        /// Extra info send with operation result (optional)
+        /// </summary>
+        public string Message { get; set; }
+
+        /// <summary>
+        /// List of potential errors from the Operation
+        /// </summary>
+        public List<SubError> Errors { get; set; } = new List<SubError>();
+
+        public OperationResult AddError(string errorKey, string message)
+        {
+            Errors.Add(new SubError { ErrorKey = errorKey, ErrorMessage = message });
+
+            return this;
+        }
+
+        public OperationResult AddErrors(Dictionary<string, string> errors)
+        {
+            foreach (var error in errors)
+            {
+                Errors.Add(new SubError { ErrorKey = error.Key, ErrorMessage = error.Value });
+            }
+
+            return this;
+        }
+        public class SubError
+        {
+            public string ErrorKey { get; set; }
+
+            public string ErrorMessage { get; set; }
+        }
+
+        public static OperationResult Error(string message = "ERROR")
+        {
+            return new OperationResult
+            {
+                Message = message,
+                Status = OperationStatus.Error
+            };
+        }
+
+        public static OperationResult Success(string message = "OK")
+        {
+            return new OperationResult
+            {
+                Message = message,
+                Status = OperationStatus.Success
+            };
+        }
+    }
 }

@@ -471,31 +471,36 @@
             Result value
             </summary>
         </member>
-        <member name="P:Gmtl.HandyLib.Operations.OperationResult`1.Status">
-            <summary>
-            Operation status
-            </summary>
-        </member>
-        <member name="P:Gmtl.HandyLib.Operations.OperationResult`1.IsSuccess">
-            <summary>
-            Indicates if operation was successful
-            </summary>
-        </member>
-        <member name="P:Gmtl.HandyLib.Operations.OperationResult`1.Message">
-            <summary>
-            Extra info send with operation result (optional)
-            </summary>
-        </member>
-        <member name="P:Gmtl.HandyLib.Operations.OperationResult`1.Errors">
-            <summary>
-            List of potential errors from the Operation
-            </summary>
-        </member>
         <member name="M:Gmtl.HandyLib.Operations.OperationResult`1.AsJson">
             <summary>
             return Object as a JSON string
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Gmtl.HandyLib.Operations.OperationResult">
+            <summary>
+            Boolean OperationResult
+            </summary>
+        </member>
+        <member name="P:Gmtl.HandyLib.Operations.OperationResult.Status">
+            <summary>
+            Operation status
+            </summary>
+        </member>
+        <member name="P:Gmtl.HandyLib.Operations.OperationResult.IsSuccess">
+            <summary>
+            Indicates if operation was successful
+            </summary>
+        </member>
+        <member name="P:Gmtl.HandyLib.Operations.OperationResult.Message">
+            <summary>
+            Extra info send with operation result (optional)
+            </summary>
+        </member>
+        <member name="P:Gmtl.HandyLib.Operations.OperationResult.Errors">
+            <summary>
+            List of potential errors from the Operation
+            </summary>
         </member>
         <member name="T:Gmtl.HandyLib.Operations.OperationStatus">
             <summary>
