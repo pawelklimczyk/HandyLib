@@ -204,5 +204,42 @@ namespace Gmtl.HandyLib.Tests
             Assert.That(result, Is.EqualTo(expectedOutput));
         }
 
+
+        [TestCase("paweł", "paweł")]
+        [TestCase(" Adam-Smith-", " Adam Smith ")]
+        [TestCase(" Adam-%%6Smith-", " Adam Smith ")]
+        public void HLString_providedString_shouldReplaceNonAlphabeticCharactersWithSpace(string inputString, string expectedOutput)
+        {
+            //Act
+            string result = HLString.ReplaceNonAlphabetic(inputString);
+
+            //Assert
+            Assert.That(result, Is.EqualTo(expectedOutput));
+        }
+
+        [TestCase("paweł", "paweł")]
+        [TestCase(" Adam-Smith-", "*Adam*Smith*")]
+        [TestCase(" Adam-%%6Smith-", "*Adam*Smith*")]
+        public void HLString_providedString_shouldReplaceNonAlphabeticCharactersWithAsterics(string inputString, string expectedOutput)
+        {
+            //Act
+            string result = HLString.ReplaceNonAlphabetic(inputString, "*");
+
+            //Assert
+            Assert.That(result, Is.EqualTo(expectedOutput));
+        }
+
+        [TestCase("paweł", "paweł")]
+        [TestCase(" Adam-Smith-", "*Adam*Smith*")]
+        [TestCase(" Adam-%%6Smith-", "*Adam****Smith*")]
+        [TestCase("## Adam-%%6Smith-  ", "***Adam****Smith***")]
+        public void HLString_providedString_shouldReplaceNonAlphabeticCharactersWithMultipleAsterics(string inputString, string expectedOutput)
+        {
+            //Act
+            string result = HLString.ReplaceNonAlphabetic(inputString, "*", false);
+
+            //Assert
+            Assert.That(result, Is.EqualTo(expectedOutput));
+        }
     }
 }

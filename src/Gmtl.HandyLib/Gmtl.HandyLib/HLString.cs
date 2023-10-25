@@ -209,16 +209,16 @@ namespace Gmtl.HandyLib
         /// <summary>
         /// Replaces multiple characters with single
         /// </summary>
-        public static string ReplaceMulti(this string name, string patternToReplace = " ")
+        public static string ReplaceMulti(this string input, string patternToReplace = " ")
         {
             if (string.IsNullOrEmpty(patternToReplace))
             {
-                return name;
+                return input;
             }
 
-            name = name.Trim();
+            input = input.Trim();
 
-            if (string.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(input))
             {
                 return string.Empty;
             }
@@ -231,11 +231,39 @@ namespace Gmtl.HandyLib
                 }
             }
 
-            name = _replaceMultipleRegexCache[patternToReplace].Replace(name, patternToReplace);
+            input = _replaceMultipleRegexCache[patternToReplace].Replace(input, patternToReplace);
 
-            return name;
+            return input;
         }
 
+        /// <summary>
+        /// In provided string replaces non-alphabetic chars with provided pattern. 'Space' is the default pattern.
+        /// </summary>
+        public static string ReplaceNonAlphabetic(this string input, string replaceValue = " ", bool replaceMultipleWithOne = true)
+        {
+            StringBuilder result = new StringBuilder(input.Length);
+            bool wasSpace = false;
+
+            foreach (char c in input)
+            {
+                if (char.IsLetter(c))
+                {
+                    result.Append(c);
+                    wasSpace = false;
+                }
+                else
+                {
+                    if (!wasSpace || (wasSpace && !replaceMultipleWithOne))
+                    {
+                        result.Append(replaceValue);
+                    }
+
+                    wasSpace = true;
+                }
+            }
+
+            return result.ToString();
+        }
 
         /// <summary>
         /// Creates http url friendly text from input
