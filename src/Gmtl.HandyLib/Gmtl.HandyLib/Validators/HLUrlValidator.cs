@@ -17,8 +17,7 @@ namespace Gmtl.HandyLib.Validators
             if (string.IsNullOrWhiteSpace(url))
                 return false;
 
-            Uri outUri;
-            return Uri.TryCreate(url, UriKind.Absolute, out outUri)
+            return Uri.TryCreate(url, UriKind.Absolute, out var outUri)
                    && (outUri.Scheme == Uri.UriSchemeHttp || outUri.Scheme == Uri.UriSchemeHttps);
         }
     }
