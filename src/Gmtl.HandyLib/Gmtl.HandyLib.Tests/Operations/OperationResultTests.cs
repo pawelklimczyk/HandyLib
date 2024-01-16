@@ -97,8 +97,8 @@ namespace Gmtl.HandyLib.Tests.Operations
             result1.AddError("Error2", "message2");
 
             OperationResult<int> result2 = OperationResult<int>.Error(0, result1);
-            Assert.IsTrue(result2.Errors.Any(e => e.ErrorKey == "Error1" && e.ErrorMessage == "message1"));
-            Assert.IsTrue(result2.Errors.Any(e => e.ErrorKey == "Error2" && e.ErrorMessage == "message2"));
+            Assert.IsTrue(result2.Errors.Any(e => e.Key == "Error1" && e.Value == "message1"));
+            Assert.IsTrue(result2.Errors.Any(e => e.Key == "Error2" && e.Value == "message2"));
             Assert.IsTrue(result2.Errors.Count == 2);
         }
 

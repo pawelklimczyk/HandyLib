@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -61,7 +62,12 @@ namespace Gmtl.HandyLib.Operations
             {
                 builder.AppendLine(",");
                 builder.AppendLine("\"errors\": [");
-                builder.AppendLine(string.Join(",", Errors.Select(e => AddErrorToJsonResult(e))));
+                builder.AppendLine(string.Join(",", Errors.Select(e =>
+                {
+                    StringBuilder b = new StringBuilder();
+                    b.AppendLine("{\"" + e.Key + "\":\"" + e.Value + "\"}");
+                    return b.ToString();
+                })));
                 builder.AppendLine("]");
             }
             else
@@ -70,14 +76,6 @@ namespace Gmtl.HandyLib.Operations
             }
 
             builder.AppendLine("}");
-
-            return builder.ToString();
-        }
-
-        private string AddErrorToJsonResult(SubError error)
-        {
-            StringBuilder builder = new StringBuilder();
-            builder.AppendLine("{\"" + error.ErrorKey + "\":\"" + error.ErrorMessage + "\"}");
 
             return builder.ToString();
         }
@@ -108,7 +106,7 @@ namespace Gmtl.HandyLib.Operations
 
             foreach (var parentError in parentResult.Errors)
             {
-                result.Errors.Add(new SubError { ErrorKey = parentError.ErrorKey, ErrorMessage = parentError.ErrorMessage });
+                result.AddError(parentError.Key, parentError.Value);
             }
 
             return result;
@@ -202,11 +200,24 @@ namespace Gmtl.HandyLib.Operations
         /// <summary>
         /// List of potential errors from the Operation
         /// </summary>
-        public List<SubError> Errors { get; set; } = new List<SubError>();
+        public ReadOnlyDictionary<string, string> Errors => new ReadOnlyDictionary<string, string>(_errors);
+
+        private Dictionary<string, string> _errors = new Dictionary<string, string>();
+        private static object _locker = new object();
 
         public OperationResult AddError(string errorKey, string message)
         {
-            Errors.Add(new SubError { ErrorKey = errorKey, ErrorMessage = message });
+            lock (_locker)
+            {
+                if (_errors.ContainsKey(errorKey))
+                {
+                    _errors[errorKey] += " " + message;
+                }
+                else
+                {
+                    _errors.Add(errorKey, message);
+                }
+            }
 
             return this;
         }
@@ -215,16 +226,10 @@ namespace Gmtl.HandyLib.Operations
         {
             foreach (var error in errors)
             {
-                Errors.Add(new SubError { ErrorKey = error.Key, ErrorMessage = error.Value });
+                AddError(error.Key, error.Value);
             }
 
             return this;
-        }
-        public class SubError
-        {
-            public string ErrorKey { get; set; }
-
-            public string ErrorMessage { get; set; }
         }
 
         public static OperationResult Error(string message = "ERROR")

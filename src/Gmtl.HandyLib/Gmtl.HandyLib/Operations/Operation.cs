@@ -90,7 +90,7 @@ namespace Gmtl.HandyLib.Operations
             return new Operation<TResult>()
             {
                 _result = result,
-                ErrorMsg = result.Status == OperationStatus.Error ? string.Join(", ", result.Errors.Select(x => x.ErrorKey + ": " + x.ErrorMessage    )) : null,
+                ErrorMsg = result.Status == OperationStatus.Error ? string.Join(", ", result.Errors.Select(x => x.Key + ": " + x.Value    )) : null,
                 SuccessMsg = result.Status == OperationStatus.Success ? result.Message : null
             };
         }
