@@ -151,11 +151,6 @@ namespace Gmtl.HandyLib.Operations
             return Success(default, message);
         }
 
-        public static OperationResult<T> FromBool(bool isSuccess, string successMessage = "", string errorMessage = "")
-        {
-            return isSuccess ? Success(default, successMessage) : Error(default, errorMessage);
-        }
-
         public static OperationResult<T> FromBool(bool isSuccess, T value, string successMessage = "", string errorMessage = "")
         {
             return isSuccess ? Success(value, successMessage) : Error(value, errorMessage);
@@ -232,6 +227,11 @@ namespace Gmtl.HandyLib.Operations
             return this;
         }
 
+        public static OperationResult FromBool(bool isSuccess, string successMessage = "", string errorMessage = "")
+        {
+            return isSuccess ? Success(successMessage) : Error(errorMessage);
+        }
+
         public static OperationResult Error(string message = "ERROR")
         {
             return new OperationResult
@@ -241,6 +241,43 @@ namespace Gmtl.HandyLib.Operations
             };
         }
 
+        public static OperationResult Error(OperationResult parentResult)
+        {
+            if (parentResult == null)
+                throw new ArgumentNullException("parentResult");
+
+            var result = new OperationResult
+            {
+                Message = "ERROR",
+                Status = OperationStatus.Error
+            };
+
+            foreach (var parentError in parentResult.Errors)
+            {
+                result.AddError(parentError.Key, parentError.Value);
+            }
+
+            return result;
+        }
+
+        public static OperationResult Error(Dictionary<string, string> errors)
+        {
+            if (errors == null)
+                throw new ArgumentNullException("errors");
+            if (errors.Count == 0)
+                throw new ArgumentException("errors");
+
+            var result = new OperationResult
+            {
+                Message = "ERROR",
+                Status = OperationStatus.Error
+            };
+
+            result.AddErrors(errors);
+
+            return result;
+        }
+
         public static OperationResult Success(string message = "OK")
         {
             return new OperationResult
@@ -248,6 +285,11 @@ namespace Gmtl.HandyLib.Operations
                 Message = message,
                 Status = OperationStatus.Success
             };
+        }
+
+        public static implicit operator bool(OperationResult operationResult)
+        {
+            return operationResult.Status == OperationStatus.Success;
         }
     }
 }

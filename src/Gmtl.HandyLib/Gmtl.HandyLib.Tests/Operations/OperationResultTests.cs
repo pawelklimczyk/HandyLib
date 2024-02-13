@@ -41,7 +41,6 @@ namespace Gmtl.HandyLib.Tests.Operations
         {
             string result = OperationResult<int>.Error(123, "test message").AsJson();
 
-
             var jsonDocument = EnsureValidJson(result);
             Assert.That(result, Contains.Substring("false"));
             Assert.That(result, Contains.Substring("test message"));
@@ -76,7 +75,7 @@ namespace Gmtl.HandyLib.Tests.Operations
         [Test]
         public void FromBoolTrueShouldCreateSuccessOperationResult()
         {
-            OperationResult<string> result = OperationResult<string>.FromBool(true);
+            OperationResult result = OperationResult.FromBool(true);
 
             Assert.IsTrue(result.Status == OperationStatus.Success);
         }
@@ -84,19 +83,31 @@ namespace Gmtl.HandyLib.Tests.Operations
         [Test]
         public void FromBoolFalseShouldCreateErrorOperationResult()
         {
-            OperationResult<string> result = OperationResult<string>.FromBool(false);
+            OperationResult result = OperationResult.FromBool(false);
 
             Assert.IsTrue(result.Status == OperationStatus.Error);
         }
 
         [Test]
+        public void OperationResultShouldBeCastedToBool()
+        {
+            OperationResult result1 = OperationResult.FromBool(false);
+
+            Assert.IsTrue(result1 == false);
+
+            OperationResult result2 = OperationResult.FromBool(true);
+
+            Assert.IsTrue(result2 == true);
+        }
+
+        [Test]
         public void OperationResultShouldCopyErrorsFromPreviousOperationResult()
         {
-            OperationResult<string> result1 = OperationResult<string>.FromBool(false);
+            OperationResult result1 = OperationResult.FromBool(false);
             result1.AddError("Error1", "message1");
             result1.AddError("Error2", "message2");
 
-            OperationResult<int> result2 = OperationResult<int>.Error(0, result1);
+            OperationResult result2 = OperationResult.Error( result1);
             Assert.IsTrue(result2.Errors.Any(e => e.Key == "Error1" && e.Value == "message1"));
             Assert.IsTrue(result2.Errors.Any(e => e.Key == "Error2" && e.Value == "message2"));
             Assert.IsTrue(result2.Errors.Count == 2);
