@@ -70,16 +70,23 @@ namespace Gmtl.HandyLib.Operations
         /// <summary>
         /// Executed all operation in sequece
         /// </summary>
-        public static OperationResult<TResult> ExecuteAll(params Operation<TResult>[] operations)
+        public static OperationResult ExecuteAll(params Operation<TResult>[] operations)
         {
             foreach (var op in operations)
             {
-                var r = op.Execute();
-                if (r.Status == OperationStatus.Error)
-                    return r;
+                try
+                {
+                    var r = op.Execute();
+                    if (r.Status == OperationStatus.Error)
+                        return r;
+                }
+                catch (Exception exc)
+                {
+                    return OperationResult.Error(exc.Message);
+                }
             }
 
-            return OperationResult<TResult>.Success(value: default(TResult), "All operations were successful");
+            return OperationResult.Success("All operations were successful");
         }
 
         /// <summary>
@@ -90,7 +97,7 @@ namespace Gmtl.HandyLib.Operations
             return new Operation<TResult>()
             {
                 _result = result,
-                ErrorMsg = result.Status == OperationStatus.Error ? string.Join(", ", result.Errors.Select(x => x.Key + ": " + x.Value    )) : null,
+                ErrorMsg = result.Status == OperationStatus.Error ? string.Join(", ", result.Errors.Select(x => x.Key + ": " + x.Value)) : null,
                 SuccessMsg = result.Status == OperationStatus.Success ? result.Message : null
             };
         }
