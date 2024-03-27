@@ -407,9 +407,10 @@
             Message if Func return true
             </summary>
         </member>
-        <member name="M:Gmtl.HandyLib.Operations.Operation`1.ExecuteAll(Gmtl.HandyLib.Operations.Operation{`0}[])">
+        <member name="M:Gmtl.HandyLib.Operations.Operation`1.ExecuteAll(System.Boolean,Gmtl.HandyLib.Operations.Operation{`0}[])">
             <summary>
             Executed all operation in sequece
+            exitOnError - exit on first error
             </summary>
         </member>
         <member name="M:Gmtl.HandyLib.Operations.Operation`1.Create(Gmtl.HandyLib.Operations.OperationResult{`0})">

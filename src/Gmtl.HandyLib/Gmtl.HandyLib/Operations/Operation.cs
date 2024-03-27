@@ -69,24 +69,36 @@ namespace Gmtl.HandyLib.Operations
 
         /// <summary>
         /// Executed all operation in sequece
+        /// exitOnError - exit on first error
         /// </summary>
-        public static OperationResult ExecuteAll(params Operation<TResult>[] operations)
+        public static OperationResult<TResult>[] ExecuteAll(bool exitOnError, params Operation<TResult>[] operations)
         {
+            List<OperationResult<TResult>> results = new List<OperationResult<TResult>>();
+
             foreach (var op in operations)
             {
                 try
                 {
                     var r = op.Execute();
-                    if (r.Status == OperationStatus.Error)
-                        return r;
+                    results.Add(r);
+
+                    if (r.Status == OperationStatus.Error && exitOnError)
+                    {
+                        return results.ToArray();
+                    }
                 }
                 catch (Exception exc)
                 {
-                    return OperationResult.Error(exc.Message);
+                    results.Add(OperationResult<TResult>.Error(exc.Message));
+
+                    if (exitOnError)
+                    {
+                        return results.ToArray();
+                    }
                 }
             }
 
-            return OperationResult.Success("All operations were successful");
+            return results.ToArray();
         }
 
         /// <summary>

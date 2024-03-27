@@ -33,7 +33,7 @@ namespace Gmtl.HandyLib.Tests.Operations
         }
 
         [Test]
-        public void TestIfError()
+        public void TestIfErrorWhenExceptionThrown()
         {
             int a = 0;
             var assertObject = new AsserObject();
