@@ -123,6 +123,13 @@
             <param name="dateTime">DateTime struct to be converted</param>
             <returns>unix timestamp representation for the provided DateTime</returns>
         </member>
+        <member name="M:Gmtl.HandyLib.HLDateTime.ToEndOfDay(System.DateTime)">
+            <summary>
+            Return -date- 23:59:59.999
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
         <member name="M:Gmtl.HandyLib.HLDateTime.TimeAgo(System.DateTime)">
             <summary>
             Return user-friendly date description

@@ -57,6 +57,16 @@ namespace Gmtl.HandyLib
         {
             return (long)(dateTime - unixStart).TotalSeconds;
         }
+        
+        /// <summary>
+        /// Return -date- 23:59:59.999
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+        public static DateTime ToEndOfDay(this DateTime dateTime)
+        {
+            return dateTime.Date.AddDays(1).AddMilliseconds(-1);
+        }
 
         //TODO create setup method to support different languages
         private static string _lessThanHourAgo = "nie całą godzinę temu";

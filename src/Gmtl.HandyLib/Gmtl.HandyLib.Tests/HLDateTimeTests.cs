@@ -36,6 +36,17 @@ namespace Gmtl.HandyLib.Tests
             Assert.AreEqual(actualTimestamp, expectedTimestamp);
         }
 
+        [TestCase("2016-02-02 12:00:01")]
+        [TestCase("2000-01-01 00:00:00")]
+        public void HLDateTime_DateShouldBeEndOfDay(string date)
+        {
+            DateTime dateExpected = DateTime.ParseExact(date, "yyyy-MM-dd HH:mm:ss", CultureInfo.CurrentCulture).Date.AddDays(1).AddMilliseconds(-1);
+
+            var actualTimestamp = DateTime.ParseExact(date, "yyyy-MM-dd HH:mm:ss", CultureInfo.CurrentCulture).ToEndOfDay();
+
+            Assert.AreEqual(dateExpected, actualTimestamp);
+        }
+
         public void HLDateTime_DateShouldBeConvertedToUnixTimestampAndBack()
         {
             DateTime startDate = DateTime.Now;
