@@ -36,13 +36,24 @@ namespace Gmtl.HandyLib.Tests
             Assert.AreEqual(actualTimestamp, expectedTimestamp);
         }
 
-        [TestCase("2016-02-02 12:00:01")]
-        [TestCase("2000-01-01 00:00:00")]
-        public void HLDateTime_DateShouldBeEndOfDay(string date)
+        [TestCase("2016-02-02 12:00:01", "2016-02-02 23:59:59.999")]
+        [TestCase("2000-01-01 19:00:30", "2000-01-01 23:59:59.999")]
+        public void HLDateTime_DateShouldBeEndOfDay(string date, string expectedDate)
         {
-            DateTime dateExpected = DateTime.ParseExact(date, "yyyy-MM-dd HH:mm:ss", CultureInfo.CurrentCulture).Date.AddDays(1).AddMilliseconds(-1);
+            DateTime dateExpected = DateTime.ParseExact(expectedDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.CurrentCulture);
 
             var actualTimestamp = DateTime.ParseExact(date, "yyyy-MM-dd HH:mm:ss", CultureInfo.CurrentCulture).ToEndOfDay();
+
+            Assert.AreEqual(dateExpected, actualTimestamp);
+        }
+
+        [TestCase("2016-02-02 12:00:01", "2016-02-02 00:00:00")]
+        [TestCase("2000-01-01 19:00:30", "2000-01-01 00:00:00")]
+        public void HLDateTime_DateShouldBeStartOfDay(string date, string expectedDate)
+        {
+            DateTime dateExpected = DateTime.ParseExact(expectedDate, "yyyy-MM-dd HH:mm:ss", CultureInfo.CurrentCulture);
+
+            var actualTimestamp = DateTime.ParseExact(date, "yyyy-MM-dd HH:mm:ss", CultureInfo.CurrentCulture).ToStartOfDay();
 
             Assert.AreEqual(dateExpected, actualTimestamp);
         }

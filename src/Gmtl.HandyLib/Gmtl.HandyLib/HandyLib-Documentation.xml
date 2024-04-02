@@ -130,6 +130,13 @@
             <param name="dateTime"></param>
             <returns></returns>
         </member>
+        <member name="M:Gmtl.HandyLib.HLDateTime.ToStartOfDay(System.DateTime)">
+            <summary>
+            Return -date- 00:00:00.000
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
         <member name="M:Gmtl.HandyLib.HLDateTime.TimeAgo(System.DateTime)">
             <summary>
             Return user-friendly date description

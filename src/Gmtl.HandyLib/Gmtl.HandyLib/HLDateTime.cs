@@ -67,6 +67,15 @@ namespace Gmtl.HandyLib
         {
             return dateTime.Date.AddDays(1).AddMilliseconds(-1);
         }
+        /// <summary>
+        /// Return -date- 00:00:00.000
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+        public static DateTime ToStartOfDay(this DateTime dateTime)
+        {
+            return dateTime.Date;
+        }
 
         //TODO create setup method to support different languages
         private static string _lessThanHourAgo = "nie całą godzinę temu";
