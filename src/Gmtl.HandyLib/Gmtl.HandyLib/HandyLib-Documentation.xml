@@ -380,6 +380,13 @@
             In provided string replaces non-alphabetic chars with provided pattern. 'Space' is the default pattern.
             </summary>
         </member>
+        <member name="M:Gmtl.HandyLib.HLString.SplitByLineBreaks(System.String)">
+            <summary>
+            Return a list of strings broken down by \r\n, <br/>, \r, \n
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:Gmtl.HandyLib.HLString.ToSlug(System.String,System.Int32)">
             <summary>
             Creates http url friendly text from input

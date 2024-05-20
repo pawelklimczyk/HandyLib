@@ -5,6 +5,7 @@
 // -------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace Gmtl.HandyLib.Tests
@@ -240,6 +241,90 @@ namespace Gmtl.HandyLib.Tests
 
             //Assert
             Assert.That(result, Is.EqualTo(expectedOutput));
+        }
+
+
+
+        [Test]
+        public void SplitByLineBreaks_InputIsNull_ReturnsEmptyList()
+        {
+            // Arrange
+            string input = null;
+
+            // Act
+            var result = input.SplitByLineBreaks();
+
+            // Assert
+            Assert.IsEmpty(result);
+        }
+
+        [Test]
+        public void SplitByLineBreaks_InputIsEmptyString_ReturnsEmptyList()
+        {
+            // Arrange
+            string input = string.Empty;
+
+            // Act
+            var result = input.SplitByLineBreaks();
+
+            // Assert
+            Assert.IsEmpty(result);
+        }
+
+        [Test]
+        public void SplitByLineBreaks_InputHasSingleLine_ReturnsSingleElementList()
+        {
+            // Arrange
+            string input = "Single line without line breaks";
+
+            // Act
+            var result = input.SplitByLineBreaks();
+
+            // Assert
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual("Single line without line breaks", result[0]);
+        }
+
+        [Test]
+        public void SplitByLineBreaks_InputHasMultipleLineBreaks_ReturnsCorrectSplit()
+        {
+            // Arrange
+            string input = "Line1\r\nLine2\nLine3\rLine4<br/>Line5";
+
+            // Act
+            var result = input.SplitByLineBreaks();
+
+            // Assert
+            var expected = new List<string> { "Line1", "Line2", "Line3", "Line4", "Line5" };
+            Assert.AreEqual(expected, result);
+        }
+
+        [Test]
+        public void SplitByLineBreaks_InputHasConsecutiveLineBreaks_ReturnsCorrectSplit()
+        {
+            // Arrange
+            string input = "Line1\r\n\r\nLine2\n\nLine3\r\rLine4<br/><br/>Line5";
+
+            // Act
+            var result = input.SplitByLineBreaks();
+
+            // Assert
+            var expected = new List<string> { "Line1", "Line2", "Line3", "Line4", "Line5" };
+            Assert.AreEqual(expected, result);
+        }
+
+        [Test]
+        public void SplitByLineBreaks_InputHasMixedContent_ReturnsCorrectSplit()
+        {
+            // Arrange
+            string input = "First line\r\nSecond line\nThird line\rFourth line<br/>Fifth line";
+
+            // Act
+            var result = input.SplitByLineBreaks();
+
+            // Assert
+            var expected = new List<string> { "First line", "Second line", "Third line", "Fourth line", "Fifth line" };
+            Assert.AreEqual(expected, result);
         }
     }
 }

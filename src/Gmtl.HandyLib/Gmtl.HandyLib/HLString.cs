@@ -266,6 +266,24 @@ namespace Gmtl.HandyLib
         }
 
         /// <summary>
+        /// Return a list of strings broken down by \r\n, <br/>, \r, \n
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static List<string> SplitByLineBreaks(this string input)
+        {
+            if (string.IsNullOrEmpty(input))
+            {
+                return new List<string>();
+            }
+
+            string[] separators = new string[] { "\r\n", "<br/>", "<br />", "\r", "\n" }; 
+            
+            return input.Split(separators, StringSplitOptions.RemoveEmptyEntries).ToList();
+
+        }
+
+        /// <summary>
         /// Creates http url friendly text from input
         /// </summary>
         /// <param name="input"></param>
