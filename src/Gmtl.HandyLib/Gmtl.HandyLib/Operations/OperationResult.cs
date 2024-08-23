@@ -116,6 +116,7 @@ namespace Gmtl.HandyLib.Operations
         {
             if (errors == null)
                 throw new ArgumentNullException("errors");
+
             if (errors.Count == 0)
                 throw new ArgumentException("errors");
 
@@ -174,6 +175,8 @@ namespace Gmtl.HandyLib.Operations
     /// </summary>
     public class OperationResult
     {
+        public const string GeneralError = "GeneralError";
+
         /// <summary>
         /// Operation status
         /// </summary>
@@ -206,7 +209,7 @@ namespace Gmtl.HandyLib.Operations
             {
                 if (_errors.ContainsKey(errorKey))
                 {
-                    _errors[errorKey] += " " + message;
+                    _errors[errorKey] += ". " + message;
                 }
                 else
                 {
@@ -227,18 +230,22 @@ namespace Gmtl.HandyLib.Operations
             return this;
         }
 
-        public static OperationResult FromBool(bool isSuccess, string successMessage = "", string errorMessage = "")
+        public static OperationResult FromBool(bool isSuccess, string successMessage = "bool-success", string errorMessage = "bool-error")
         {
             return isSuccess ? Success(successMessage) : Error(errorMessage);
         }
 
         public static OperationResult Error(string message = "ERROR")
         {
-            return new OperationResult
+            var result = new OperationResult
             {
                 Message = message,
                 Status = OperationStatus.Error
             };
+
+            result.AddError(GeneralError, message);
+
+            return result;
         }
 
         public static OperationResult Error(OperationResult parentResult)
@@ -248,7 +255,7 @@ namespace Gmtl.HandyLib.Operations
 
             var result = new OperationResult
             {
-                Message = "ERROR",
+                Message = parentResult.Message,
                 Status = OperationStatus.Error
             };
 
@@ -256,6 +263,18 @@ namespace Gmtl.HandyLib.Operations
             {
                 result.AddError(parentError.Key, parentError.Value);
             }
+
+            return result;
+        }
+        public static OperationResult Error(string key, string message)
+        {
+            var result = new OperationResult
+            {
+                Message = message,
+                Status = OperationStatus.Error
+            };
+
+            result.AddError(key, message);
 
             return result;
         }
