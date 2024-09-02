@@ -529,6 +529,11 @@
             List of potential errors from the Operation
             </summary>
         </member>
+        <member name="T:Gmtl.HandyLib.Operations.OperationResultExtensions">
+            <summary>
+            OperationResult Extensions
+            </summary>
+        </member>
         <member name="T:Gmtl.HandyLib.Operations.OperationStatus">
             <summary>
             Status of executed operation
