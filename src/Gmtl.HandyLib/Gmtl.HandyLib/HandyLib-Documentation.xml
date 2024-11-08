@@ -539,6 +539,11 @@
             Status of executed operation
             </summary>
         </member>
+        <member name="T:Gmtl.HandyLib.Validators.HLPhoneValidator">
+            <summary>
+            Phone numbers validator
+            </summary>
+        </member>
         <member name="M:Gmtl.HandyLib.Validators.HLPhoneValidator.IsValidPhoneNumber(System.String)">
             <summary>
             Test if provided string is valid phone number

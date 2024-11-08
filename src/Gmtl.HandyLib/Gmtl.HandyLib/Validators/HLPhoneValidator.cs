@@ -1,7 +1,8 @@
-﻿using System;
-
-namespace Gmtl.HandyLib.Validators
+﻿namespace Gmtl.HandyLib.Validators
 {
+    /// <summary>
+    /// Phone numbers validator
+    /// </summary>
     public static class HLPhoneValidator
     {
         /// <summary>
@@ -16,17 +17,14 @@ namespace Gmtl.HandyLib.Validators
 
             try
             {
-                input = input.Replace(" ", String.Empty);
+                input = input.Replace(" ", string.Empty).Replace("-", string.Empty).Replace("+", string.Empty).Replace("(", string.Empty).Replace(")", string.Empty);
                 char[] arr = input.ToCharArray();
 
                 foreach (var c in input.ToCharArray())
                     if (!char.IsDigit(c))
                         return false;
 
-                if (input.Length < 9)
-                    return false;
-
-                return true;
+                return input.Length >= 9;
             }
             catch
             {

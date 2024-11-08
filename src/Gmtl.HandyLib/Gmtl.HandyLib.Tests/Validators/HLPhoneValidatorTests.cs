@@ -16,6 +16,12 @@ namespace Gmtl.HandyLib.Tests.Validators
         [TestCase("5 00 505 0 5053")]
         [TestCase("5 00   505 0   50 53")]
         [TestCase("500 45 34 31")]
+        [TestCase("500-45-34-31")]
+        [TestCase("+48500-45-34-31")]
+        [TestCase("+48500453431")]
+        [TestCase("+48 500 453 431")]
+        [TestCase("(50) 7 453 431")]
+        [TestCase("(+48) 500 453 431")]
         public void HLPhoneValidator_shouldBeValidPhoneNumber(string input)
         {
             Assert.IsTrue(HLPhoneValidator.IsValidPhoneNumber(input));
