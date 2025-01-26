@@ -8,10 +8,11 @@ namespace Gmtl.HandyLib.Validators
 
         public static bool IsValidEmail(this string source)
         {
-            if (string.IsNullOrWhiteSpace(source))
+            var sanitized = source?.Trim();
+            if (string.IsNullOrWhiteSpace(sanitized))
                 return false;
 
-            return _regex.Match(source).Length > 0;
+            return _regex.Match(sanitized).Length > 0;
         }
 
         //https://referencesource.microsoft.com/#System.ComponentModel.DataAnnotations/DataAnnotations/EmailAddressAttribute.cs,54
