@@ -354,6 +354,11 @@
             Removes all attributes from HTML string
             </summary>
         </member>
+        <member name="M:Gmtl.HandyLib.HLString.FilterHtml(System.String,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+            <summary>
+            Removes all attributes from HTML string
+            </summary>
+        </member>
         <member name="M:Gmtl.HandyLib.HLString.RemoveAccents(System.String)">
             <summary>
             Removes non-standard letters like ę=>e

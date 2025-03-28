@@ -161,6 +161,37 @@ namespace Gmtl.HandyLib
             return new string(array, 0, arrayIndex);
         }
 
+
+        /// <summary>
+        /// Removes all attributes from HTML string
+        /// </summary>
+    public static string FilterHtml(this string input, List<string> allowedTags, List<string> allowedAttributes)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+                return string.Empty;
+
+            allowedTags = allowedTags ?? new List<string>();
+            allowedAttributes = allowedAttributes ?? new List<string>();
+
+            return Regex.Replace(input, "<(/?)([a-zA-Z0-9]+)(.*?)>", match =>
+            {
+                string slash = match.Groups[1].Value;
+                string tag = match.Groups[2].Value.ToLower();
+                string attributes = match.Groups[3].Value;
+
+                if (allowedTags.Count > 0 && !allowedTags.Contains(tag))
+                    return string.Empty;
+
+                if (allowedAttributes.Count == 0)
+                    attributes = string.Empty;
+                else
+                    attributes = Regex.Replace(attributes, "(\\s+[a-zA-Z0-9-]+)(=\".*?\")", attrMatch =>
+                        allowedAttributes.Contains(attrMatch.Groups[1].Value.Trim()) ? attrMatch.Value : "");
+
+                return $"<{slash}{tag}{attributes}>";
+            }, RegexOptions.IgnoreCase);
+        }
+
         /// <summary>
         /// Removes non-standard letters like ę=>e
         /// </summary>
