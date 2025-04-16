@@ -4,6 +4,6 @@ namespace Gmtl.HandyLib.Models.Domain
 {
     public interface IWithCreateDate
     {
-        DateTime CreatedDate { get; set; }
+        DateTime CreateDate { get; set; }
     }
 }

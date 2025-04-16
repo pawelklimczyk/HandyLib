@@ -413,6 +413,94 @@
             <param name="tokens">external tokens</param>
             <returns></returns>
         </member>
+        <member name="T:Gmtl.HandyLib.Models.Domain.DomainEntityBase`1">
+            <summary>
+            Represents a base class for domain entities with a generic identifier and a creation date.
+            </summary>
+            <typeparam name="T">The type of the identifier for the domain entity.</typeparam>
+        </member>
+        <member name="P:Gmtl.HandyLib.Models.Domain.DomainEntityBase`1.CreateDate">
+            <summary>
+            Gets or sets the date and time when the entity was created.
+            </summary>
+        </member>
+        <member name="T:Gmtl.HandyLib.Models.Domain.IWithSortOrder">
+            <summary>
+            Represents an entity with a sortable order.
+            </summary>
+        </member>
+        <member name="P:Gmtl.HandyLib.Models.Domain.IWithSortOrder.SortOrder">
+            <summary>
+            Gets or sets the sort order of the entity.
+            </summary>
+        </member>
+        <member name="T:Gmtl.HandyLib.Models.Domain.TrackableDomainEntityBase`1">
+            <summary>
+            Represents a base class for domain entities that are trackable.
+            Provides properties for tracking update and deletion dates.
+            </summary>
+            <typeparam name="T">The type of the entity's identifier.</typeparam>
+        </member>
+        <member name="P:Gmtl.HandyLib.Models.Domain.TrackableDomainEntityBase`1.UpdateDate">
+            <summary>
+            Gets or sets the date and time when the entity was last updated. First update is set to CreateDate.
+            </summary>
+        </member>
+        <member name="P:Gmtl.HandyLib.Models.Domain.TrackableDomainEntityBase`1.DeletedDate">
+            <summary>
+            Gets or sets the date and time when the entity was deleted, if applicable.
+            </summary>
+        </member>
+        <member name="T:Gmtl.HandyLib.Models.SEO.IWithSEO">
+            <summary>
+            Interface for SEO properties.
+            </summary>
+        </member>
+        <member name="P:Gmtl.HandyLib.Models.SEO.IWithSEO.MetaTitle">
+            <summary>
+            The meta title of the page.
+            <para>Max Length: 60 characters.</para>
+            <para>Best Practice: Use a concise and descriptive title that includes primary keywords.</para>
+            </summary>
+        </member>
+        <member name="P:Gmtl.HandyLib.Models.SEO.IWithSEO.MetaDescription">
+            <summary>
+            The meta description of the page.
+            <para>Max Length: 160 characters.</para>
+            <para>Best Practice: Provide a brief summary of the page content with a call-to-action if applicable.</para>
+            </summary>
+        </member>
+        <member name="P:Gmtl.HandyLib.Models.SEO.IWithSEO.MetaKeywords">
+            <summary>
+            The meta keywords for the page.
+            <para>Max Length: 255 characters.</para>
+            <para>Best Practice: Use a comma-separated list of relevant keywords. Avoid keyword stuffing.</para>
+            </summary>
+        </member>
+        <member name="P:Gmtl.HandyLib.Models.SEO.IWithSEO.Slug">
+            <summary>
+            The slug (URL-friendly identifier) for the page.
+            <para>Best Practice: Use lowercase letters, hyphens instead of spaces, and avoid special characters.</para>
+            </summary>
+        </member>
+        <member name="P:Gmtl.HandyLib.Models.SEO.IWithSEO.CanonicalUrl">
+            <summary>
+            The canonical URL for the page.
+            <para>Best Practice: Use this to specify the preferred URL for duplicate or similar content.</para>
+            </summary>
+        </member>
+        <member name="P:Gmtl.HandyLib.Models.SEO.IWithSEO.NoIndex">
+            <summary>
+            Indicates whether the page should not be indexed by search engines.
+            <para>Best Practice: Set to true for pages that should remain private or are not useful for SEO.</para>
+            </summary>
+        </member>
+        <member name="P:Gmtl.HandyLib.Models.SEO.IWithSEO.NoFollow">
+            <summary>
+            Indicates whether search engines should not follow links on the page.
+            <para>Best Practice: Set to true for pages with untrusted or irrelevant links.</para>
+            </summary>
+        </member>
         <member name="T:Gmtl.HandyLib.Models.UserMessage">
             <summary>
             Provides a container for standard UI user messages
