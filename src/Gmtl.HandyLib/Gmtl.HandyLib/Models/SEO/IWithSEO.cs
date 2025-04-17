@@ -31,6 +31,13 @@ namespace Gmtl.HandyLib.Models.SEO
         string MetaKeywords { get; set; }
 
         /// <summary>
+        /// The meta abstract of the page.
+        /// <para>Max Length: 160 characters.</para>
+        /// <para>Best Practice: Provide a concise summary of the page content, often used as an alternative to the meta description.</para>
+        /// </summary>
+        string MetaAbstract { get; set; }
+
+        /// <summary>
         /// The slug (URL-friendly identifier) for the page.
         /// <para>Best Practice: Use lowercase letters, hyphens instead of spaces, and avoid special characters.</para>
         /// </summary>

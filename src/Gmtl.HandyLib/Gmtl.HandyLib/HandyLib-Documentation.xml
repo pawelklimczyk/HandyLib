@@ -477,6 +477,13 @@
             <para>Best Practice: Use a comma-separated list of relevant keywords. Avoid keyword stuffing.</para>
             </summary>
         </member>
+        <member name="P:Gmtl.HandyLib.Models.SEO.IWithSEO.MetaAbstract">
+            <summary>
+            The meta abstract of the page.
+            <para>Max Length: 160 characters.</para>
+            <para>Best Practice: Provide a concise summary of the page content, often used as an alternative to the meta description.</para>
+            </summary>
+        </member>
         <member name="P:Gmtl.HandyLib.Models.SEO.IWithSEO.Slug">
             <summary>
             The slug (URL-friendly identifier) for the page.
