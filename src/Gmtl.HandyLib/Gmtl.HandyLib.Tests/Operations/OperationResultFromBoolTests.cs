@@ -38,7 +38,7 @@ namespace Gmtl.HandyLib.Tests.Operations
         [Test]
         public void OperationResultShouldCopyErrorsFromPreviousOperationResult()
         {
-            OperationResult result1 = OperationResult.FromBool(false);
+            OperationResult result1 = OperationResult.FromBool(false,"success message","error message");
             result1.AddError("Error1", "message1");
             result1.AddError("Error2", "message2");
 

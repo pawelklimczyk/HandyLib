@@ -232,10 +232,19 @@ namespace Gmtl.HandyLib.Operations
 
         public static OperationResult FromBool(bool isSuccess, string successMessage = "bool-success", string errorMessage = "bool-error")
         {
-            return isSuccess ? Success(successMessage) : Error(errorMessage);
+            var result = new OperationResult
+            {
+                Status = isSuccess ? OperationStatus.Success : OperationStatus.Error,
+                Message = isSuccess ? successMessage : errorMessage
+            };
+
+            if (!isSuccess)
+                result.AddError(GeneralError, errorMessage);
+
+            return result;
         }
 
-        public static OperationResult Error(string message = "ERROR")
+        public static OperationResult Error(string message)
         {
             var result = new OperationResult
             {
@@ -247,6 +256,54 @@ namespace Gmtl.HandyLib.Operations
 
             return result;
         }
+
+        public static OperationResult<T> Error<T>(string message)
+        {
+            var result = new OperationResult<T>
+            {
+                Message = message,
+                Status = OperationStatus.Error
+            };
+
+            result.AddError(GeneralError, message);
+
+            return result;
+        }
+
+        public static OperationResult<T> Error<T>(T obj, string message)
+        {
+            var result = new OperationResult<T>
+            {
+                Value = obj,
+                Message = message,
+                Status = OperationStatus.Error
+            };
+
+            result.AddError(GeneralError, message);
+
+            return result;
+        }
+
+        public static OperationResult<T> FromOperationResult<T>(T obj, OperationResult innerOperationResult)
+        {
+            if (innerOperationResult == null)
+                throw new ArgumentNullException(nameof(innerOperationResult));
+
+            var result = new OperationResult<T>
+            {
+                Value = obj,
+                Message = innerOperationResult.Message,
+                Status = innerOperationResult.Status
+            };
+
+            foreach (var error in innerOperationResult.Errors)
+            {
+                result.AddError(error.Key, error.Value);
+            }
+
+            return result;
+        }
+
 
         public static OperationResult Error(OperationResult parentResult)
         {
@@ -266,18 +323,19 @@ namespace Gmtl.HandyLib.Operations
 
             return result;
         }
-        public static OperationResult Error(string key, string message)
-        {
-            var result = new OperationResult
-            {
-                Message = message,
-                Status = OperationStatus.Error
-            };
 
-            result.AddError(key, message);
+        //public  OperationResult Error(string key, string message)
+        //{
+        //    var result = new OperationResult
+        //    {
+        //        Message = message,
+        //        Status = OperationStatus.Error
+        //    };
 
-            return result;
-        }
+        //    result.AddError(key, message);
+
+        //    return result;
+        //}
 
         public static OperationResult Error(Dictionary<string, string> errors)
         {
@@ -296,11 +354,37 @@ namespace Gmtl.HandyLib.Operations
 
             return result;
         }
-
-        public static OperationResult Success(string message = "OK")
+        public static OperationResult Success()
         {
             return new OperationResult
             {
+                Status = OperationStatus.Success
+            };
+        }
+
+        public static OperationResult Success(string message)
+        {
+            return new OperationResult
+            {
+                Message = message,
+                Status = OperationStatus.Success
+            };
+        }
+
+        public static OperationResult<T> Success<T>(string message)
+        {
+            return new OperationResult<T>
+            {
+                Message = message,
+                Status = OperationStatus.Success
+            };
+        }
+
+        public static OperationResult<T> Success<T>(T obj, string message)
+        {
+            return new OperationResult<T>
+            {
+                Value = obj,
                 Message = message,
                 Status = OperationStatus.Success
             };
