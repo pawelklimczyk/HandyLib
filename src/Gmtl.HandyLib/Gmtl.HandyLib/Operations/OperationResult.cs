@@ -89,6 +89,8 @@ namespace Gmtl.HandyLib.Operations
                 Status = OperationStatus.Error
             };
 
+            result.AddError(GeneralError, message);
+
             return result;
         }
 
@@ -216,6 +218,8 @@ namespace Gmtl.HandyLib.Operations
                     _errors.Add(errorKey, message);
                 }
             }
+
+            Status = OperationStatus.Error;
 
             return this;
         }

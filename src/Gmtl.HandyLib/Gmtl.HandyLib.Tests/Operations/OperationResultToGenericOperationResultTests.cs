@@ -51,10 +51,10 @@ namespace Gmtl.HandyLib.Tests.Operations
         public void ErrorFromOperationResultWithoutValueShouldBeConvertedToGenericOperationResult()
         {
             OperationResult baseResult = OperationResult.Error("test error message");
-            OperationResult<string> result = OperationResult<string>.FromOperationResult("", baseResult);
+            OperationResult<object> result = OperationResult<object>.FromOperationResult(new object(), baseResult);
 
             Assert.That(result == false, Is.EqualTo(true));
-            Assert.That(result.Value, Is.Empty);
+            Assert.That(result.Value, Is.Not.Null);
             Assert.That(result.Message, Is.EqualTo("test error message"));
         }
 
@@ -62,10 +62,10 @@ namespace Gmtl.HandyLib.Tests.Operations
         public void SuccessFromOperationResultWithoutValueShouldBeConvertedToGenericOperationResult()
         {
             OperationResult baseResult = OperationResult.Success("test success message");
-            OperationResult<string> result = OperationResult<string>.FromOperationResult("", baseResult);
+            OperationResult<object> result = OperationResult<object>.FromOperationResult(new object(), baseResult);
 
             Assert.That(result == true, Is.EqualTo(true));
-            Assert.That(result.Value, Is.Empty);
+            Assert.That(result.Value, Is.Not.Null);
             Assert.That(result.Message, Is.EqualTo("test success message"));
         }
     }

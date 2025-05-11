@@ -14,14 +14,27 @@ namespace Gmtl.HandyLib.Tests.Operations
             OperationResult<string> result = OperationResult<string>.Success("test");
 
             Assert.That(result == true, Is.EqualTo(true));
+            Assert.That(result.Errors.Count, Is.EqualTo(0));
         }
 
         [Test]
         public void ErrorOperationResultShouldBeImplicitlyCastToFalse()
         {
-            OperationResult<string> result = OperationResult<string>.Error("test");
+            var randomErrorMessage = Guid.NewGuid().ToString();
+            OperationResult<string> result = OperationResult<string>.Error(randomErrorMessage);
 
             Assert.That(result == false, Is.EqualTo(true));
+        }
+        
+        [Test]
+        public void ErrorOperationResultShouldPopulateErrorList()
+        {
+            var randomErrorMessage = Guid.NewGuid().ToString();
+            OperationResult<string> result = OperationResult<string>.Error(randomErrorMessage);
+
+            Assert.That(result.Errors.Count, Is.EqualTo(1));
+            Assert.That(result.Errors.ContainsKey(OperationResult.GeneralError), Is.True);
+            Assert.That(result.Errors[OperationResult.GeneralError], Is.EqualTo(randomErrorMessage));
         }
 
         [Test]
