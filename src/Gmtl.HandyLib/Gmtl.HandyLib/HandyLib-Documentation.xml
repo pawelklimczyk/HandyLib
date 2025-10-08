@@ -587,23 +587,6 @@
             <param name="action"></param>
             <returns></returns>
         </member>
-        <member name="T:Gmtl.HandyLib.Operations.OperationResult`1">
-            <summary>
-            Generic class working as a wrapper
-            </summary>
-            <typeparam name="T">type</typeparam>
-        </member>
-        <member name="P:Gmtl.HandyLib.Operations.OperationResult`1.Value">
-            <summary>
-            Result value
-            </summary>
-        </member>
-        <member name="M:Gmtl.HandyLib.Operations.OperationResult`1.AsJson">
-            <summary>
-            return Object as a JSON string
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:Gmtl.HandyLib.Operations.OperationResult">
             <summary>
             Boolean OperationResult
@@ -629,10 +612,32 @@
             List of potential errors from the Operation
             </summary>
         </member>
+        <member name="M:Gmtl.HandyLib.Operations.OperationResult.ErrorsAsString">
+            <summary>
+            Return all errors as a single string
+            </summary>
+        </member>
         <member name="T:Gmtl.HandyLib.Operations.OperationResultExtensions">
             <summary>
             OperationResult Extensions
             </summary>
+        </member>
+        <member name="T:Gmtl.HandyLib.Operations.OperationResult`1">
+            <summary>
+            Generic class working as a wrapper
+            </summary>
+            <typeparam name="T">type</typeparam>
+        </member>
+        <member name="P:Gmtl.HandyLib.Operations.OperationResult`1.Value">
+            <summary>
+            Result value
+            </summary>
+        </member>
+        <member name="M:Gmtl.HandyLib.Operations.OperationResult`1.AsJson">
+            <summary>
+            return Object as a JSON string
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Gmtl.HandyLib.Operations.OperationStatus">
             <summary>
