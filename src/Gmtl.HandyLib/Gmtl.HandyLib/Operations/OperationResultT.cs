@@ -16,7 +16,7 @@ namespace Gmtl.HandyLib.Operations
     /// Generic class working as a wrapper
     /// </summary>
     /// <typeparam name="T">type</typeparam>
-    [DebuggerDisplay("{Value} {Status}")]
+    [DebuggerDisplay("{Status} {Value} ({Message})")]
     public class OperationResult<T> : OperationResult
     {
         /// <summary>

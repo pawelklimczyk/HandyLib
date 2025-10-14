@@ -16,6 +16,7 @@ namespace Gmtl.HandyLib.Operations
     /// <summary>
     /// Boolean OperationResult
     /// </summary>
+    [DebuggerDisplay("{Status} ({Message})")]
     public class OperationResult
     {
         public const string GeneralError = "GeneralError";
