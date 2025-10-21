@@ -5,7 +5,7 @@ using System;
 namespace Gmtl.HandyLib.Tests.Operations
 {
     [TestFixture]
-    public class OperationResultErrors
+    public class OperationResultErrorsTests
     {
         [Test]
         public void ErrorsAsString_NoErrors_ReturnsEmptyString()

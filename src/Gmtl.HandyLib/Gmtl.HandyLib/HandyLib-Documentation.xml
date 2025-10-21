@@ -167,6 +167,16 @@
             Return XML serialized string of Exception provided in parameter
             </summary>
         </member>
+        <member name="M:Gmtl.HandyLib.HLGeo.GetDistanceKm(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Calculates distance between two geo coordinates in kilometers
+            </summary>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLGeo.ToRadians(System.Double)">
+            <summary>
+            Converts degrees to radians
+            </summary>
+        </member>
         <member name="M:Gmtl.HandyLib.HLHash.ComputeHash(System.String)">
             <summary>
             Computes has for given input
@@ -400,6 +410,11 @@
             <param name="maxLength"></param>
             <returns></returns>
         </member>
+        <member name="M:Gmtl.HandyLib.HLString.HowManyTimeOccurenceCharInString(System.String,System.Char)">
+            <summary>
+            Counts how many times a character occurs in a string
+            </summary>
+        </member>
         <member name="T:Gmtl.HandyLib.HLTasks">
             <summary>
             System.Threading.Tasks extensions
@@ -620,6 +635,16 @@
         <member name="T:Gmtl.HandyLib.Operations.OperationResultExtensions">
             <summary>
             OperationResult Extensions
+            </summary>
+        </member>
+        <member name="M:Gmtl.HandyLib.Operations.OperationResultExtensions.ToOperationResult``1(``0)">
+            <summary>
+            Creates a successful OperationResult from the item
+            </summary>
+        </member>
+        <member name="M:Gmtl.HandyLib.Operations.OperationResultExtensions.ToOtherOperationResult``2(``0)">
+            <summary>
+            Converts one OperationResult to another OperationResult type
             </summary>
         </member>
         <member name="T:Gmtl.HandyLib.Operations.OperationResult`1">

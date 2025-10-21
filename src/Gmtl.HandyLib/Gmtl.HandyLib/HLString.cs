@@ -380,6 +380,23 @@ namespace Gmtl.HandyLib
             return maxLength <= 0 || result.Length <= maxLength ? result : result.Substring(0, maxLength);
         }
 
+        /// <summary>
+        /// Counts how many times a character occurs in a string
+        /// </summary>
+        public static int HowManyTimeOccurenceCharInString(this string text, char c)
+        {
+            var count = 0;
+            for (var i = 0; i < text.Length; i++)
+            {
+                if (text[i].Equals(c))
+                {
+                    count++;
+                }
+
+            }
+            return count;
+        }
+
         private static string FindReplacement(char input)
         {
             foreach (var entry in _foreignCharacters.Where(entry => entry.Key.IndexOf(input) != -1))
@@ -390,7 +407,7 @@ namespace Gmtl.HandyLib
             return String.Empty;
         }
 
-        static Dictionary<string, string> _foreignCharacters = new Dictionary<string, string>
+        private static Dictionary<string, string> _foreignCharacters = new Dictionary<string, string>
         {
             { "äæǽ", "ae" },
             { "öœ", "oe" },

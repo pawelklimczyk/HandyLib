@@ -9,7 +9,7 @@ namespace Gmtl.HandyLib.Tests.Operations
         [Test]
         public void SuccessOperationResultShouldBeImplicitlyCastToTrue()
         {
-            OperationResult<string> result = OperationResult.Success("test", "ok");
+            OperationResult<string> result = (OperationResult<string>)OperationResult.Success("test", "ok");
 
             Assert.That(result == true, Is.EqualTo(true));
             Assert.That(result.Value, Is.EqualTo("test"));
@@ -19,7 +19,7 @@ namespace Gmtl.HandyLib.Tests.Operations
         [Test]
         public void ErrorOperationResultShouldBeImplicitlyCastToFalse()
         {
-            OperationResult<string> result = OperationResult.Error("test", "error");
+            OperationResult<string> result = (OperationResult<string>)OperationResult.Error("test", "error");
 
             Assert.That(result == false, Is.EqualTo(true));
             Assert.That(result.Value, Is.EqualTo("test"));
