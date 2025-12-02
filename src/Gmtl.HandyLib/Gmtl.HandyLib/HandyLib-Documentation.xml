@@ -647,6 +647,23 @@
             Converts one OperationResult to another OperationResult type
             </summary>
         </member>
+        <member name="M:Gmtl.HandyLib.Operations.OperationResultExtensions.GetFirstError``1(Gmtl.HandyLib.Operations.OperationResult{``0}[])">
+            <summary>
+            Get the first error message from an array of OperationResults where IsSuccess is false
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="operations"></param>
+        </member>
+        <member name="M:Gmtl.HandyLib.Operations.OperationResultExtensions.CombineOperationResults(Gmtl.HandyLib.Operations.OperationResult{System.Boolean}[])">
+            <summary>
+            Combines multiple OperationResult-bool- into a single OperationResult-bool-.
+            If all operations are successful and true, returns true.
+            If all are successful but at least one is false, returns false.
+            If any operation failed, returns an error with the first failure message.
+            </summary>
+            <param name="operations">Array of OperationResult-bool- to combine.</param>
+            <returns>A combined OperationResult-bool-.</returns>
+        </member>
         <member name="T:Gmtl.HandyLib.Operations.OperationResult`1">
             <summary>
             Generic class working as a wrapper
