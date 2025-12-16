@@ -56,6 +56,25 @@
             <param name="obj"></param>
             <returns>List of all properties and their values</returns>
         </member>
+        <member name="T:Gmtl.HandyLib.HLAssert">
+            <summary>
+            Provides static methods for validating method arguments and ensuring they meet required conditions.
+            </summary>
+            <remarks>The HLAssert class contains utility methods for performing common argument validation checks,
+            such as verifying that parameters are not null or that strings are not empty or whitespace. These methods are
+            intended to be used at the start of methods to enforce preconditions and throw appropriate exceptions when
+            arguments are invalid. All methods are static and thread safe.</remarks>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLAssert.AssertArgument(System.String,System.String)">
+            <summary>
+            Ensures string parameter is not null, empty, or whitespace. 
+            </summary>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLAssert.AssertArgument(System.Object,System.String)">
+            <summary>
+            Ensures parameter is not null.
+            </summary>
+        </member>
         <member name="T:Gmtl.HandyLib.HLCloner">
             <summary>
             Clones an object
