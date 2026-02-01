@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
@@ -116,7 +117,7 @@ namespace Gmtl.HandyLib
             return DeserializeFromXml<T>(File.ReadAllText(filename));
         }
 
-#if NETCOREAPP3_1_OR_GREATER 
+#if NETCOREAPP3_1_OR_GREATER
         public static string SerializeToJson<T>(this T objectToSerialize, JsonSerializerOptions options = null)
         {
             if (options == null)
@@ -124,7 +125,11 @@ namespace Gmtl.HandyLib
                 options = new JsonSerializerOptions
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                    IgnoreNullValues = true,
+    #if NET5_0_OR_GREATER
+                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+    #else
+                    IgnoreNullValues = true
+    #endif
                 };
             }
 
@@ -135,8 +140,33 @@ namespace Gmtl.HandyLib
         {
             return JsonSerializer.Deserialize<T>(json);
         }
+
+
+        public static string SerializeException(this Exception ex)
+        {
+            object ToDto(Exception e) => e == null ? null : new
+            {
+                message = e.Message,
+                stackTrace = e.StackTrace,
+                innerException = ToDto(e.InnerException),
+                innerExceptions = (e as AggregateException)?.InnerExceptions?.Select(ToDto)
+            };
+
+            var dto = ToDto(ex);
+
+            var options = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+    #if NET5_0_OR_GREATER
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+    #else
+                IgnoreNullValues = true
+    #endif
+            };
+
+            return JsonSerializer.Serialize(dto, options);
+        }
+
 #endif
-
-
     }
 }
