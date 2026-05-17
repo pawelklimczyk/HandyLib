@@ -58,14 +58,36 @@ namespace Gmtl.HandyLib.Tests
             Assert.AreEqual(dateExpected, actualTimestamp);
         }
 
+        [Test]
         public void HLDateTime_DateShouldBeConvertedToUnixTimestampAndBack()
         {
-            DateTime startDate = DateTime.Now;
+            DateTime startDate = DateTime.ParseExact("2024-05-17 12:34:56", "yyyy-MM-dd HH:mm:ss", CultureInfo.CurrentCulture);
 
             var actualTimestamp = HLDateTime.ToUnixTimestamp(startDate);
             var endDate = HLDateTime.FromUnixTimestamp(actualTimestamp);
 
             Assert.AreEqual(startDate, endDate);
+        }
+
+        [TestCase("2026-05-17 22:00:00", 120, "Teraz")]
+        [TestCase("2026-05-17 22:00:00", 0, "Teraz")]
+        [TestCase("2026-05-17 22:00:00", -5, "5 minut temu")]
+        [TestCase("2026-05-17 22:00:00", -30, "30 minut temu")]
+        [TestCase("2026-05-17 22:00:00", -120, "2 godzin temu")]
+        [TestCase("2026-05-17 22:00:00", -720, "12 godzin temu")]
+        [TestCase("2026-05-17 22:00:00", -1080, "18 godzin temu")]
+        [TestCase("2026-05-17 08:00:00", -720, "wczoraj")]
+        [TestCase("2026-05-17 12:00:00", -4320, "3 dni temu")]
+        [TestCase("2026-05-17 12:00:00", -7200, "5 dni temu")]
+        [TestCase("2026-05-17 12:00:00", -10080, "tydzień temu")]
+        [TestCase("2026-05-17 12:00:00", -20160, "2 tygodnie temu")]
+        [TestCase("2026-05-17 12:00:00", -44640, "ponad miesiąc temu")]
+        public void HLDateTime_TimeAgoShouldReturnExpectedText(string startDate, int minutesOffset, string expectedText)
+        {
+            DateTime referenceTime = DateTime.ParseExact(startDate, "yyyy-MM-dd HH:mm:ss", CultureInfo.CurrentCulture);
+            var actualText = referenceTime.AddMinutes(minutesOffset).TimeAgo(referenceTime);
+
+            Assert.AreEqual(expectedText, actualText);
         }
     }
 }

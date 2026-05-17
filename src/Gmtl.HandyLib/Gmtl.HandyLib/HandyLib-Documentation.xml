@@ -161,6 +161,11 @@
             Return user-friendly date description
             </summary>
         </member>
+        <member name="M:Gmtl.HandyLib.HLDateTime.TimeAgo(System.DateTime,System.DateTime)">
+            <summary>
+            Return user-friendly date description using provided reference time.
+            </summary>
+        </member>
         <member name="M:Gmtl.HandyLib.HLDllEmbeddedResource.GetTextResource(System.String,System.Reflection.Assembly)">
             <summary>
             Return content of the file

@@ -125,20 +125,28 @@ namespace Gmtl.HandyLib
                 options = new JsonSerializerOptions
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-    #if NET5_0_OR_GREATER
+#if NET5_0_OR_GREATER
                     DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-    #else
+#else
                     IgnoreNullValues = true
-    #endif
+#endif
                 };
             }
 
             return JsonSerializer.Serialize(objectToSerialize, options);
         }
 
-        public static T DeserializeFromJson<T>(this string json)
+        public static T DeserializeFromJson<T>(this string json, JsonSerializerOptions options = null)
         {
-            return JsonSerializer.Deserialize<T>(json);
+            if (options == null)
+            {
+                options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+            }
+
+            return JsonSerializer.Deserialize<T>(json, options);
         }
 
 
@@ -157,11 +165,11 @@ namespace Gmtl.HandyLib
             var options = new JsonSerializerOptions
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-    #if NET5_0_OR_GREATER
+#if NET5_0_OR_GREATER
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-    #else
+#else
                 IgnoreNullValues = true
-    #endif
+#endif
             };
 
             return JsonSerializer.Serialize(dto, options);

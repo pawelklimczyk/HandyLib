@@ -57,7 +57,7 @@ namespace Gmtl.HandyLib
         {
             return (long)(dateTime - unixStart).TotalSeconds;
         }
-        
+
         /// <summary>
         /// Return -date- 23:59:59.999
         /// </summary>
@@ -79,25 +79,70 @@ namespace Gmtl.HandyLib
 
         //TODO create setup method to support different languages
         private static string _lessThanHourAgo = "nie całą godzinę temu";
+        private static string _someMinutesAgo = " minut temu";
         private static string _someHoursAgo = " godzin temu";
         private static string _someDaysAgo = " dni temu";
+        private static string _oneWeekAgo = "tydzień temu";
+        private static string _twoWeeksAgo = "2 tygodnie temu";
+        private static string _overMonthAgo = "ponad miesiąc temu";
         private static string _yesterday = "wczoraj";
+        private static string _now = "Teraz";
 
         /// <summary>
         /// Return user-friendly date description
         /// </summary>
         public static string TimeAgo(this DateTime time)
         {
-            var difference = DateTime.Today - time;
+            return TimeAgo(time, DateTime.Now);
+        }
 
-            if (difference.TotalDays < 0)
+        /// <summary>
+        /// Return user-friendly date description using provided reference time.
+        /// </summary>
+        public static string TimeAgo(this DateTime time, DateTime referenceTime)
+        {
+            var difference = referenceTime - time;
+            var wholeMinutes = (int)difference.TotalMinutes;
+            var wholeHours = (int)difference.TotalHours;
+
+            if (difference.TotalSeconds < 0)
             {
-                if (difference.TotalHours < 0)
-                {
-                    return _lessThanHourAgo;
-                }
+                return _now;
+            }
 
-                return ((int)difference.TotalHours) + _someHoursAgo;
+            if (difference.TotalMinutes < 1)
+            {
+                return _now;
+            }
+
+            if (difference.TotalHours < 1)
+            {
+                return wholeMinutes + _someMinutesAgo;
+            }
+
+            if (time.Date == referenceTime.Date)
+            {
+                return wholeHours + _someHoursAgo;
+            }
+
+            if (time.Date == referenceTime.Date.AddDays(-1))
+            {
+                return _yesterday;
+            }
+
+            if (difference.TotalDays >= 30)
+            {
+                return _overMonthAgo;
+            }
+
+            if (difference.TotalDays >= 14)
+            {
+                return _twoWeeksAgo;
+            }
+
+            if (difference.TotalDays >= 7)
+            {
+                return _oneWeekAgo;
             }
 
             if (difference.TotalDays >= 2)
