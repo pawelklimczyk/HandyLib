@@ -22,11 +22,24 @@ namespace Gmtl.HandyLib
         public static int DefaultPageSize = 20;
 
         /// <summary>
+        /// Creates empty page
+        /// </summary>
+        public HLListPage() : this(Enumerable.Empty<T>(), 0, 1, DefaultPageSize) { }
+
+        /// <summary>
         /// Creates one page based on input
         /// </summary>
         /// <param name="items"></param>
         public HLListPage(IEnumerable<T> items) : this(items, items.Count(), 1, items.Count()) { }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="items"></param>
+        /// <param name="totalCount"></param>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize"></param>
+        /// <exception cref="ArgumentNullException"></exception>
         public HLListPage(IEnumerable<T> items, int totalCount, int pageNumber, int pageSize)
         {
             if (pageNumber < 1)
