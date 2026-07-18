@@ -19,13 +19,20 @@ namespace Gmtl.HandyLib
         {
             try
             {
-                using (CancellationTokenSource linkedCts =
-                    CancellationTokenSource.CreateLinkedTokenSource(tokens))
+                if (tokens == null || tokens.Length == 0)
                 {
-                    await Task.Delay(TimeSpan.FromSeconds(minutes), linkedCts.Token);
+                    await Task.Delay(TimeSpan.FromSeconds(minutes));
+                }
+                else
+                {
+                    using (CancellationTokenSource linkedCts =
+                        CancellationTokenSource.CreateLinkedTokenSource(tokens))
+                    {
+                        await Task.Delay(TimeSpan.FromSeconds(minutes), linkedCts.Token);
+                    }
                 }
             }
-            catch { }
+            catch (OperationCanceledException) { }
         }
     }
 }

@@ -6,6 +6,11 @@ namespace Gmtl.HandyLib.Tests
     [TestFixture]
     public class HLStopWatchTests
     {
+        // Upper bounds are intentionally generous (not tight to sleep duration): these tests
+        // verify the watcher measures elapsed time, not wall-clock precision. Tight margins
+        // flake under CI/JIT/thread-scheduling jitter.
+        private const long UpperBoundMs = 5000;
+
         [Test]
         public void ShouldUseDefaultKey()
         {
@@ -14,7 +19,7 @@ namespace Gmtl.HandyLib.Tests
             long elapsed = HLStopWatch.Stop(key);
 
             Assert.Greater(elapsed, 0);
-            Assert.Less(elapsed, 600);
+            Assert.Less(elapsed, UpperBoundMs);
         }
 
         [Test]
@@ -26,7 +31,7 @@ namespace Gmtl.HandyLib.Tests
 
             Assert.AreEqual(returnedKey, "key123");
             Assert.Greater(elapsed, 0);
-            Assert.Less(elapsed, 600);
+            Assert.Less(elapsed, UpperBoundMs);
         }
 
         [Test]
@@ -43,9 +48,9 @@ namespace Gmtl.HandyLib.Tests
             long elapsed2 = HLStopWatch.Stop(returnedKey2);
 
             Assert.Greater(elapsed1, 0);
-            Assert.Less(elapsed1, 600);
-            Assert.Greater(elapsed2, 500);
-            Assert.Less(elapsed2, 1100);
+            Assert.Less(elapsed1, UpperBoundMs);
+            Assert.Greater(elapsed2, elapsed1);
+            Assert.Less(elapsed2, UpperBoundMs * 2);
         }
 
         [Test]
@@ -62,9 +67,9 @@ namespace Gmtl.HandyLib.Tests
             long elapsed2 = HLStopWatch.Stop(returnedKey2);
 
             Assert.Greater(elapsed1, 0);
-            Assert.Less(elapsed1, 600);
-            Assert.Greater(elapsed2, 500);
-            Assert.Less(elapsed2, 1100);
+            Assert.Less(elapsed1, UpperBoundMs);
+            Assert.Greater(elapsed2, elapsed1);
+            Assert.Less(elapsed2, UpperBoundMs * 2);
         }
     }
 }

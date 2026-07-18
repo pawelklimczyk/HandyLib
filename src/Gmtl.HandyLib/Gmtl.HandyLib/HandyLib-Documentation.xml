@@ -214,11 +214,26 @@
             </summary>
             <typeparam name="T">List item type</typeparam>
         </member>
+        <member name="M:Gmtl.HandyLib.HLListPage`1.#ctor">
+            <summary>
+            Creates empty page
+            </summary>
+        </member>
         <member name="M:Gmtl.HandyLib.HLListPage`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
             <summary>
             Creates one page based on input
             </summary>
             <param name="items"></param>
+        </member>
+        <member name="M:Gmtl.HandyLib.HLListPage`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="items"></param>
+            <param name="totalCount"></param>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
         </member>
         <member name="P:Gmtl.HandyLib.HLListPage`1.Count">
             <summary>
